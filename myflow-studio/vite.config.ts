@@ -20,4 +20,14 @@ export default defineConfig({
     strictPort: true,
     hmr: { port: 5173 },
   },
+  build: {
+    rollupOptions: {
+      // The offscreen document isn't referenced by any manifest field
+      // (chrome.offscreen.createDocument opens it at runtime), so crx
+      // won't discover it on its own — it needs to be an explicit input.
+      input: {
+        offscreen: path.resolve(import.meta.dirname, "src/offscreen/index.html"),
+      },
+    },
+  },
 });
