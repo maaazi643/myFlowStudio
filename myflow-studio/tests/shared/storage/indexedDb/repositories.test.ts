@@ -16,6 +16,7 @@ function makePrompt(overrides: Partial<Prompt> = {}): Prompt {
     id: crypto.randomUUID(),
     projectId: null,
     text: "a neon jellyfish over Tokyo at night",
+    order: 0,
     createdAt: now,
     updatedAt: now,
     ...overrides,

@@ -22,30 +22,6 @@
   border-bottom: 1px solid var(--line);
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.fieldLabel {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.fieldHint {
-  margin: 0;
-  font-size: var(--text-xs);
-  color: var(--ink-faint);
-}
-
-.fieldError {
-  margin: 0;
-  font-size: var(--text-xs);
-  color: var(--danger);
-}
-
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;

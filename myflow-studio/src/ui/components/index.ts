@@ -10,3 +10,6 @@ export * from "./Toast";
 export * from "./PlaceholderView";
 export * from "./Toggle";
 export * from "./SegmentedControl";
+export * from "./Field";
+export * from "./Checkbox";
+export * from "./Textarea";

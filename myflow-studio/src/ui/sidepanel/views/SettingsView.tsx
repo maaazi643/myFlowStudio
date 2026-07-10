@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import type { ReactNode } from "react";
-import { Input, Select, SegmentedControl, Toggle } from "@ui/components";
+import { Field, Input, Select, SegmentedControl, Toggle } from "@ui/components";
 import { useGenerationSettings } from "@ui/hooks/useGenerationSettings";
 import {
   SPEED_PROFILES,
@@ -21,30 +21,6 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
       <h3 className={styles.sectionTitle}>{title}</h3>
       {children}
     </section>
-  );
-}
-
-function Field({
-  label,
-  hint,
-  error,
-  children,
-}: {
-  label: string;
-  hint?: string | undefined;
-  error?: string | undefined;
-  children: ReactNode;
-}) {
-  return (
-    <div className={styles.field}>
-      <span className={styles.fieldLabel}>{label}</span>
-      {children}
-      {error ? (
-        <p className={styles.fieldError}>{error}</p>
-      ) : hint ? (
-        <p className={styles.fieldHint}>{hint}</p>
-      ) : null}
-    </div>
   );
 }
 
