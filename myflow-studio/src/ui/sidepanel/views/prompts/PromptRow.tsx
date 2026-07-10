@@ -34,6 +34,7 @@ export function PromptRow({
 }: PromptRowProps) {
   const resolved = resolvePromptText(prompt.text, prompt.variables);
   const variableCount = prompt.variables ? Object.keys(prompt.variables).length : 0;
+  const referenceCount = prompt.referenceImageIds?.length ?? 0;
 
   return (
     <div className={styles.row}>
@@ -55,6 +56,9 @@ export function PromptRow({
           {prompt.text.length} chars
           {variableCount > 0
             ? ` · ${String(variableCount)} variable${variableCount === 1 ? "" : "s"}`
+            : ""}
+          {referenceCount > 0
+            ? ` · ${String(referenceCount)} reference${referenceCount === 1 ? "" : "s"}`
             : ""}
         </p>
       </button>

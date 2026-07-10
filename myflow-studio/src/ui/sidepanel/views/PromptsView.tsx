@@ -9,6 +9,7 @@ import { PromptRow } from "./prompts/PromptRow";
 import { PromptEditorModal } from "./prompts/PromptEditorModal";
 import { ImportPanel } from "./prompts/ImportPanel";
 import { BulkActionsBar } from "./prompts/BulkActionsBar";
+import { ReferenceLibraryPanel } from "./prompts/ReferenceLibraryPanel";
 import styles from "./PromptsView.module.css";
 
 const SORT_OPTIONS: { value: PromptSortMode; label: string }[] = [
@@ -50,6 +51,7 @@ export function PromptsView() {
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [importOpen, setImportOpen] = useState(false);
+  const [libraryOpen, setLibraryOpen] = useState(false);
 
   const editingPrompt = editingId ? (allPrompts.find((p) => p.id === editingId) ?? null) : null;
   const showReorder = sortMode === "manual" && searchQuery.trim().length === 0;
@@ -67,11 +69,12 @@ export function PromptsView() {
   async function handleSave(
     text: string,
     variables: Record<string, string> | undefined,
+    referenceImageIds: string[] | undefined,
   ): Promise<void> {
     if (editingId) {
-      await updatePrompt(editingId, { text, variables });
+      await updatePrompt(editingId, { text, variables, referenceImageIds });
     } else {
-      await addPrompt(text, variables);
+      await addPrompt(text, variables, referenceImageIds);
     }
   }
 
@@ -110,6 +113,16 @@ export function PromptsView() {
         </Button>
         <Button size="sm" fullWidth onClick={openNewEditor}>
           Add prompt
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          className={styles.referencesButton}
+          onClick={() => {
+            setLibraryOpen(true);
+          }}
+        >
+          References
         </Button>
       </div>
 
@@ -193,11 +206,12 @@ export function PromptsView() {
         open={editorOpen}
         initialText={editingPrompt?.text ?? ""}
         initialVariables={editingPrompt?.variables}
+        initialReferenceImageIds={editingPrompt?.referenceImageIds}
         onClose={() => {
           setEditorOpen(false);
         }}
-        onSave={(text, variables) => {
-          void handleSave(text, variables);
+        onSave={(text, variables, referenceImageIds) => {
+          void handleSave(text, variables, referenceImageIds);
         }}
       />
 
@@ -208,6 +222,13 @@ export function PromptsView() {
         }}
         onImport={(parsed) => {
           void importPrompts(parsed);
+        }}
+      />
+
+      <ReferenceLibraryPanel
+        open={libraryOpen}
+        onClose={() => {
+          setLibraryOpen(false);
         }}
       />
     </div>

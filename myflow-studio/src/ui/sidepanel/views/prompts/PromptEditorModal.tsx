@@ -1,32 +1,43 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button, Field, Input, Modal, Textarea } from "@ui/components";
 import { extractVariableNames, resolvePromptText } from "@shared/utils/promptVariables";
+import { ReferencePicker } from "./ReferencePicker";
 import styles from "./PromptEditorModal.module.css";
 
 export interface PromptEditorModalProps {
   open: boolean;
   initialText: string;
   initialVariables: Record<string, string> | undefined;
+  initialReferenceImageIds: string[] | undefined;
   onClose: () => void;
-  onSave: (text: string, variables: Record<string, string> | undefined) => void;
+  onSave: (
+    text: string,
+    variables: Record<string, string> | undefined,
+    referenceImageIds: string[] | undefined,
+  ) => void;
 }
 
 export function PromptEditorModal({
   open,
   initialText,
   initialVariables,
+  initialReferenceImageIds,
   onClose,
   onSave,
 }: PromptEditorModalProps) {
   const [text, setText] = useState(initialText);
   const [variables, setVariables] = useState<Record<string, string>>(initialVariables ?? {});
+  const [referenceImageIds, setReferenceImageIds] = useState<string[]>(
+    initialReferenceImageIds ?? [],
+  );
 
   useEffect(() => {
     if (open) {
       setText(initialText);
       setVariables(initialVariables ?? {});
+      setReferenceImageIds(initialReferenceImageIds ?? []);
     }
-  }, [open, initialText, initialVariables]);
+  }, [open, initialText, initialVariables, initialReferenceImageIds]);
 
   const variableNames = useMemo(() => extractVariableNames(text), [text]);
   const resolved = useMemo(() => resolvePromptText(text, variables), [text, variables]);
@@ -41,7 +52,11 @@ export function PromptEditorModal({
         .filter((name) => variables[name])
         .map((name) => [name, variables[name] as string]),
     );
-    onSave(trimmed, Object.keys(relevant).length > 0 ? relevant : undefined);
+    onSave(
+      trimmed,
+      Object.keys(relevant).length > 0 ? relevant : undefined,
+      referenceImageIds.length > 0 ? referenceImageIds : undefined,
+    );
     onClose();
   }
 
@@ -74,6 +89,8 @@ export function PromptEditorModal({
             ))}
           </div>
         ) : null}
+
+        <ReferencePicker selectedIds={referenceImageIds} onChange={setReferenceImageIds} />
 
         <Field label="Preview">
           <p className={styles.preview}>{resolved || "—"}</p>

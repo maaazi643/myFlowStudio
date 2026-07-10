@@ -21,10 +21,18 @@ export interface UsePromptsResult {
   toggleSelected: (id: string) => void;
   clearSelection: () => void;
   selectAllVisible: () => void;
-  addPrompt: (text: string, variables?: Record<string, string>) => Promise<void>;
+  addPrompt: (
+    text: string,
+    variables?: Record<string, string>,
+    referenceImageIds?: string[],
+  ) => Promise<void>;
   updatePrompt: (
     id: string,
-    patch: { text: string; variables?: Record<string, string> | undefined },
+    patch: {
+      text: string;
+      variables?: Record<string, string> | undefined;
+      referenceImageIds?: string[] | undefined;
+    },
   ) => Promise<void>;
   deletePrompt: (id: string) => Promise<void>;
   duplicatePrompt: (id: string) => Promise<void>;
@@ -61,13 +69,14 @@ export function usePrompts(): UsePromptsResult {
   );
 
   const addPrompt = useCallback(
-    async (text: string, variables?: Record<string, string>) => {
+    async (text: string, variables?: Record<string, string>, referenceImageIds?: string[]) => {
       const now = Date.now();
       const prompt: Prompt = {
         id: crypto.randomUUID(),
         projectId: null,
         text,
         variables,
+        referenceImageIds,
         order: nextOrderValue(allPrompts),
         createdAt: now,
         updatedAt: now,
