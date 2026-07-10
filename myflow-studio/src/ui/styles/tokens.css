@@ -1,48 +1,199 @@
 :root {
+  /* Surfaces & ink */
   --paper: #f2f0ea;
   --surface: #ffffff;
+  --surface-raised: #ffffff;
   --ink: #1b1d1b;
   --ink-soft: #5b5a53;
   --ink-faint: #8c8a80;
   --line: #dedace;
+  --line-strong: #c9c4b4;
+
+  /* Brand accent */
   --accent: #136f76;
+  --accent-hover: #0f5a60;
   --accent-ink: #ffffff;
   --accent-soft: #dceeec;
+
+  /* Semantic status — distinct hue family from the accent so state always
+     reads separately from "is this interactive/brand". */
+  --success: #4f7a4a;
+  --success-soft: #e1eade;
+  --warning: #a9812e;
+  --warning-soft: #f2e9d3;
+  --danger: #b0392e;
+  --danger-soft: #f6ded9;
+  --info: #4457c9;
+  --info-soft: #e1e4f8;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(27, 29, 27, 0.06);
+  --shadow-md: 0 8px 24px rgba(27, 29, 27, 0.16);
+
+  /* Spacing (4px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 999px;
+
+  /* Type */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --text-xs: 11px;
+  --text-sm: 12.5px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --paper: #14181a;
     --surface: #1b2124;
+    --surface-raised: #212a2d;
     --ink: #ece9e1;
     --ink-soft: #a9a79d;
     --ink-faint: #767a76;
     --line: #2b3235;
+    --line-strong: #3a4245;
+
     --accent: #55d8dd;
+    --accent-hover: #7fe3e7;
     --accent-ink: #0c1516;
     --accent-soft: #1c3536;
+
+    --success: #7cb377;
+    --success-soft: #1e2c1e;
+    --warning: #d1a94c;
+    --warning-soft: #332a15;
+    --danger: #e06a5c;
+    --danger-soft: #341613;
+    --info: #8b9bff;
+    --info-soft: #1d2140;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
   }
 }
 
-* {
+/* Manual override — wins over the OS preference in both directions once a
+   user picks a theme explicitly (persistence lands with Settings, M4). */
+:root[data-theme="dark"] {
+  --paper: #14181a;
+  --surface: #1b2124;
+  --surface-raised: #212a2d;
+  --ink: #ece9e1;
+  --ink-soft: #a9a79d;
+  --ink-faint: #767a76;
+  --line: #2b3235;
+  --line-strong: #3a4245;
+  --accent: #55d8dd;
+  --accent-hover: #7fe3e7;
+  --accent-ink: #0c1516;
+  --accent-soft: #1c3536;
+  --success: #7cb377;
+  --success-soft: #1e2c1e;
+  --warning: #d1a94c;
+  --warning-soft: #332a15;
+  --danger: #e06a5c;
+  --danger-soft: #341613;
+  --info: #8b9bff;
+  --info-soft: #1d2140;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme="light"] {
+  --paper: #f2f0ea;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --ink: #1b1d1b;
+  --ink-soft: #5b5a53;
+  --ink-faint: #8c8a80;
+  --line: #dedace;
+  --line-strong: #c9c4b4;
+  --accent: #136f76;
+  --accent-hover: #0f5a60;
+  --accent-ink: #ffffff;
+  --accent-soft: #dceeec;
+  --success: #4f7a4a;
+  --success-soft: #e1eade;
+  --warning: #a9812e;
+  --warning-soft: #f2e9d3;
+  --danger: #b0392e;
+  --danger-soft: #f6ded9;
+  --info: #4457c9;
+  --info-soft: #e1e4f8;
+  --shadow-sm: 0 1px 2px rgba(27, 29, 27, 0.06);
+  --shadow-md: 0 8px 24px rgba(27, 29, 27, 0.16);
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
+  height: 100%;
+}
+
+body {
   background: var(--paper);
   color: var(--ink);
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 14px;
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 .eyebrow {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 11px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
-  margin: 0 0 6px;
+  margin: 0 0 var(--space-2);
 }
