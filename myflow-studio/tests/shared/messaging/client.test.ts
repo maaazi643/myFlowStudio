@@ -72,6 +72,16 @@ describe("createMessagingClient", () => {
     await expect(promise).rejects.toThrow(/disconnected/);
   });
 
+  it("disconnect() closes the underlying port and rejects any pending request", async () => {
+    const port = createFakePort();
+    const client = createMessagingClient(port, () => "req-1");
+
+    const promise = client.request({ type: "PING" });
+    client.disconnect();
+
+    await expect(promise).rejects.toThrow(/disconnected/);
+  });
+
   it("uses a distinct correlation id per request by default", () => {
     const port = createFakePort();
     const client = createMessagingClient(port);

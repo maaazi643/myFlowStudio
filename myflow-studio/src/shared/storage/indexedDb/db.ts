@@ -1,39 +1,43 @@
 const DB_NAME = "myflow-studio";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 export const STORES = {
   prompts: "prompts",
   projects: "projects",
   images: "images",
   logs: "logs",
+  queueRuns: "queueRuns",
 } as const;
 
-/**
- * Version history — add a new branch keyed on `event.oldVersion` here when
- * a future milestone needs a schema change, rather than rewriting this
- * function. There's only ever been one version so far.
- */
-function upgrade(db: IDBDatabase): void {
-  if (!db.objectStoreNames.contains(STORES.prompts)) {
-    const prompts = db.createObjectStore(STORES.prompts, { keyPath: "id" });
-    prompts.createIndex("projectId", "projectId");
-    prompts.createIndex("createdAt", "createdAt");
-  }
+function upgradeToV1(db: IDBDatabase): void {
+  const prompts = db.createObjectStore(STORES.prompts, { keyPath: "id" });
+  prompts.createIndex("projectId", "projectId");
+  prompts.createIndex("createdAt", "createdAt");
 
-  if (!db.objectStoreNames.contains(STORES.projects)) {
-    db.createObjectStore(STORES.projects, { keyPath: "id" });
-  }
+  db.createObjectStore(STORES.projects, { keyPath: "id" });
 
-  if (!db.objectStoreNames.contains(STORES.images)) {
-    const images = db.createObjectStore(STORES.images, { keyPath: "id" });
-    images.createIndex("projectId", "projectId");
-    images.createIndex("promptId", "promptId");
-    images.createIndex("kind", "kind");
-  }
+  const images = db.createObjectStore(STORES.images, { keyPath: "id" });
+  images.createIndex("projectId", "projectId");
+  images.createIndex("promptId", "promptId");
+  images.createIndex("kind", "kind");
 
-  if (!db.objectStoreNames.contains(STORES.logs)) {
-    const logs = db.createObjectStore(STORES.logs, { keyPath: "id" });
-    logs.createIndex("createdAt", "createdAt");
+  const logs = db.createObjectStore(STORES.logs, { keyPath: "id" });
+  logs.createIndex("createdAt", "createdAt");
+}
+
+function upgradeToV2(db: IDBDatabase): void {
+  const queueRuns = db.createObjectStore(STORES.queueRuns, { keyPath: "id" });
+  queueRuns.createIndex("status", "status");
+  queueRuns.createIndex("updatedAt", "updatedAt");
+}
+
+/** Version history — each past version's branch stays as-is; only add new ones. */
+function upgrade(db: IDBDatabase, oldVersion: number): void {
+  if (oldVersion < 1) {
+    upgradeToV1(db);
+  }
+  if (oldVersion < 2) {
+    upgradeToV2(db);
   }
 }
 
@@ -43,8 +47,8 @@ let dbPromise: Promise<IDBDatabase> | null = null;
 export function openDatabase(): Promise<IDBDatabase> {
   dbPromise ??= new Promise<IDBDatabase>((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, DB_VERSION);
-    request.onupgradeneeded = () => {
-      upgrade(request.result);
+    request.onupgradeneeded = (event) => {
+      upgrade(request.result, event.oldVersion);
     };
     request.onsuccess = () => {
       dbInstance = request.result;

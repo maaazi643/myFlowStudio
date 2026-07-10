@@ -11,6 +11,8 @@ export interface MessagingClient {
   request<TResult>(message: RequestMessage): Promise<TResult>;
   /** Returns an unsubscribe function. */
   onEvent(listener: (event: BroadcastEvent) => void): () => void;
+  /** Closes the underlying port — call this from cleanup wherever a client outlives a single render (e.g. a hook). */
+  disconnect(): void;
 }
 
 interface PendingRequest {
@@ -68,6 +70,9 @@ export function createMessagingClient(
       return () => {
         eventListeners.delete(listener);
       };
+    },
+    disconnect() {
+      port.disconnect();
     },
   };
 }

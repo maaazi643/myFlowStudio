@@ -1,9 +1,11 @@
+import type { QueueRun } from "@shared/types/queue";
+
 /**
  * Every request/response and broadcast type the extension knows about.
- * Deliberately small right now — PING proves the background service
- * worker is alive and reachable over a port, PING_OFFSCREEN proves the
- * background can lazily create and talk to the offscreen document.
- * Later milestones (M6-M8) extend these unions rather than replacing them.
+ * Started small — PING proves the background service worker is alive and
+ * reachable over a port, PING_OFFSCREEN proves the background can lazily
+ * create and talk to the offscreen document. M7 adds the queue control
+ * messages; later milestones extend these unions rather than replacing them.
  */
 
 export interface PingRequest {
@@ -14,7 +16,56 @@ export interface PingOffscreenRequest {
   type: "PING_OFFSCREEN";
 }
 
-export type RequestMessage = PingRequest | PingOffscreenRequest;
+export interface StartQueueRequest {
+  type: "QUEUE_START";
+}
+
+export interface PauseQueueRequest {
+  type: "QUEUE_PAUSE";
+}
+
+export interface ResumeQueueRequest {
+  type: "QUEUE_RESUME";
+}
+
+export interface StopQueueRequest {
+  type: "QUEUE_STOP";
+}
+
+export interface SkipCurrentQueueItemRequest {
+  type: "QUEUE_SKIP_CURRENT";
+}
+
+export interface RetryQueueItemRequest {
+  type: "QUEUE_RETRY_ITEM";
+  itemId: string;
+}
+
+export interface RetryAllFailedQueueItemsRequest {
+  type: "QUEUE_RETRY_ALL_FAILED";
+}
+
+export interface RetrySelectedQueueItemsRequest {
+  type: "QUEUE_RETRY_SELECTED";
+  itemIds: string[];
+}
+
+export interface GetQueueStateRequest {
+  type: "QUEUE_GET_STATE";
+}
+
+export type RequestMessage =
+  | PingRequest
+  | PingOffscreenRequest
+  | StartQueueRequest
+  | PauseQueueRequest
+  | ResumeQueueRequest
+  | StopQueueRequest
+  | SkipCurrentQueueItemRequest
+  | RetryQueueItemRequest
+  | RetryAllFailedQueueItemsRequest
+  | RetrySelectedQueueItemsRequest
+  | GetQueueStateRequest;
 
 export interface PingResult {
   ok: true;
@@ -27,4 +78,9 @@ export interface HeartbeatEvent {
   firedAt: number;
 }
 
-export type BroadcastEvent = HeartbeatEvent;
+export interface QueueProgressEvent {
+  type: "QUEUE_PROGRESS";
+  run: QueueRun;
+}
+
+export type BroadcastEvent = HeartbeatEvent | QueueProgressEvent;

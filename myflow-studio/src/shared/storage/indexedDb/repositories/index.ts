@@ -6,3 +6,5 @@ export { createImagesRepository } from "./imagesRepository";
 export type { ImagesRepository } from "./imagesRepository";
 export { createLogsRepository } from "./logsRepository";
 export type { LogsRepository } from "./logsRepository";
+export { createQueueRunsRepository } from "./queueRunsRepository";
+export type { QueueRunsRepository } from "./queueRunsRepository";

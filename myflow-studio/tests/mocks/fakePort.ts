@@ -10,6 +10,12 @@ export function createFakePort(): PortLike & {
   const disconnectListeners = new Set<() => void>();
   const sent: unknown[] = [];
 
+  function emitDisconnect(): void {
+    disconnectListeners.forEach((listener) => {
+      listener();
+    });
+  }
+
   return {
     sent,
     postMessage: (message) => {
@@ -25,29 +31,36 @@ export function createFakePort(): PortLike & {
         disconnectListeners.add(listener);
       },
     },
+    disconnect: emitDisconnect,
     emitMessage: (message) => {
       messageListeners.forEach((listener) => {
         listener(message);
       });
     },
-    emitDisconnect: () => {
-      disconnectListeners.forEach((listener) => {
-        listener();
-      });
-    },
+    emitDisconnect,
   };
 }
 
 /**
  * Two fake ports wired together so postMessage on one delivers
  * asynchronously (matching real chrome.runtime.Port) to the other's
- * onMessage listeners — for end-to-end protocol tests.
+ * onMessage listeners — for end-to-end protocol tests. Disconnecting
+ * either side fires onDisconnect on both, matching real Chrome behavior.
  */
 export function createFakePortPair(): [PortLike, PortLike] {
   const messageListenersA = new Set<(message: unknown) => void>();
   const messageListenersB = new Set<(message: unknown) => void>();
   const disconnectListenersA = new Set<() => void>();
   const disconnectListenersB = new Set<() => void>();
+
+  function disconnectBoth(): void {
+    disconnectListenersA.forEach((listener) => {
+      listener();
+    });
+    disconnectListenersB.forEach((listener) => {
+      listener();
+    });
+  }
 
   const portA: PortLike = {
     postMessage: (message) => {
@@ -67,6 +80,7 @@ export function createFakePortPair(): [PortLike, PortLike] {
         disconnectListenersA.add(listener);
       },
     },
+    disconnect: disconnectBoth,
   };
 
   const portB: PortLike = {
@@ -87,6 +101,7 @@ export function createFakePortPair(): [PortLike, PortLike] {
         disconnectListenersB.add(listener);
       },
     },
+    disconnect: disconnectBoth,
   };
 
   return [portA, portB];
