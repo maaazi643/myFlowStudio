@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPromptsRepository } from "@shared/storage/indexedDb/repositories";
+import { activeProjectIdStorageKey } from "@shared/storage/activeProjectStorage";
 import type { Prompt } from "@shared/types/prompt";
 import type { ParsedPrompt } from "@shared/utils/parsers";
 import { filterPromptsByQuery, nextOrderValue, sortPrompts } from "@shared/utils/promptOrdering";
 import type { PromptSortMode } from "@shared/utils/promptOrdering";
+import { useStorageValue } from "./useStorageValue";
 
 const repo = createPromptsRepository();
 
@@ -44,7 +46,8 @@ export interface UsePromptsResult {
 }
 
 export function usePrompts(): UsePromptsResult {
-  const [allPrompts, setAllPrompts] = useState<Prompt[]>([]);
+  const [activeProjectId] = useStorageValue(activeProjectIdStorageKey);
+  const [loadedPrompts, setLoadedPrompts] = useState<Prompt[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortMode, setSortMode] = useState<PromptSortMode>("manual");
@@ -52,16 +55,24 @@ export function usePrompts(): UsePromptsResult {
 
   useEffect(() => {
     let cancelled = false;
+    setLoading(true);
     void repo.getAll().then((loaded) => {
       if (!cancelled) {
-        setAllPrompts(loaded);
+        setLoadedPrompts(loaded);
         setLoading(false);
       }
     });
     return () => {
       cancelled = true;
     };
-  }, []);
+    // Refetch on project switch — prompts created elsewhere (duplicate/import a
+    // project) only land in IndexedDB, not this hook's in-memory state.
+  }, [activeProjectId]);
+
+  const allPrompts = useMemo(
+    () => loadedPrompts.filter((prompt) => prompt.projectId === activeProjectId),
+    [loadedPrompts, activeProjectId],
+  );
 
   const prompts = useMemo(
     () => sortPrompts(filterPromptsByQuery(allPrompts, searchQuery), sortMode),
@@ -73,7 +84,7 @@ export function usePrompts(): UsePromptsResult {
       const now = Date.now();
       const prompt: Prompt = {
         id: crypto.randomUUID(),
-        projectId: null,
+        projectId: activeProjectId,
         text,
         variables,
         referenceImageIds,
@@ -82,27 +93,27 @@ export function usePrompts(): UsePromptsResult {
         updatedAt: now,
       };
       await repo.put(prompt);
-      setAllPrompts((current) => [...current, prompt]);
+      setLoadedPrompts((current) => [...current, prompt]);
     },
-    [allPrompts],
+    [allPrompts, activeProjectId],
   );
 
   const updatePrompt = useCallback(
     async (id: string, patch: { text: string; variables?: Record<string, string> | undefined }) => {
-      const existing = allPrompts.find((prompt) => prompt.id === id);
+      const existing = loadedPrompts.find((prompt) => prompt.id === id);
       if (!existing) {
         return;
       }
       const updated: Prompt = { ...existing, ...patch, updatedAt: Date.now() };
       await repo.put(updated);
-      setAllPrompts((current) => current.map((prompt) => (prompt.id === id ? updated : prompt)));
+      setLoadedPrompts((current) => current.map((prompt) => (prompt.id === id ? updated : prompt)));
     },
-    [allPrompts],
+    [loadedPrompts],
   );
 
   const deletePrompt = useCallback(async (id: string) => {
     await repo.delete(id);
-    setAllPrompts((current) => current.filter((prompt) => prompt.id !== id));
+    setLoadedPrompts((current) => current.filter((prompt) => prompt.id !== id));
     setSelectedIds((current) => {
       if (!current.has(id)) {
         return current;
@@ -115,7 +126,7 @@ export function usePrompts(): UsePromptsResult {
 
   const duplicatePrompt = useCallback(
     async (id: string) => {
-      const original = allPrompts.find((prompt) => prompt.id === id);
+      const original = loadedPrompts.find((prompt) => prompt.id === id);
       if (!original) {
         return;
       }
@@ -128,9 +139,9 @@ export function usePrompts(): UsePromptsResult {
         updatedAt: now,
       };
       await repo.put(copy);
-      setAllPrompts((current) => [...current, copy]);
+      setLoadedPrompts((current) => [...current, copy]);
     },
-    [allPrompts],
+    [loadedPrompts, allPrompts],
   );
 
   const moveBy = useCallback(
@@ -150,7 +161,7 @@ export function usePrompts(): UsePromptsResult {
       const updatedCurrent: Prompt = { ...current, order: neighbor.order, updatedAt: now };
       const updatedNeighbor: Prompt = { ...neighbor, order: current.order, updatedAt: now };
       await Promise.all([repo.put(updatedCurrent), repo.put(updatedNeighbor)]);
-      setAllPrompts((prev) =>
+      setLoadedPrompts((prev) =>
         prev.map((prompt) => {
           if (prompt.id === updatedCurrent.id) {
             return updatedCurrent;
@@ -174,7 +185,7 @@ export function usePrompts(): UsePromptsResult {
       let order = nextOrderValue(allPrompts);
       const newPrompts: Prompt[] = parsed.map((item) => ({
         id: crypto.randomUUID(),
-        projectId: null,
+        projectId: activeProjectId,
         text: item.text,
         variables: item.variables,
         order: order++,
@@ -182,14 +193,14 @@ export function usePrompts(): UsePromptsResult {
         updatedAt: now,
       }));
       await Promise.all(newPrompts.map((prompt) => repo.put(prompt)));
-      setAllPrompts((current) => [...current, ...newPrompts]);
+      setLoadedPrompts((current) => [...current, ...newPrompts]);
     },
-    [allPrompts],
+    [allPrompts, activeProjectId],
   );
 
   const bulkDelete = useCallback(async (ids: Set<string>) => {
     await Promise.all([...ids].map((id) => repo.delete(id)));
-    setAllPrompts((current) => current.filter((prompt) => !ids.has(prompt.id)));
+    setLoadedPrompts((current) => current.filter((prompt) => !ids.has(prompt.id)));
     setSelectedIds(new Set());
   }, []);
 
@@ -199,7 +210,7 @@ export function usePrompts(): UsePromptsResult {
         return;
       }
       const now = Date.now();
-      const updated = allPrompts
+      const updated = loadedPrompts
         .filter((prompt) => ids.has(prompt.id))
         .map((prompt) => ({
           ...prompt,
@@ -208,9 +219,9 @@ export function usePrompts(): UsePromptsResult {
         }));
       await Promise.all(updated.map((prompt) => repo.put(prompt)));
       const byId = new Map(updated.map((prompt) => [prompt.id, prompt]));
-      setAllPrompts((current) => current.map((prompt) => byId.get(prompt.id) ?? prompt));
+      setLoadedPrompts((current) => current.map((prompt) => byId.get(prompt.id) ?? prompt));
     },
-    [allPrompts],
+    [loadedPrompts],
   );
 
   const toggleSelected = useCallback((id: string) => {

@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Button, Input, Select } from "@ui/components";
 import { usePrompts } from "@ui/hooks/usePrompts";
 import { useGenerationSettings } from "@ui/hooks/useGenerationSettings";
+import { useProjects } from "@ui/hooks/useProjects";
 import { computePromptStats } from "@shared/utils/promptStats";
 import type { PromptSortMode } from "@shared/utils/promptOrdering";
 import { StatsBar } from "./prompts/StatsBar";
@@ -47,6 +48,9 @@ export function PromptsView() {
     () => computePromptStats(allPrompts, settings.imagesPerPrompt),
     [allPrompts, settings.imagesPerPrompt],
   );
+  const { projects, activeProjectId } = useProjects();
+  const activeProjectName =
+    projects.find((project) => project.id === activeProjectId)?.name ?? "Unfiled prompts";
 
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -80,6 +84,9 @@ export function PromptsView() {
 
   return (
     <div className={styles.wrap}>
+      <p className={styles.workingOn}>
+        Working on: <span className={styles.workingOnName}>{activeProjectName}</span>
+      </p>
       <StatsBar stats={stats} />
 
       <div className={styles.toolbar}>

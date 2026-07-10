@@ -1,0 +1,88 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) 0 var(--space-8);
+}
+
+.createRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.createRow > :first-child {
+  flex: 1;
+}
+
+.importLabel {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.fileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.error {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--danger);
+}
+
+.unfiledRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+}
+
+.unfiledMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.unfiledName {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.unfiledMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 4px 0 0;
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.loading,
+.empty {
+  padding: var(--space-6) 0;
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: var(--text-sm);
+}
