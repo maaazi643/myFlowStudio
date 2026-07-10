@@ -8,3 +8,5 @@ export * from "./Table";
 export * from "./Modal";
 export * from "./Toast";
 export * from "./PlaceholderView";
+export * from "./Toggle";
+export * from "./SegmentedControl";

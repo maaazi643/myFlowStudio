@@ -1,0 +1,36 @@
+.group {
+  display: flex;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 2px;
+}
+
+.segment {
+  flex: 1;
+  border: none;
+  background: transparent;
+  border-radius: calc(var(--radius-sm) - 2px);
+  padding: 7px 8px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition:
+    background-color 0.12s ease,
+    color 0.12s ease;
+}
+
+.segment:hover {
+  color: var(--ink);
+}
+
+.segmentSelected {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.segmentSelected:hover {
+  color: var(--accent-ink);
+}
