@@ -34,6 +34,9 @@ function isVisible(el: Element): boolean {
 }
 
 function isDisabled(el: Element): boolean {
+  if (el.getAttribute("aria-disabled") === "true") {
+    return true;
+  }
   if (
     el instanceof HTMLButtonElement ||
     el instanceof HTMLInputElement ||
@@ -42,7 +45,7 @@ function isDisabled(el: Element): boolean {
   ) {
     return el.disabled;
   }
-  return el.getAttribute("aria-disabled") === "true";
+  return false;
 }
 
 function accessibleName(el: Element): string {
@@ -167,6 +170,11 @@ function scoreCandidate(el: Element, keywords: readonly string[]): DiscoveryMatc
  * is chosen do we check whether it's *currently* clickable; if not, the
  * role reports as not found right now rather than silently falling back
  * to a different, unrelated element that happens to still be enabled.
+ *
+ * The tier 5/7 *ambiguity* count, however, is computed over the visible
+ * pool only — a permanently hidden decoy of the same kind (e.g. Google's
+ * invisible reCAPTCHA `<textarea>`) would otherwise make a genuinely
+ * singular real element look ambiguous and block the safe tier-5 guess.
  */
 export function discoverRole(role: AutomationRole): DiscoveryMatch | null {
   const definition = getRoleDefinition(role);
@@ -190,15 +198,17 @@ export function discoverRole(role: AutomationRole): DiscoveryMatch | null {
     }
   }
 
-  if (!match && pool.length === 1) {
-    const [only] = pool;
+  const visiblePool = pool.filter(isVisible);
+
+  if (!match && visiblePool.length === 1) {
+    const [only] = visiblePool;
     if (only) {
       match = { element: only, tier: 5, strategyName: "semantic-html-only" };
     }
   }
 
-  if (!match && !definition.required && pool.length <= MAX_FALLBACK_CANDIDATES) {
-    const [first] = pool;
+  if (!match && !definition.required && visiblePool.length <= MAX_FALLBACK_CANDIDATES) {
+    const [first] = visiblePool;
     if (first) {
       match = { element: first, tier: 7, strategyName: "fallback-first-of-few" };
     }

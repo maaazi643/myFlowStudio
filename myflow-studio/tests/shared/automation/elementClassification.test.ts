@@ -51,15 +51,30 @@ describe("isFileInputKind", () => {
 });
 
 describe("isDropdownKind", () => {
-  it("recognizes select, combobox/listbox roles, and buttons with aria-haspopup", () => {
+  it("recognizes select, combobox/listbox roles, and buttons with a value-picker aria-haspopup", () => {
     expect(isDropdownKind(bag("SELECT"))).toBe(true);
     expect(isDropdownKind(bag("DIV", { role: "combobox" }))).toBe(true);
     expect(isDropdownKind(bag("DIV", { role: "listbox" }))).toBe(true);
     expect(isDropdownKind(bag("BUTTON", { "aria-haspopup": "listbox" }))).toBe(true);
+    expect(isDropdownKind(bag("BUTTON", { "aria-haspopup": "menu" }))).toBe(true);
+    expect(isDropdownKind(bag("BUTTON", { "aria-haspopup": "true" }))).toBe(true);
+    // A bare aria-haspopup with no value defaults to "true" per the ARIA spec.
+    expect(isDropdownKind(bag("BUTTON", { "aria-haspopup": "" }))).toBe(true);
   });
 
   it("rejects a plain button with no popup", () => {
     expect(isDropdownKind(bag("BUTTON"))).toBe(false);
+  });
+
+  it("rejects aria-haspopup values that open a dialog/grid/tree rather than a value picker", () => {
+    // Regression: a real Google Flow page mixed several dialog-opener
+    // buttons in among its real dropdown triggers, which inflated the
+    // model/aspect-ratio/quality candidate pools past the ambiguity
+    // threshold and made discovery give up on all of them.
+    expect(isDropdownKind(bag("BUTTON", { "aria-haspopup": "dialog" }))).toBe(false);
+    expect(isDropdownKind(bag("BUTTON", { "aria-haspopup": "grid" }))).toBe(false);
+    expect(isDropdownKind(bag("BUTTON", { "aria-haspopup": "tree" }))).toBe(false);
+    expect(isDropdownKind(bag("BUTTON", { "aria-haspopup": "false" }))).toBe(false);
   });
 });
 

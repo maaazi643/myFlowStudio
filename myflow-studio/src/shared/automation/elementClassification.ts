@@ -48,6 +48,9 @@ export function isFileInputKind(bag: AttributeBag): boolean {
   return bag.tagName.toLowerCase() === "input" && attr(bag, "type").toLowerCase() === "file";
 }
 
+/** aria-haspopup values that indicate a value-picker trigger, as opposed to a modal/dialog opener or a generic disclosure. */
+const DROPDOWN_HASPOPUP_VALUES = new Set(["true", "menu", "listbox"]);
+
 export function isDropdownKind(bag: AttributeBag): boolean {
   const tag = bag.tagName.toLowerCase();
   if (tag === "select") {
@@ -57,7 +60,12 @@ export function isDropdownKind(bag: AttributeBag): boolean {
   if (role === "combobox" || role === "listbox") {
     return true;
   }
-  return tag === "button" && bag.attributes["aria-haspopup"] !== undefined;
+  if (tag !== "button") {
+    return false;
+  }
+  const hasPopup = attr(bag, "aria-haspopup").toLowerCase();
+  // A bare `aria-haspopup` with no value defaults to "true" per the ARIA spec.
+  return hasPopup === "" ? "aria-haspopup" in bag.attributes : DROPDOWN_HASPOPUP_VALUES.has(hasPopup);
 }
 
 export const KIND_CHECK: Record<ElementKind, (bag: AttributeBag) => boolean> = {
