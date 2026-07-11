@@ -34,7 +34,7 @@ export default defineManifest({
       run_at: "document_idle",
     },
   ],
-  permissions: ["storage", "downloads", "alarms", "sidePanel", "offscreen"],
+  permissions: ["storage", "downloads", "alarms", "sidePanel", "offscreen", "tabs"],
   host_permissions: [...FLOW_HOST_PERMISSIONS],
   minimum_chrome_version: "116",
 });

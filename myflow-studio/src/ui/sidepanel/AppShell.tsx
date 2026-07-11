@@ -10,6 +10,7 @@ import { SettingsView } from "./views/SettingsView";
 import { ProjectsView } from "./views/ProjectsView";
 import { LogsView } from "./views/LogsView";
 import { MonitorView } from "./views/MonitorView";
+import { DeveloperView } from "./views/DeveloperView";
 import styles from "./AppShell.module.css";
 
 const TABS: TabItem[] = [
@@ -19,6 +20,7 @@ const TABS: TabItem[] = [
   { value: "projects", label: "Projects" },
   { value: "logs", label: "Logs" },
   { value: "monitor", label: "Monitor" },
+  { value: "developer", label: "Developer" },
 ];
 
 const VIEWS: Record<string, () => React.JSX.Element> = {
@@ -28,6 +30,7 @@ const VIEWS: Record<string, () => React.JSX.Element> = {
   projects: ProjectsView,
   logs: LogsView,
   monitor: MonitorView,
+  developer: DeveloperView,
 };
 
 const NEXT_THEME: Record<ThemePreference, ThemePreference> = {

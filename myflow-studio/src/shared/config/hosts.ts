@@ -1,10 +1,24 @@
 /**
  * Google Flow origin the extension is allowed to touch.
  *
- * Placeholder pattern — confirm the exact path against the live product
- * during the automation feasibility spike (roadmap milestone SPIKE) and
- * narrow this as far as possible before shipping.
+ * Best-effort pattern, not a confirmed one — nothing in this codebase has
+ * browsed the real product. Widened to the whole labs.google domain (rather
+ * than a guessed sub-path) so a wrong path doesn't silently break Developer
+ * Mode; if the content script never responds, Developer Mode surfaces a
+ * clear error rather than failing silently, and this is the one line to fix
+ * once the real URL is confirmed.
+ *
+ * http://localhost/* is separate: it's only there so Developer Mode's
+ * element-picker mechanics can be verified end-to-end against a local test
+ * fixture in Playwright, without touching Google's real site. It never
+ * matters for real automation.
  */
-export const FLOW_HOST_PERMISSIONS: readonly string[] = ["https://labs.google/*"];
+export const FLOW_HOST_PERMISSIONS: readonly string[] = [
+  "https://labs.google/*",
+  "http://localhost:*/*",
+];
 
-export const FLOW_CONTENT_SCRIPT_MATCHES: readonly string[] = ["https://labs.google/fx/*"];
+export const FLOW_CONTENT_SCRIPT_MATCHES: readonly string[] = [
+  "https://labs.google/*",
+  "http://localhost:*/*",
+];

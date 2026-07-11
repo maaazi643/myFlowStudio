@@ -1,4 +1,6 @@
 import type { QueueRun } from "@shared/types/queue";
+import type { CapturableElementRole } from "@shared/devtools/roles";
+import type { CapturedSelector } from "@shared/devtools/registry";
 
 /**
  * Every request/response and broadcast type the extension knows about.
@@ -54,6 +56,15 @@ export interface GetQueueStateRequest {
   type: "QUEUE_GET_STATE";
 }
 
+export interface StartCaptureRequest {
+  type: "DEV_CAPTURE_START";
+  role: CapturableElementRole;
+}
+
+export interface CancelCaptureRequest {
+  type: "DEV_CAPTURE_CANCEL";
+}
+
 export type RequestMessage =
   | PingRequest
   | PingOffscreenRequest
@@ -65,7 +76,9 @@ export type RequestMessage =
   | RetryQueueItemRequest
   | RetryAllFailedQueueItemsRequest
   | RetrySelectedQueueItemsRequest
-  | GetQueueStateRequest;
+  | GetQueueStateRequest
+  | StartCaptureRequest
+  | CancelCaptureRequest;
 
 export interface PingResult {
   ok: true;
@@ -83,4 +96,15 @@ export interface QueueProgressEvent {
   run: QueueRun;
 }
 
-export type BroadcastEvent = HeartbeatEvent | QueueProgressEvent;
+export interface CaptureCompleteEvent {
+  type: "DEV_CAPTURE_COMPLETE";
+  captured: CapturedSelector;
+}
+
+export interface CaptureCancelledEvent {
+  type: "DEV_CAPTURE_CANCELLED";
+  role: CapturableElementRole;
+}
+
+export type BroadcastEvent =
+  HeartbeatEvent | QueueProgressEvent | CaptureCompleteEvent | CaptureCancelledEvent;

@@ -6,11 +6,19 @@ import { startHeartbeat } from "./lifecycle/keepAlive";
 import { QueueEngine } from "./queue/queueEngine";
 import { registerQueueHandlers } from "./queue/handlers";
 import { createSimulatedAutomationExecutor } from "./automation/simulatedExecutor";
+import { createCaptureController } from "./devMode/captureController";
+import { createChromeTabsBridge } from "./devMode/tabsBridge";
+import { registerDevModeHandlers } from "./devMode/handlers";
+import { attachContentBridgeToRuntime } from "./devMode/attachContentBridge";
 
 const router = createMessageRouter();
 registerPingHandler(router);
 attachRouterToRuntime(router);
 startHeartbeat(router);
+
+const captureController = createCaptureController({ router, tabs: createChromeTabsBridge() });
+registerDevModeHandlers(router, captureController);
+attachContentBridgeToRuntime(captureController);
 
 const queueEngine = new QueueEngine({
   repo: createQueueRunsRepository(),
