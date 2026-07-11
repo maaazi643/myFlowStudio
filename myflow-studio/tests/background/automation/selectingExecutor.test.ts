@@ -37,7 +37,11 @@ describe("createSelectingAutomationExecutor", () => {
     const simulated = makeExecutor();
     const executor = createSelectingAutomationExecutor({ real, simulated, area });
 
-    await executor.generate({ promptText: "a fox", settings: DEFAULT_GENERATION_SETTINGS });
+    await executor.generate({
+      promptText: "a fox",
+      imageIndex: 0,
+      settings: DEFAULT_GENERATION_SETTINGS,
+    });
 
     expect(simulated.calls).toEqual(["a fox"]);
     expect(real.calls).toEqual([]);
@@ -55,7 +59,11 @@ describe("createSelectingAutomationExecutor", () => {
     const simulated = makeExecutor();
     const executor = createSelectingAutomationExecutor({ real, simulated, area });
 
-    await executor.generate({ promptText: "a fox", settings: DEFAULT_GENERATION_SETTINGS });
+    await executor.generate({
+      promptText: "a fox",
+      imageIndex: 0,
+      settings: DEFAULT_GENERATION_SETTINGS,
+    });
 
     expect(real.calls).toEqual(["a fox"]);
     expect(simulated.calls).toEqual([]);
@@ -68,7 +76,11 @@ describe("createSelectingAutomationExecutor", () => {
     const simulated = makeExecutor();
     const executor = createSelectingAutomationExecutor({ real, simulated, area });
 
-    await executor.generate({ promptText: "a fox", settings: DEFAULT_GENERATION_SETTINGS });
+    await executor.generate({
+      promptText: "a fox",
+      imageIndex: 0,
+      settings: DEFAULT_GENERATION_SETTINGS,
+    });
 
     expect(simulated.calls).toEqual(["a fox"]);
     expect(real.calls).toEqual([]);
@@ -80,7 +92,11 @@ describe("createSelectingAutomationExecutor", () => {
     const simulated = makeExecutor();
     const executor = createSelectingAutomationExecutor({ real, simulated, area });
 
-    await executor.generate({ promptText: "first", settings: DEFAULT_GENERATION_SETTINGS });
+    await executor.generate({
+      promptText: "first",
+      imageIndex: 0,
+      settings: DEFAULT_GENERATION_SETTINGS,
+    });
     expect(simulated.calls).toEqual(["first"]);
 
     await setValue(
@@ -92,7 +108,11 @@ describe("createSelectingAutomationExecutor", () => {
       },
       area,
     );
-    await executor.generate({ promptText: "second", settings: DEFAULT_GENERATION_SETTINGS });
+    await executor.generate({
+      promptText: "second",
+      imageIndex: 0,
+      settings: DEFAULT_GENERATION_SETTINGS,
+    });
 
     expect(real.calls).toEqual(["second"]);
     expect(simulated.calls).toEqual(["first"]);

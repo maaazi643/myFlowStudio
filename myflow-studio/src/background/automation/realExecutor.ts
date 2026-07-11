@@ -10,14 +10,17 @@ import { selectorRegistryStorageKey } from "@shared/storage/selectorRegistryStor
 import { isRegistryComplete } from "@shared/devtools/registry";
 import { blobToBase64 } from "@shared/utils/base64";
 import { getSpeedProfile } from "@shared/config/speedProfiles";
+import { buildFilename } from "@shared/utils/filenameBuilder";
 import type { ImagesRepository } from "@shared/storage/indexedDb/repositories";
 import type { TabsLike } from "../devMode/tabsBridge";
 import type { AutomationBridge } from "./automationBridge";
+import type { DownloadRenamer } from "../downloads/downloadNaming";
 
 export interface RealAutomationExecutorDeps {
   tabs: TabsLike;
   imagesRepo: Pick<ImagesRepository, "getById">;
   bridge: AutomationBridge;
+  renamer: DownloadRenamer;
   area?: StorageArea;
 }
 
@@ -33,7 +36,7 @@ const REPLY_TIMEOUT_SAFETY_MS = 10000;
  * for why).
  */
 export function createRealAutomationExecutor(deps: RealAutomationExecutorDeps): AutomationExecutor {
-  const { tabs, imagesRepo, bridge, area } = deps;
+  const { tabs, imagesRepo, bridge, renamer, area } = deps;
 
   return {
     async generate(request: AutomationRequest): Promise<AutomationResult> {
@@ -97,6 +100,21 @@ export function createRealAutomationExecutor(deps: RealAutomationExecutorDeps): 
         clickDownload: request.settings.autoDownload,
         maxWaitMs,
       };
+
+      if (command.clickDownload) {
+        // buildFilename always appends its own default extension (for the
+        // Settings-screen live preview) — the renamer re-appends whatever
+        // the actual download's real extension turns out to be, so that
+        // placeholder has to come off here first.
+        const builtName = buildFilename({
+          index: request.imageIndex,
+          startNumber: request.settings.startNumber,
+          padding: request.settings.numberPadding,
+          template: request.settings.filenameTemplate,
+          promptText: request.promptText,
+        });
+        renamer.expectNextDownloadAs(builtName.replace(/\.[^.]+$/, ""));
+      }
 
       const resultPromise = bridge.waitFor(requestId);
       try {

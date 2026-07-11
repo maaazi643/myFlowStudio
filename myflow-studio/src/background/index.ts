@@ -17,6 +17,8 @@ import { createCaptureController } from "./devMode/captureController";
 import { createChromeTabsBridge } from "./devMode/tabsBridge";
 import { registerDevModeHandlers } from "./devMode/handlers";
 import { attachContentBridgeToRuntime } from "./devMode/attachContentBridge";
+import { createDownloadRenamer } from "./downloads/downloadNaming";
+import { createChromeDownloadsBridge } from "./downloads/chromeDownloadsBridge";
 
 const router = createMessageRouter();
 registerPingHandler(router);
@@ -41,6 +43,7 @@ const queueEngine = new QueueEngine({
       tabs: tabsBridge,
       imagesRepo: createImagesRepository(),
       bridge: automationBridge,
+      renamer: createDownloadRenamer(createChromeDownloadsBridge()),
     }),
     simulated: createSimulatedAutomationExecutor(),
   }),

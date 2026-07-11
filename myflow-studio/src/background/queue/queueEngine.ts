@@ -213,6 +213,7 @@ export class QueueEngine {
         const result = await this.executor.generate({
           promptText: next.promptText,
           referenceImageIds: next.referenceImageIds,
+          imageIndex: next.globalIndex,
           settings: this.run.settingsSnapshot,
         });
 

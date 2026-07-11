@@ -9,6 +9,7 @@ import type { GenerationSettings } from "@shared/types/generationSettings";
 import { DEFAULT_GENERATION_SETTINGS } from "@shared/storage/generationSettingsStorage";
 import { createFakeTabs } from "../../mocks/fakeTabs";
 import { createFakeStorageArea } from "../../mocks/fakeStorageArea";
+import type { DownloadRenamer } from "@background/downloads/downloadNaming";
 
 function makeCaptured(role: CapturedSelector["role"], selector: string): CapturedSelector {
   return {
@@ -32,6 +33,16 @@ function completeRegistry(): SelectorRegistry {
 
 const settings: GenerationSettings = { ...DEFAULT_GENERATION_SETTINGS, autoDownload: true };
 
+function makeRenamer(): DownloadRenamer & { expectedNames: string[] } {
+  const expectedNames: string[] = [];
+  return {
+    expectedNames,
+    expectNextDownloadAs: (filename) => {
+      expectedNames.push(filename);
+    },
+  };
+}
+
 describe("createRealAutomationExecutor", () => {
   it("fails with a clear error when the selector registry is incomplete", async () => {
     const area = createFakeStorageArea();
@@ -39,10 +50,11 @@ describe("createRealAutomationExecutor", () => {
       tabs: createFakeTabs({ activeTab: { id: 1 } }),
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge: createAutomationBridge(),
+      renamer: makeRenamer(),
       area,
     });
 
-    const result = await executor.generate({ promptText: "a fox", settings });
+    const result = await executor.generate({ promptText: "a fox", imageIndex: 0, settings });
     expect(result.ok).toBe(false);
     expect(result.error).toMatch(/Developer Mode setup isn't complete/);
   });
@@ -54,10 +66,11 @@ describe("createRealAutomationExecutor", () => {
       tabs: createFakeTabs({ activeTab: undefined }),
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge: createAutomationBridge(),
+      renamer: makeRenamer(),
       area,
     });
 
-    const result = await executor.generate({ promptText: "a fox", settings });
+    const result = await executor.generate({ promptText: "a fox", imageIndex: 0, settings });
     expect(result.ok).toBe(false);
     expect(result.error).toMatch(/No active tab/);
   });
@@ -69,10 +82,11 @@ describe("createRealAutomationExecutor", () => {
       tabs: createFakeTabs({ activeTab: { id: 5 }, unreachableTabId: 5 }),
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge: createAutomationBridge(),
+      renamer: makeRenamer(),
       area,
     });
 
-    const result = await executor.generate({ promptText: "a fox", settings });
+    const result = await executor.generate({ promptText: "a fox", imageIndex: 0, settings });
     expect(result.ok).toBe(false);
     expect(result.error).toMatch(/Couldn't reach the Google Flow tab/);
   });
@@ -86,10 +100,11 @@ describe("createRealAutomationExecutor", () => {
       tabs,
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge,
+      renamer: makeRenamer(),
       area,
     });
 
-    const resultPromise = executor.generate({ promptText: "a neon fox", settings });
+    const resultPromise = executor.generate({ promptText: "a neon fox", imageIndex: 0, settings });
     await new Promise((r) => setTimeout(r, 0));
 
     expect(tabs.sentMessages).toHaveLength(1);
@@ -116,6 +131,115 @@ describe("createRealAutomationExecutor", () => {
     await expect(resultPromise).resolves.toEqual({ ok: true });
   });
 
+  it("tells the renamer to expect a download, built from the queue item's index and prompt text, when autoDownload is on", async () => {
+    const area = createFakeStorageArea();
+    await setValue(selectorRegistryStorageKey, completeRegistry(), area);
+    const tabs = createFakeTabs({ activeTab: { id: 7 } });
+    const bridge = createAutomationBridge();
+    const renamer = makeRenamer();
+    const executor = createRealAutomationExecutor({
+      tabs,
+      imagesRepo: { getById: () => Promise.resolve(undefined) },
+      bridge,
+      renamer,
+      area,
+    });
+
+    const resultPromise = executor.generate({
+      promptText: "a neon fox",
+      imageIndex: 3,
+      settings: {
+        ...settings,
+        autoDownload: true,
+        startNumber: 1,
+        numberPadding: 4,
+        filenameTemplate: "numbered",
+      },
+    });
+    await new Promise((r) => setTimeout(r, 0));
+
+    expect(renamer.expectedNames).toEqual(["0004"]);
+
+    const command = tabs.sentMessages[0]?.message as { requestId: string };
+    bridge.handleMessage({
+      type: "MYFLOW_AUTOMATION_COMPLETE",
+      requestId: command.requestId,
+      ok: true,
+    });
+    await resultPromise;
+  });
+
+  it("strips the placeholder extension even with the numbered-prompt template's slug suffix", async () => {
+    const area = createFakeStorageArea();
+    await setValue(selectorRegistryStorageKey, completeRegistry(), area);
+    const tabs = createFakeTabs({ activeTab: { id: 7 } });
+    const bridge = createAutomationBridge();
+    const renamer = makeRenamer();
+    const executor = createRealAutomationExecutor({
+      tabs,
+      imagesRepo: { getById: () => Promise.resolve(undefined) },
+      bridge,
+      renamer,
+      area,
+    });
+
+    const resultPromise = executor.generate({
+      promptText: "A Neon Fox!",
+      imageIndex: 0,
+      settings: {
+        ...settings,
+        autoDownload: true,
+        startNumber: 1,
+        numberPadding: 4,
+        filenameTemplate: "numbered-prompt",
+      },
+    });
+    await new Promise((r) => setTimeout(r, 0));
+
+    expect(renamer.expectedNames).toEqual(["0001_A_Neon_Fox"]);
+
+    const command = tabs.sentMessages[0]?.message as { requestId: string };
+    bridge.handleMessage({
+      type: "MYFLOW_AUTOMATION_COMPLETE",
+      requestId: command.requestId,
+      ok: true,
+    });
+    await resultPromise;
+  });
+
+  it("never tells the renamer to expect a download when autoDownload is off", async () => {
+    const area = createFakeStorageArea();
+    await setValue(selectorRegistryStorageKey, completeRegistry(), area);
+    const tabs = createFakeTabs({ activeTab: { id: 7 } });
+    const bridge = createAutomationBridge();
+    const renamer = makeRenamer();
+    const executor = createRealAutomationExecutor({
+      tabs,
+      imagesRepo: { getById: () => Promise.resolve(undefined) },
+      bridge,
+      renamer,
+      area,
+    });
+
+    const resultPromise = executor.generate({
+      promptText: "a fox",
+      imageIndex: 0,
+      settings: { ...settings, autoDownload: false },
+    });
+    await new Promise((r) => setTimeout(r, 0));
+
+    expect(renamer.expectedNames).toEqual([]);
+
+    const command = tabs.sentMessages[0]?.message as { requestId: string; clickDownload: boolean };
+    expect(command.clickDownload).toBe(false);
+    bridge.handleMessage({
+      type: "MYFLOW_AUTOMATION_COMPLETE",
+      requestId: command.requestId,
+      ok: true,
+    });
+    await resultPromise;
+  });
+
   it("propagates a failure reported by the content script", async () => {
     const area = createFakeStorageArea();
     await setValue(selectorRegistryStorageKey, completeRegistry(), area);
@@ -125,10 +249,11 @@ describe("createRealAutomationExecutor", () => {
       tabs,
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge,
+      renamer: makeRenamer(),
       area,
     });
 
-    const resultPromise = executor.generate({ promptText: "a fox", settings });
+    const resultPromise = executor.generate({ promptText: "a fox", imageIndex: 0, settings });
     await new Promise((r) => setTimeout(r, 0));
     const requestId = (tabs.sentMessages[0]?.message as { requestId: string }).requestId;
 
@@ -161,12 +286,14 @@ describe("createRealAutomationExecutor", () => {
       tabs,
       imagesRepo: { getById: (id) => Promise.resolve(id === "img-1" ? stored : undefined) },
       bridge,
+      renamer: makeRenamer(),
       area,
     });
 
     const resultPromise = executor.generate({
       promptText: "a fox",
       referenceImageIds: ["img-1", "missing-id"],
+      imageIndex: 0,
       settings,
     });
     await new Promise((r) => setTimeout(r, 0));
@@ -200,10 +327,11 @@ describe("createRealAutomationExecutor", () => {
         tabs,
         imagesRepo: { getById: () => Promise.resolve(undefined) },
         bridge,
+        renamer: makeRenamer(),
         area,
       });
 
-      const resultPromise = executor.generate({ promptText: "a fox", settings });
+      const resultPromise = executor.generate({ promptText: "a fox", imageIndex: 0, settings });
       await vi.advanceTimersByTimeAsync(60_000);
 
       await expect(resultPromise).resolves.toEqual({

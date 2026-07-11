@@ -28,7 +28,11 @@ describe("createSimulatedAutomationExecutor", () => {
       renderImage: () => Promise.resolve(fakeBlob),
     });
 
-    const result = await executor.generate({ promptText: "a fox", settings: SETTINGS });
+    const result = await executor.generate({
+      promptText: "a fox",
+      imageIndex: 0,
+      settings: SETTINGS,
+    });
 
     expect(result.ok).toBe(true);
     expect(result.imageBlob).toBe(fakeBlob);
@@ -42,7 +46,11 @@ describe("createSimulatedAutomationExecutor", () => {
       delay: noDelay,
     });
 
-    const result = await executor.generate({ promptText: "a fox", settings: SETTINGS });
+    const result = await executor.generate({
+      promptText: "a fox",
+      imageIndex: 0,
+      settings: SETTINGS,
+    });
 
     expect(result.ok).toBe(false);
     expect(result.error).toBeDefined();
@@ -58,7 +66,7 @@ describe("createSimulatedAutomationExecutor", () => {
       renderImage: () => Promise.resolve(new Blob()),
     });
 
-    await executor.generate({ promptText: "a fox", settings: SETTINGS });
+    await executor.generate({ promptText: "a fox", imageIndex: 0, settings: SETTINGS });
 
     expect(delaySpy).toHaveBeenCalledTimes(1);
     const waitedMs = delaySpy.mock.calls[0]?.[0] as number;
@@ -78,6 +86,7 @@ describe("createSimulatedAutomationExecutor", () => {
 
     await executor.generate({
       promptText: "a fox",
+      imageIndex: 0,
       settings: { ...SETTINGS, speedProfileId: "not-a-real-profile" },
     });
 
