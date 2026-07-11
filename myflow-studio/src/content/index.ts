@@ -4,6 +4,11 @@ import { isContentCommand } from "@shared/devtools/contentProtocol";
 import type { CaptureResultEvent } from "@shared/devtools/contentProtocol";
 import type { CapturableElementRole } from "@shared/devtools/roles";
 import type { ElementSnapshot } from "@shared/devtools/elementSnapshot";
+import { isRunAutomationCommand } from "@shared/automation/contentAutomationProtocol";
+import type {
+  AutomationCompleteEvent,
+  RunAutomationCommand,
+} from "@shared/automation/contentAutomationProtocol";
 
 const SNAPSHOT_ATTRIBUTES = [
   "data-testid",
@@ -197,9 +202,155 @@ function stopPicking(): void {
   removeOverlayElements();
 }
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+function base64ToFile(fileName: string, mimeType: string, dataBase64: string): File {
+  const binary = atob(dataBase64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return new File([bytes], fileName, { type: mimeType });
+}
+
+/**
+ * Sets a value on a real input/textarea (or contenteditable) so React (or
+ * any framework using the same native-setter override trick) actually
+ * notices the change — assigning `.value` directly gets silently
+ * swallowed by React's controlled-input tracking, so the native setter has
+ * to be invoked explicitly before dispatching the input event.
+ */
+function setElementText(el: Element, text: string): boolean {
+  if (el instanceof HTMLTextAreaElement || el instanceof HTMLInputElement) {
+    const proto =
+      el instanceof HTMLTextAreaElement
+        ? HTMLTextAreaElement.prototype
+        : HTMLInputElement.prototype;
+    // eslint-disable-next-line @typescript-eslint/unbound-method -- called via .call(el, ...) below, so binding is explicit.
+    const nativeSetter = Object.getOwnPropertyDescriptor(proto, "value")?.set;
+    nativeSetter?.call(el, text);
+    el.dispatchEvent(new Event("input", { bubbles: true }));
+    el.dispatchEvent(new Event("change", { bubbles: true }));
+    return true;
+  }
+  if (el.getAttribute("contenteditable") === "true") {
+    el.textContent = text;
+    el.dispatchEvent(new Event("input", { bubbles: true }));
+    return true;
+  }
+  return false;
+}
+
+/** Only works for a real file input — a custom upload trigger (button) can't be driven this way, browsers block programmatic file selection. */
+function setElementFiles(el: Element, files: File[]): boolean {
+  if (!(el instanceof HTMLInputElement) || el.type !== "file") {
+    return false;
+  }
+  const transfer = new DataTransfer();
+  for (const file of files) {
+    transfer.items.add(file);
+  }
+  el.files = transfer.files;
+  el.dispatchEvent(new Event("change", { bubbles: true }));
+  return true;
+}
+
+function isClickable(el: Element): el is HTMLElement {
+  if (!(el instanceof HTMLElement)) {
+    return false;
+  }
+  if ("disabled" in el && el.disabled === true) {
+    return false;
+  }
+  return el.offsetParent !== null;
+}
+
+async function waitForClickable(selector: string, timeoutMs: number): Promise<HTMLElement | null> {
+  const deadline = Date.now() + timeoutMs;
+  const pollIntervalMs = 400;
+  while (Date.now() < deadline) {
+    const el = document.querySelector(selector);
+    if (el && isClickable(el)) {
+      return el;
+    }
+    await sleep(pollIntervalMs);
+  }
+  return null;
+}
+
+function reportAutomationResult(requestId: string, ok: boolean, error?: string): void {
+  const event: AutomationCompleteEvent = {
+    type: "MYFLOW_AUTOMATION_COMPLETE",
+    requestId,
+    ok,
+    error,
+  };
+  chrome.runtime.sendMessage(event).catch(() => undefined);
+}
+
+async function runAutomation(command: RunAutomationCommand): Promise<void> {
+  const { requestId, promptText, referenceImages, selectors, clickDownload, maxWaitMs } = command;
+  try {
+    const promptEl = document.querySelector(selectors.promptBox);
+    if (!promptEl) {
+      throw new Error(
+        "Prompt box element wasn't found on the page — re-capture it in Developer Mode.",
+      );
+    }
+    if (!setElementText(promptEl, promptText)) {
+      throw new Error("Couldn't set text on the captured prompt box element.");
+    }
+
+    if (referenceImages.length > 0 && selectors.referenceUpload) {
+      const uploadEl = document.querySelector(selectors.referenceUpload);
+      if (uploadEl) {
+        const files = referenceImages.map((image) =>
+          base64ToFile(image.fileName, image.mimeType, image.dataBase64),
+        );
+        setElementFiles(uploadEl, files);
+      }
+    }
+
+    const generateEl = document.querySelector(selectors.generateButton);
+    if (!generateEl || !(generateEl instanceof HTMLElement)) {
+      throw new Error(
+        "Generate button element wasn't found on the page — re-capture it in Developer Mode.",
+      );
+    }
+    generateEl.click();
+
+    if (clickDownload && selectors.downloadButton) {
+      const downloadEl = await waitForClickable(selectors.downloadButton, maxWaitMs);
+      if (!downloadEl) {
+        throw new Error("Timed out waiting for the download button to become available.");
+      }
+      downloadEl.click();
+      await sleep(500);
+    } else {
+      await sleep(maxWaitMs);
+    }
+
+    reportAutomationResult(requestId, true);
+  } catch (err) {
+    reportAutomationResult(
+      requestId,
+      false,
+      err instanceof Error ? err.message : "Automation failed.",
+    );
+  }
+}
+
 console.info("[MyFlow Studio] Developer Mode content script ready on", window.location.href);
 
 chrome.runtime.onMessage.addListener((message) => {
+  if (isRunAutomationCommand(message)) {
+    void runAutomation(message);
+    return;
+  }
   if (!isContentCommand(message)) {
     return;
   }

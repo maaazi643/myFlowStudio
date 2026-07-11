@@ -55,4 +55,17 @@ describe("buildQueueItems", () => {
   it("returns an empty array when imagesPerPrompt is 0", () => {
     expect(buildQueueItems([makePrompt({})], 0)).toEqual([]);
   });
+
+  it("snapshots the prompt's reference image ids onto every item it expands into", () => {
+    const prompts = [makePrompt({ text: "a fox", referenceImageIds: ["img-1", "img-2"] })];
+    const items = buildQueueItems(prompts, 2);
+    expect(items.every((item) => item.referenceImageIds)).toBeTruthy();
+    expect(items[0]?.referenceImageIds).toEqual(["img-1", "img-2"]);
+    expect(items[1]?.referenceImageIds).toEqual(["img-1", "img-2"]);
+  });
+
+  it("leaves referenceImageIds undefined for a prompt without any", () => {
+    const items = buildQueueItems([makePrompt({ text: "a fox" })], 1);
+    expect(items[0]?.referenceImageIds).toBeUndefined();
+  });
 });

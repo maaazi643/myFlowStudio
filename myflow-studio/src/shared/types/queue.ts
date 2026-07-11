@@ -12,6 +12,8 @@ export interface QueueItem {
   id: string;
   promptId: string;
   promptText: string;
+  /** Snapshot of the prompt's reference images at build time — same rationale as promptText. */
+  referenceImageIds?: string[] | undefined;
   imageIndexForPrompt: number;
   globalIndex: number;
   status: QueueItemStatus;

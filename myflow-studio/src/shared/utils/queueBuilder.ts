@@ -22,6 +22,7 @@ export function buildQueueItems(prompts: readonly Prompt[], imagesPerPrompt: num
         id: crypto.randomUUID(),
         promptId: prompt.id,
         promptText: resolvedText,
+        referenceImageIds: prompt.referenceImageIds,
         imageIndexForPrompt,
         globalIndex,
         status: "pending",

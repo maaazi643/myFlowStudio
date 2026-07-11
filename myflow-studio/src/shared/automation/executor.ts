@@ -2,6 +2,7 @@ import type { GenerationSettings } from "@shared/types/generationSettings";
 
 export interface AutomationRequest {
   promptText: string;
+  referenceImageIds?: string[] | undefined;
   settings: GenerationSettings;
 }
 

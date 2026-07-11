@@ -1,0 +1,124 @@
+import type {
+  AutomationExecutor,
+  AutomationRequest,
+  AutomationResult,
+} from "@shared/automation/executor";
+import type { RunAutomationCommand } from "@shared/automation/contentAutomationProtocol";
+import { getValue } from "@shared/storage/chromeStorage";
+import type { StorageArea } from "@shared/storage/chromeStorage";
+import { selectorRegistryStorageKey } from "@shared/storage/selectorRegistryStorage";
+import { isRegistryComplete } from "@shared/devtools/registry";
+import { blobToBase64 } from "@shared/utils/base64";
+import { getSpeedProfile } from "@shared/config/speedProfiles";
+import type { ImagesRepository } from "@shared/storage/indexedDb/repositories";
+import type { TabsLike } from "../devMode/tabsBridge";
+import type { AutomationBridge } from "./automationBridge";
+
+export interface RealAutomationExecutorDeps {
+  tabs: TabsLike;
+  imagesRepo: Pick<ImagesRepository, "getById">;
+  bridge: AutomationBridge;
+  area?: StorageArea;
+}
+
+const DEFAULT_MAX_WAIT_MS = 30000;
+/** Extra padding above maxWaitMs before the executor itself gives up waiting for a reply. */
+const REPLY_TIMEOUT_SAFETY_MS = 10000;
+
+/**
+ * Drives the real Google Flow page using only whatever Developer Mode has
+ * captured — never a hardcoded selector. Requires the prompt box, generate
+ * button, and download button to be captured; model/aspect-ratio/quality
+ * selectors are accepted but not acted on (see contentAutomationProtocol.ts
+ * for why).
+ */
+export function createRealAutomationExecutor(deps: RealAutomationExecutorDeps): AutomationExecutor {
+  const { tabs, imagesRepo, bridge, area } = deps;
+
+  return {
+    async generate(request: AutomationRequest): Promise<AutomationResult> {
+      const registry = await getValue(selectorRegistryStorageKey, area);
+      if (!isRegistryComplete(registry)) {
+        return {
+          ok: false,
+          error:
+            "Developer Mode setup isn't complete — capture the prompt box, generate button, and download button first.",
+        };
+      }
+      const { promptBox, generateButton, downloadButton, referenceUpload } = registry;
+      if (!promptBox || !generateButton) {
+        return {
+          ok: false,
+          error:
+            "Developer Mode setup isn't complete — capture the prompt box, generate button, and download button first.",
+        };
+      }
+
+      const tab = await tabs.queryActiveTab();
+      if (!tab) {
+        return {
+          ok: false,
+          error:
+            "No active tab found. Keep the Google Flow tab open and focused while the queue runs.",
+        };
+      }
+
+      const referenceImages = (
+        await Promise.all(
+          (request.referenceImageIds ?? []).map(async (id) => {
+            const image = await imagesRepo.getById(id);
+            if (!image) {
+              return null;
+            }
+            return {
+              fileName: image.fileName,
+              mimeType: image.mimeType,
+              dataBase64: await blobToBase64(image.blob),
+            };
+          }),
+        )
+      ).filter((image): image is NonNullable<typeof image> => image !== null);
+
+      const profile = getSpeedProfile(request.settings.speedProfileId);
+      const maxWaitMs = profile ? profile.delayBetweenPromptsMs.max * 3 : DEFAULT_MAX_WAIT_MS;
+      const requestId = crypto.randomUUID();
+
+      const command: RunAutomationCommand = {
+        type: "MYFLOW_RUN_AUTOMATION",
+        requestId,
+        promptText: request.promptText,
+        referenceImages,
+        selectors: {
+          promptBox: promptBox.selector,
+          generateButton: generateButton.selector,
+          downloadButton: downloadButton?.selector,
+          referenceUpload: referenceUpload?.selector,
+        },
+        clickDownload: request.settings.autoDownload,
+        maxWaitMs,
+      };
+
+      const resultPromise = bridge.waitFor(requestId);
+      try {
+        await tabs.sendMessage(tab.id, command);
+      } catch {
+        return {
+          ok: false,
+          error:
+            "Couldn't reach the Google Flow tab. Make sure it's open, focused, and fully loaded.",
+        };
+      }
+
+      const timeoutPromise = new Promise<null>((resolve) => {
+        setTimeout(() => {
+          resolve(null);
+        }, maxWaitMs + REPLY_TIMEOUT_SAFETY_MS);
+      });
+      const event = await Promise.race([resultPromise, timeoutPromise]);
+      if (!event) {
+        return { ok: false, error: "Timed out waiting for a response from the Google Flow tab." };
+      }
+      return event.ok ? { ok: true } : { ok: false, error: event.error ?? "Automation failed." };
+    },
+  };
+}
