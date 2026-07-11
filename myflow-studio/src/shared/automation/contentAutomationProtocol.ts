@@ -1,15 +1,18 @@
 /**
  * Background <-> content-script channel for driving one generation on the
- * real Google Flow page, using only the selectors Developer Mode already
- * captured — never anything hardcoded. Deliberately does not touch the
- * model/aspect-ratio/quality selectors: knowing *which element* opens a
- * dropdown doesn't tell us which option inside it corresponds to the
- * user's chosen value, and guessing that mapping is exactly the kind of
- * guess this project has been told not to make. Those three selectors are
- * captured and stored for a future milestone (per-option capture); this
- * automation runner only fills the prompt, optionally attaches reference
- * images, clicks Generate, and optionally clicks Download.
+ * real Google Flow page. The content script discovers every element it
+ * needs itself (see content/discovery) — no selector ever crosses this
+ * boundary. Deliberately does not touch the model/aspect-ratio/quality
+ * selectors: knowing *which element* opens a dropdown doesn't tell us which
+ * option inside it corresponds to the user's chosen value, and guessing
+ * that mapping is exactly the kind of guess this project avoids. Those
+ * three roles are still discovered and reported in AutomationStatus for a
+ * future milestone; this automation runner only fills the prompt,
+ * optionally attaches reference images, clicks Generate, and optionally
+ * clicks Download.
  */
+
+import type { AutomationStatus } from "./discoveryStatus";
 
 export interface AutomationReferenceImage {
   fileName: string;
@@ -17,19 +20,11 @@ export interface AutomationReferenceImage {
   dataBase64: string;
 }
 
-export interface AutomationSelectors {
-  promptBox: string;
-  generateButton: string;
-  downloadButton?: string | undefined;
-  referenceUpload?: string | undefined;
-}
-
 export interface RunAutomationCommand {
   type: "MYFLOW_RUN_AUTOMATION";
   requestId: string;
   promptText: string;
   referenceImages: AutomationReferenceImage[];
-  selectors: AutomationSelectors;
   /** Whether to click the download button once generation finishes (mirrors GenerationSettings.autoDownload). */
   clickDownload: boolean;
   /** How long to wait for generation to finish before giving up. */
@@ -56,5 +51,19 @@ export function isAutomationCompleteEvent(value: unknown): value is AutomationCo
     typeof value === "object" &&
     value !== null &&
     (value as { type?: unknown }).type === "MYFLOW_AUTOMATION_COMPLETE"
+  );
+}
+
+/** Sent by the content script whenever its discovery engine's findings change (initial scan, or after a debounced re-scan following a DOM mutation). */
+export interface DiscoveryStatusMessage {
+  type: "MYFLOW_DISCOVERY_STATUS";
+  status: AutomationStatus;
+}
+
+export function isDiscoveryStatusMessage(value: unknown): value is DiscoveryStatusMessage {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    (value as { type?: unknown }).type === "MYFLOW_DISCOVERY_STATUS"
   );
 }

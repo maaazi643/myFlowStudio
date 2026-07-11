@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   isAutomationCompleteEvent,
+  isDiscoveryStatusMessage,
   isRunAutomationCommand,
 } from "@shared/automation/contentAutomationProtocol";
 
@@ -12,7 +13,6 @@ describe("isRunAutomationCommand", () => {
         requestId: "abc",
         promptText: "a fox",
         referenceImages: [],
-        selectors: { promptBox: "#p", generateButton: "#g" },
         clickDownload: false,
         maxWaitMs: 1000,
       }),
@@ -20,9 +20,25 @@ describe("isRunAutomationCommand", () => {
   });
 
   it("rejects unrelated messages", () => {
-    expect(isRunAutomationCommand({ type: "MYFLOW_START_PICKING" })).toBe(false);
+    expect(isRunAutomationCommand({ type: "MYFLOW_DISCOVERY_STATUS" })).toBe(false);
     expect(isRunAutomationCommand(null)).toBe(false);
     expect(isRunAutomationCommand("x")).toBe(false);
+  });
+});
+
+describe("isDiscoveryStatusMessage", () => {
+  it("accepts a well-formed status message", () => {
+    expect(
+      isDiscoveryStatusMessage({
+        type: "MYFLOW_DISCOVERY_STATUS",
+        status: { pageUrl: "https://labs.google/fx/tools/flow", updatedAt: 1, roles: {} },
+      }),
+    ).toBe(true);
+  });
+
+  it("rejects unrelated messages", () => {
+    expect(isDiscoveryStatusMessage({ type: "MYFLOW_RUN_AUTOMATION" })).toBe(false);
+    expect(isDiscoveryStatusMessage(null)).toBe(false);
   });
 });
 

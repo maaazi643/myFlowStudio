@@ -4,15 +4,11 @@ import type {
   AutomationResult,
 } from "@shared/automation/executor";
 import type { RunAutomationCommand } from "@shared/automation/contentAutomationProtocol";
-import { getValue } from "@shared/storage/chromeStorage";
-import type { StorageArea } from "@shared/storage/chromeStorage";
-import { selectorRegistryStorageKey } from "@shared/storage/selectorRegistryStorage";
-import { isRegistryComplete } from "@shared/devtools/registry";
 import { blobToBase64 } from "@shared/utils/base64";
 import { getSpeedProfile } from "@shared/config/speedProfiles";
 import { buildFilename } from "@shared/utils/filenameBuilder";
 import type { ImagesRepository } from "@shared/storage/indexedDb/repositories";
-import type { TabsLike } from "../devMode/tabsBridge";
+import type { TabsLike } from "./tabsBridge";
 import type { AutomationBridge } from "./automationBridge";
 import type { DownloadRenamer } from "../downloads/downloadNaming";
 import type { Logger } from "../logging/logger";
@@ -23,7 +19,6 @@ export interface RealAutomationExecutorDeps {
   bridge: AutomationBridge;
   renamer: DownloadRenamer;
   logger: Logger;
-  area?: StorageArea;
 }
 
 const DEFAULT_MAX_WAIT_MS = 30000;
@@ -31,49 +26,23 @@ const DEFAULT_MAX_WAIT_MS = 30000;
 const REPLY_TIMEOUT_SAFETY_MS = 10000;
 
 /**
- * Drives the real Google Flow page using only whatever Developer Mode has
- * captured — never a hardcoded selector. Requires the prompt box, generate
- * button, and download button to be captured; model/aspect-ratio/quality
- * selectors are accepted but not acted on (see contentAutomationProtocol.ts
- * for why).
+ * The sole automation executor — MyFlow Studio only ever drives the real
+ * Google Flow page. The content script's discovery engine finds every
+ * element it needs on its own (see content/discovery); this executor never
+ * passes selectors across the boundary, only the data needed for one
+ * generation. If the content script can't find a required element, it
+ * reports that back as a failure with a specific reason — there is no
+ * simulated fallback.
  */
 export function createRealAutomationExecutor(deps: RealAutomationExecutorDeps): AutomationExecutor {
-  const { tabs, imagesRepo, bridge, renamer, logger, area } = deps;
+  const { tabs, imagesRepo, bridge, renamer, logger } = deps;
 
   return {
     async generate(request: AutomationRequest): Promise<AutomationResult> {
-      logger.info("Real automation executor invoked — reading the selector registry.");
-      const registry = await getValue(selectorRegistryStorageKey, area);
-      const capturedRoles = Object.keys(registry);
-      logger.info(
-        `Selector registry loaded: ${String(capturedRoles.length)} role(s) captured (${capturedRoles.join(", ") || "none"}).`,
-      );
-      if (!isRegistryComplete(registry)) {
-        const error =
-          "Developer Mode setup isn't complete — capture the prompt box, generate button, and download button first.";
-        logger.error(error);
-        return { ok: false, error };
-      }
-      const { promptBox, generateButton, downloadButton, referenceUpload } = registry;
-      if (!promptBox || !generateButton) {
-        const error =
-          "Developer Mode setup isn't complete — capture the prompt box, generate button, and download button first.";
-        logger.error(error);
-        return { ok: false, error };
-      }
-      logger.info(`Using promptBox selector: ${promptBox.selector}`);
-      logger.info(`Using generateButton selector: ${generateButton.selector}`);
-      logger.info(
-        `Using downloadButton selector: ${downloadButton ? downloadButton.selector : "(not captured)"}`,
-      );
-      logger.info(
-        `Using referenceUpload selector: ${referenceUpload ? referenceUpload.selector : "(not captured)"}`,
-      );
-
       const tab = await tabs.queryActiveTab();
       if (!tab) {
         const error =
-          "No active tab found. Keep the Google Flow tab open and focused while the queue runs.";
+          "No active tab found. Open the Google Flow tab and keep it focused while the queue runs.";
         logger.error(error);
         return { ok: false, error };
       }
@@ -104,12 +73,6 @@ export function createRealAutomationExecutor(deps: RealAutomationExecutorDeps): 
         requestId,
         promptText: request.promptText,
         referenceImages,
-        selectors: {
-          promptBox: promptBox.selector,
-          generateButton: generateButton.selector,
-          downloadButton: downloadButton?.selector,
-          referenceUpload: referenceUpload?.selector,
-        },
         clickDownload: request.settings.autoDownload,
         maxWaitMs,
       };

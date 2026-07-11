@@ -1,5 +1,5 @@
 /**
- * The subset of chrome.tabs the capture controller actually uses, narrowed
+ * The subset of chrome.tabs the automation executor actually uses, narrowed
  * to our own interface so tests can supply a plain fake instead of mocking
  * the ambient chrome global — same pattern as PortLike/StorageArea.
  */

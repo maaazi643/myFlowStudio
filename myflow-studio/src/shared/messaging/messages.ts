@@ -1,6 +1,4 @@
 import type { QueueRun } from "@shared/types/queue";
-import type { CapturableElementRole } from "@shared/devtools/roles";
-import type { CapturedSelector } from "@shared/devtools/registry";
 import type { LogEntry } from "@shared/types/logEntry";
 
 /**
@@ -9,6 +7,11 @@ import type { LogEntry } from "@shared/types/logEntry";
  * reachable over a port, PING_OFFSCREEN proves the background can lazily
  * create and talk to the offscreen document. M7 adds the queue control
  * messages; later milestones extend these unions rather than replacing them.
+ *
+ * Content-script <-> background traffic (automation commands, discovery
+ * status, logs) uses a separate one-shot chrome.runtime.sendMessage
+ * channel — see shared/automation/contentAutomationProtocol.ts — not this
+ * port-based bus.
  */
 
 export interface PingRequest {
@@ -57,15 +60,6 @@ export interface GetQueueStateRequest {
   type: "QUEUE_GET_STATE";
 }
 
-export interface StartCaptureRequest {
-  type: "DEV_CAPTURE_START";
-  role: CapturableElementRole;
-}
-
-export interface CancelCaptureRequest {
-  type: "DEV_CAPTURE_CANCEL";
-}
-
 export type RequestMessage =
   | PingRequest
   | PingOffscreenRequest
@@ -77,9 +71,7 @@ export type RequestMessage =
   | RetryQueueItemRequest
   | RetryAllFailedQueueItemsRequest
   | RetrySelectedQueueItemsRequest
-  | GetQueueStateRequest
-  | StartCaptureRequest
-  | CancelCaptureRequest;
+  | GetQueueStateRequest;
 
 export interface PingResult {
   ok: true;
@@ -97,24 +89,9 @@ export interface QueueProgressEvent {
   run: QueueRun;
 }
 
-export interface CaptureCompleteEvent {
-  type: "DEV_CAPTURE_COMPLETE";
-  captured: CapturedSelector;
-}
-
-export interface CaptureCancelledEvent {
-  type: "DEV_CAPTURE_CANCELLED";
-  role: CapturableElementRole;
-}
-
 export interface LogAppendedEvent {
   type: "LOG_APPENDED";
   entry: LogEntry;
 }
 
-export type BroadcastEvent =
-  | HeartbeatEvent
-  | QueueProgressEvent
-  | CaptureCompleteEvent
-  | CaptureCancelledEvent
-  | LogAppendedEvent;
+export type BroadcastEvent = HeartbeatEvent | QueueProgressEvent | LogAppendedEvent;

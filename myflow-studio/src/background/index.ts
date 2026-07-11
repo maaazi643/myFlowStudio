@@ -9,15 +9,11 @@ import { registerPingHandler } from "./messaging/handlers/ping";
 import { startHeartbeat } from "./lifecycle/keepAlive";
 import { QueueEngine } from "./queue/queueEngine";
 import { registerQueueHandlers } from "./queue/handlers";
-import { createSimulatedAutomationExecutor } from "./automation/simulatedExecutor";
 import { createRealAutomationExecutor } from "./automation/realExecutor";
-import { createSelectingAutomationExecutor } from "./automation/selectingExecutor";
+import { createChromeTabsBridge } from "./automation/tabsBridge";
 import { createAutomationBridge } from "./automation/automationBridge";
 import { attachAutomationBridgeToRuntime } from "./automation/attachAutomationBridge";
-import { createCaptureController } from "./devMode/captureController";
-import { createChromeTabsBridge } from "./devMode/tabsBridge";
-import { registerDevModeHandlers } from "./devMode/handlers";
-import { attachContentBridgeToRuntime } from "./devMode/attachContentBridge";
+import { attachDiscoveryStatusBridgeToRuntime } from "./automation/discoveryStatusBridge";
 import { createDownloadRenamer } from "./downloads/downloadNaming";
 import { createChromeDownloadsBridge } from "./downloads/chromeDownloadsBridge";
 import { createLogger } from "./logging/logger";
@@ -31,28 +27,20 @@ startHeartbeat(router);
 const logger = createLogger(router, createLogsRepository());
 attachLogBridgeToRuntime(logger);
 
-const tabsBridge = createChromeTabsBridge();
+attachDiscoveryStatusBridgeToRuntime();
 
-const captureController = createCaptureController({ router, tabs: tabsBridge });
-registerDevModeHandlers(router, captureController);
-attachContentBridgeToRuntime(captureController);
+const tabsBridge = createChromeTabsBridge();
 
 const automationBridge = createAutomationBridge();
 attachAutomationBridgeToRuntime(automationBridge);
 
 const queueEngine = new QueueEngine({
   repo: createQueueRunsRepository(),
-  // Automatically upgrades from the simulated executor to the real one the
-  // moment Developer Mode's required selectors are all captured.
-  executor: createSelectingAutomationExecutor({
-    real: createRealAutomationExecutor({
-      tabs: tabsBridge,
-      imagesRepo: createImagesRepository(),
-      bridge: automationBridge,
-      renamer: createDownloadRenamer(createChromeDownloadsBridge()),
-      logger,
-    }),
-    simulated: createSimulatedAutomationExecutor(),
+  executor: createRealAutomationExecutor({
+    tabs: tabsBridge,
+    imagesRepo: createImagesRepository(),
+    bridge: automationBridge,
+    renamer: createDownloadRenamer(createChromeDownloadsBridge()),
     logger,
   }),
   broadcast: (event) => {

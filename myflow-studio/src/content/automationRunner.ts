@@ -2,6 +2,7 @@ import type {
   AutomationCompleteEvent,
   RunAutomationCommand,
 } from "@shared/automation/contentAutomationProtocol";
+import type { DiscoveryEngine } from "./discovery/engine";
 import { sleep } from "./utils";
 import { log } from "./logging";
 
@@ -77,11 +78,15 @@ function isClickable(el: Element): el is HTMLElement {
   return el.offsetParent !== null;
 }
 
-async function waitForClickable(selector: string, timeoutMs: number): Promise<HTMLElement | null> {
+async function waitForClickableDownloadButton(
+  engine: DiscoveryEngine,
+  timeoutMs: number,
+): Promise<HTMLElement | null> {
   const deadline = Date.now() + timeoutMs;
   const pollIntervalMs = 400;
   while (Date.now() < deadline) {
-    const el = document.querySelector(selector);
+    engine.rescan();
+    const el = engine.getElement("downloadButton");
     if (el && isClickable(el)) {
       return el;
     }
@@ -100,32 +105,29 @@ function reportAutomationResult(requestId: string, ok: boolean, error?: string):
   chrome.runtime.sendMessage(event).catch(() => undefined);
 }
 
-export async function runAutomation(command: RunAutomationCommand): Promise<void> {
-  const { requestId, promptText, referenceImages, selectors, clickDownload, maxWaitMs } = command;
+export async function runAutomation(command: RunAutomationCommand, engine: DiscoveryEngine): Promise<void> {
+  const { requestId, promptText, referenceImages, clickDownload, maxWaitMs } = command;
   const ctx = { requestId };
-  log.info("Automation run starting.", {
-    ...ctx,
-    promptBoxSelector: selectors.promptBox,
-    generateButtonSelector: selectors.generateButton,
-    downloadButtonSelector: selectors.downloadButton ?? "(not captured)",
-  });
+  log.info("Automation run starting.", ctx);
 
   try {
-    const promptEl = document.querySelector(selectors.promptBox);
+    engine.rescan();
+
+    const promptEl = engine.getElement("promptEditor");
     if (!promptEl) {
-      log.error(`Prompt box not found using selector "${selectors.promptBox}".`, ctx);
+      log.error("Prompt editor not found on the page.", ctx);
       throw new Error(
-        "Prompt box element wasn't found on the page — re-capture it in Developer Mode.",
+        "The prompt editor couldn't be found on this Google Flow page. The page layout may have changed, or generation isn't ready yet — make sure the Google Flow tab is open, fully loaded, and focused.",
       );
     }
-    log.info(`Prompt box found: <${promptEl.tagName.toLowerCase()}>.`, ctx);
+    log.info(`Prompt editor found: <${promptEl.tagName.toLowerCase()}>.`, ctx);
 
     if (!setElementText(promptEl, promptText)) {
       log.error(
-        "The captured prompt box element isn't an editable field (not a textarea/input/contenteditable).",
+        "The discovered prompt editor isn't an editable field (not a textarea/input/contenteditable).",
         ctx,
       );
-      throw new Error("Couldn't set text on the captured prompt box element.");
+      throw new Error("Couldn't set text on the discovered prompt editor element.");
     }
     const readBack = readBackText(promptEl);
     if (normalizeForComparison(readBack) !== normalizeForComparison(promptText)) {
@@ -134,70 +136,62 @@ export async function runAutomation(command: RunAutomationCommand): Promise<void
         ctx,
       );
       throw new Error(
-        "The prompt text didn't actually appear in the editor after insertion — the page likely ignored the synthetic input event. Re-capture the prompt box in Developer Mode.",
+        "The prompt text didn't actually appear in the editor after insertion — the page likely ignored the synthetic input event.",
       );
     }
     log.info("Prompt text inserted and verified by reading it back.", ctx);
 
     if (referenceImages.length > 0) {
-      if (!selectors.referenceUpload) {
+      const uploadEl = engine.getElement("referenceImageUpload");
+      if (!uploadEl) {
         log.warning(
-          "Prompt has reference images but no reference-upload selector was captured — skipping.",
+          "Prompt has reference images but no reference image upload element was found on the page — skipping.",
           ctx,
         );
+      } else if (
+        setElementFiles(
+          uploadEl,
+          referenceImages.map((image) =>
+            base64ToFile(image.fileName, image.mimeType, image.dataBase64),
+          ),
+        )
+      ) {
+        log.info(`Attached ${String(referenceImages.length)} reference image(s).`, ctx);
       } else {
-        const uploadEl = document.querySelector(selectors.referenceUpload);
-        if (!uploadEl) {
-          log.warning(
-            `Reference upload element not found using selector "${selectors.referenceUpload}" — skipping.`,
-            ctx,
-          );
-        } else if (
-          setElementFiles(
-            uploadEl,
-            referenceImages.map((image) =>
-              base64ToFile(image.fileName, image.mimeType, image.dataBase64),
-            ),
-          )
-        ) {
-          log.info(`Attached ${String(referenceImages.length)} reference image(s).`, ctx);
-        } else {
-          log.warning(
-            "Reference upload element isn't a real file input — can't attach images to it programmatically.",
-            ctx,
-          );
-        }
+        log.warning(
+          "Discovered reference upload element isn't a real file input — can't attach images to it programmatically.",
+          ctx,
+        );
       }
     }
 
-    const generateEl = document.querySelector(selectors.generateButton);
+    engine.rescan();
+    const generateEl = engine.getElement("generateButton");
     if (!generateEl || !(generateEl instanceof HTMLElement)) {
-      log.error(`Generate button not found using selector "${selectors.generateButton}".`, ctx);
-      throw new Error(
-        "Generate button element wasn't found on the page — re-capture it in Developer Mode.",
-      );
+      log.error("Generate button not found on the page.", ctx);
+      throw new Error("The Generate button couldn't be found on this Google Flow page.");
     }
     log.info(`Generate button found: <${generateEl.tagName.toLowerCase()}>.`, ctx);
 
     if (!isClickable(generateEl)) {
       log.error("Generate button is disabled or hidden — refusing to click it.", ctx);
       throw new Error(
-        "The Generate button is disabled or not visible right now, so it wasn't clicked. Check the page state, or re-capture the button if this selector is stale.",
+        "The Generate button is disabled or not visible right now, so it wasn't clicked. Check the page state.",
       );
     }
     generateEl.click();
     log.info("Generate button clicked.", ctx);
 
-    if (clickDownload && selectors.downloadButton) {
+    if (clickDownload) {
       log.info("Waiting for the download button to become available…", ctx);
-      const downloadEl = await waitForClickable(selectors.downloadButton, maxWaitMs);
+      const downloadEl = await waitForClickableDownloadButton(engine, maxWaitMs);
       if (!downloadEl) {
         log.error(
-          `Timed out after ${String(maxWaitMs)}ms waiting for the download button to become clickable — generation may not have started.`,
+          `Timed out after ${String(maxWaitMs)}ms waiting for the download button to become clickable — generation may not have started, or it couldn't be discovered.`,
           ctx,
         );
         throw new Error(
-          "Timed out waiting for the download button to become available — this usually means Generate didn't actually start generating (check the captured selectors and the page).",
+          "Timed out waiting for the download button to become available — this usually means Generate didn't actually start generating.",
         );
       }
       downloadEl.click();

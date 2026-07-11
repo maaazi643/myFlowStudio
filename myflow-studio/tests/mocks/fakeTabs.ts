@@ -1,4 +1,4 @@
-import type { ActiveTabInfo, TabsLike } from "@background/devMode/tabsBridge";
+import type { ActiveTabInfo, TabsLike } from "@background/automation/tabsBridge";
 
 export interface FakeTabsOptions {
   activeTab?: ActiveTabInfo | undefined;
