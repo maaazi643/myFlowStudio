@@ -21,9 +21,16 @@ export function QueueItemRow({ item, index, onRetry }: QueueItemRowProps) {
   return (
     <div className={styles.row}>
       <span className={styles.index}>{index + 1}</span>
-      <p className={styles.text} title={item.promptText}>
-        {item.promptText}
-      </p>
+      <div className={styles.main}>
+        <p className={styles.text} title={item.promptText}>
+          {item.promptText}
+        </p>
+        {item.status === "failed" && item.error ? (
+          <p className={styles.errorText} title={item.error}>
+            {item.error}
+          </p>
+        ) : null}
+      </div>
       <Badge tone={STATUS_TONE[item.status]}>{item.status}</Badge>
       {item.status === "failed" ? (
         <Button

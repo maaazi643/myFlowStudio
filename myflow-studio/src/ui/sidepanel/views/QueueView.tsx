@@ -4,6 +4,7 @@ import { QueueControls } from "./queue/QueueControls";
 import { QueueProgress } from "./queue/QueueProgress";
 import { QueueItemRow } from "./queue/QueueItemRow";
 import { QueueHistory } from "./queue/QueueHistory";
+import { ExecutorStatusBanner } from "./queue/ExecutorStatusBanner";
 import styles from "./QueueView.module.css";
 
 export function QueueView() {
@@ -23,6 +24,8 @@ export function QueueView() {
 
   return (
     <div className={styles.wrap}>
+      <ExecutorStatusBanner />
+
       {error ? <p className={styles.error}>{error}</p> : null}
 
       <QueueControls

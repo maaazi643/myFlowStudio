@@ -1,6 +1,7 @@
 import type { QueueRun } from "@shared/types/queue";
 import type { CapturableElementRole } from "@shared/devtools/roles";
 import type { CapturedSelector } from "@shared/devtools/registry";
+import type { LogEntry } from "@shared/types/logEntry";
 
 /**
  * Every request/response and broadcast type the extension knows about.
@@ -106,5 +107,14 @@ export interface CaptureCancelledEvent {
   role: CapturableElementRole;
 }
 
+export interface LogAppendedEvent {
+  type: "LOG_APPENDED";
+  entry: LogEntry;
+}
+
 export type BroadcastEvent =
-  HeartbeatEvent | QueueProgressEvent | CaptureCompleteEvent | CaptureCancelledEvent;
+  | HeartbeatEvent
+  | QueueProgressEvent
+  | CaptureCompleteEvent
+  | CaptureCancelledEvent
+  | LogAppendedEvent;

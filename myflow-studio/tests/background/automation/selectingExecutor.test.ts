@@ -6,6 +6,7 @@ import type { AutomationExecutor } from "@shared/automation/executor";
 import type { CapturedSelector, SelectorRegistry } from "@shared/devtools/registry";
 import { DEFAULT_GENERATION_SETTINGS } from "@shared/storage/generationSettingsStorage";
 import { createFakeStorageArea } from "../../mocks/fakeStorageArea";
+import { createNoopLogger } from "../../mocks/noopLogger";
 
 function makeCaptured(role: CapturedSelector["role"]): CapturedSelector {
   return {
@@ -35,7 +36,12 @@ describe("createSelectingAutomationExecutor", () => {
     const area = createFakeStorageArea();
     const real = makeExecutor();
     const simulated = makeExecutor();
-    const executor = createSelectingAutomationExecutor({ real, simulated, area });
+    const executor = createSelectingAutomationExecutor({
+      real,
+      simulated,
+      logger: createNoopLogger(),
+      area,
+    });
 
     await executor.generate({
       promptText: "a fox",
@@ -57,7 +63,12 @@ describe("createSelectingAutomationExecutor", () => {
     await setValue(selectorRegistryStorageKey, registry, area);
     const real = makeExecutor();
     const simulated = makeExecutor();
-    const executor = createSelectingAutomationExecutor({ real, simulated, area });
+    const executor = createSelectingAutomationExecutor({
+      real,
+      simulated,
+      logger: createNoopLogger(),
+      area,
+    });
 
     await executor.generate({
       promptText: "a fox",
@@ -74,7 +85,12 @@ describe("createSelectingAutomationExecutor", () => {
     await setValue(selectorRegistryStorageKey, { promptBox: makeCaptured("promptBox") }, area);
     const real = makeExecutor();
     const simulated = makeExecutor();
-    const executor = createSelectingAutomationExecutor({ real, simulated, area });
+    const executor = createSelectingAutomationExecutor({
+      real,
+      simulated,
+      logger: createNoopLogger(),
+      area,
+    });
 
     await executor.generate({
       promptText: "a fox",
@@ -90,7 +106,12 @@ describe("createSelectingAutomationExecutor", () => {
     const area = createFakeStorageArea();
     const real = makeExecutor();
     const simulated = makeExecutor();
-    const executor = createSelectingAutomationExecutor({ real, simulated, area });
+    const executor = createSelectingAutomationExecutor({
+      real,
+      simulated,
+      logger: createNoopLogger(),
+      area,
+    });
 
     await executor.generate({
       promptText: "first",

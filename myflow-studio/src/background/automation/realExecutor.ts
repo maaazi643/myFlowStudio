@@ -15,12 +15,14 @@ import type { ImagesRepository } from "@shared/storage/indexedDb/repositories";
 import type { TabsLike } from "../devMode/tabsBridge";
 import type { AutomationBridge } from "./automationBridge";
 import type { DownloadRenamer } from "../downloads/downloadNaming";
+import type { Logger } from "../logging/logger";
 
 export interface RealAutomationExecutorDeps {
   tabs: TabsLike;
   imagesRepo: Pick<ImagesRepository, "getById">;
   bridge: AutomationBridge;
   renamer: DownloadRenamer;
+  logger: Logger;
   area?: StorageArea;
 }
 
@@ -36,35 +38,46 @@ const REPLY_TIMEOUT_SAFETY_MS = 10000;
  * for why).
  */
 export function createRealAutomationExecutor(deps: RealAutomationExecutorDeps): AutomationExecutor {
-  const { tabs, imagesRepo, bridge, renamer, area } = deps;
+  const { tabs, imagesRepo, bridge, renamer, logger, area } = deps;
 
   return {
     async generate(request: AutomationRequest): Promise<AutomationResult> {
+      logger.info("Real automation executor invoked — reading the selector registry.");
       const registry = await getValue(selectorRegistryStorageKey, area);
+      const capturedRoles = Object.keys(registry);
+      logger.info(
+        `Selector registry loaded: ${String(capturedRoles.length)} role(s) captured (${capturedRoles.join(", ") || "none"}).`,
+      );
       if (!isRegistryComplete(registry)) {
-        return {
-          ok: false,
-          error:
-            "Developer Mode setup isn't complete — capture the prompt box, generate button, and download button first.",
-        };
+        const error =
+          "Developer Mode setup isn't complete — capture the prompt box, generate button, and download button first.";
+        logger.error(error);
+        return { ok: false, error };
       }
       const { promptBox, generateButton, downloadButton, referenceUpload } = registry;
       if (!promptBox || !generateButton) {
-        return {
-          ok: false,
-          error:
-            "Developer Mode setup isn't complete — capture the prompt box, generate button, and download button first.",
-        };
+        const error =
+          "Developer Mode setup isn't complete — capture the prompt box, generate button, and download button first.";
+        logger.error(error);
+        return { ok: false, error };
       }
+      logger.info(`Using promptBox selector: ${promptBox.selector}`);
+      logger.info(`Using generateButton selector: ${generateButton.selector}`);
+      logger.info(
+        `Using downloadButton selector: ${downloadButton ? downloadButton.selector : "(not captured)"}`,
+      );
+      logger.info(
+        `Using referenceUpload selector: ${referenceUpload ? referenceUpload.selector : "(not captured)"}`,
+      );
 
       const tab = await tabs.queryActiveTab();
       if (!tab) {
-        return {
-          ok: false,
-          error:
-            "No active tab found. Keep the Google Flow tab open and focused while the queue runs.",
-        };
+        const error =
+          "No active tab found. Keep the Google Flow tab open and focused while the queue runs.";
+        logger.error(error);
+        return { ok: false, error };
       }
+      logger.info(`Active tab found (id ${String(tab.id)}) — sending the automation command.`);
 
       const referenceImages = (
         await Promise.all(
@@ -120,11 +133,10 @@ export function createRealAutomationExecutor(deps: RealAutomationExecutorDeps): 
       try {
         await tabs.sendMessage(tab.id, command);
       } catch {
-        return {
-          ok: false,
-          error:
-            "Couldn't reach the Google Flow tab. Make sure it's open, focused, and fully loaded.",
-        };
+        const error =
+          "Couldn't reach the Google Flow tab. Make sure it's open, focused, and fully loaded.";
+        logger.error(error);
+        return { ok: false, error };
       }
 
       const timeoutPromise = new Promise<null>((resolve) => {
@@ -134,9 +146,17 @@ export function createRealAutomationExecutor(deps: RealAutomationExecutorDeps): 
       });
       const event = await Promise.race([resultPromise, timeoutPromise]);
       if (!event) {
-        return { ok: false, error: "Timed out waiting for a response from the Google Flow tab." };
+        const error = "Timed out waiting for a response from the Google Flow tab.";
+        logger.error(error);
+        return { ok: false, error };
       }
-      return event.ok ? { ok: true } : { ok: false, error: event.error ?? "Automation failed." };
+      if (event.ok) {
+        logger.info("Automation reported success.");
+        return { ok: true };
+      }
+      const error = event.error ?? "Automation failed.";
+      logger.error(`Automation reported failure: ${error}`);
+      return { ok: false, error };
     },
   };
 }

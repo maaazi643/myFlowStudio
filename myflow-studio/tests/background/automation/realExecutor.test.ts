@@ -9,6 +9,7 @@ import type { GenerationSettings } from "@shared/types/generationSettings";
 import { DEFAULT_GENERATION_SETTINGS } from "@shared/storage/generationSettingsStorage";
 import { createFakeTabs } from "../../mocks/fakeTabs";
 import { createFakeStorageArea } from "../../mocks/fakeStorageArea";
+import { createNoopLogger } from "../../mocks/noopLogger";
 import type { DownloadRenamer } from "@background/downloads/downloadNaming";
 
 function makeCaptured(role: CapturedSelector["role"], selector: string): CapturedSelector {
@@ -51,6 +52,7 @@ describe("createRealAutomationExecutor", () => {
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge: createAutomationBridge(),
       renamer: makeRenamer(),
+      logger: createNoopLogger(),
       area,
     });
 
@@ -67,6 +69,7 @@ describe("createRealAutomationExecutor", () => {
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge: createAutomationBridge(),
       renamer: makeRenamer(),
+      logger: createNoopLogger(),
       area,
     });
 
@@ -83,6 +86,7 @@ describe("createRealAutomationExecutor", () => {
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge: createAutomationBridge(),
       renamer: makeRenamer(),
+      logger: createNoopLogger(),
       area,
     });
 
@@ -101,6 +105,7 @@ describe("createRealAutomationExecutor", () => {
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge,
       renamer: makeRenamer(),
+      logger: createNoopLogger(),
       area,
     });
 
@@ -142,6 +147,7 @@ describe("createRealAutomationExecutor", () => {
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge,
       renamer,
+      logger: createNoopLogger(),
       area,
     });
 
@@ -180,6 +186,7 @@ describe("createRealAutomationExecutor", () => {
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge,
       renamer,
+      logger: createNoopLogger(),
       area,
     });
 
@@ -218,6 +225,7 @@ describe("createRealAutomationExecutor", () => {
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge,
       renamer,
+      logger: createNoopLogger(),
       area,
     });
 
@@ -250,6 +258,7 @@ describe("createRealAutomationExecutor", () => {
       imagesRepo: { getById: () => Promise.resolve(undefined) },
       bridge,
       renamer: makeRenamer(),
+      logger: createNoopLogger(),
       area,
     });
 
@@ -287,6 +296,7 @@ describe("createRealAutomationExecutor", () => {
       imagesRepo: { getById: (id) => Promise.resolve(id === "img-1" ? stored : undefined) },
       bridge,
       renamer: makeRenamer(),
+      logger: createNoopLogger(),
       area,
     });
 
@@ -328,6 +338,7 @@ describe("createRealAutomationExecutor", () => {
         imagesRepo: { getById: () => Promise.resolve(undefined) },
         bridge,
         renamer: makeRenamer(),
+        logger: createNoopLogger(),
         area,
       });
 

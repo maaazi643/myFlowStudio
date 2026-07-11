@@ -1,5 +1,6 @@
 import {
   createImagesRepository,
+  createLogsRepository,
   createQueueRunsRepository,
 } from "@shared/storage/indexedDb/repositories";
 import { createMessageRouter } from "./messaging/router";
@@ -19,11 +20,16 @@ import { registerDevModeHandlers } from "./devMode/handlers";
 import { attachContentBridgeToRuntime } from "./devMode/attachContentBridge";
 import { createDownloadRenamer } from "./downloads/downloadNaming";
 import { createChromeDownloadsBridge } from "./downloads/chromeDownloadsBridge";
+import { createLogger } from "./logging/logger";
+import { attachLogBridgeToRuntime } from "./logging/attachLogBridge";
 
 const router = createMessageRouter();
 registerPingHandler(router);
 attachRouterToRuntime(router);
 startHeartbeat(router);
+
+const logger = createLogger(router, createLogsRepository());
+attachLogBridgeToRuntime(logger);
 
 const tabsBridge = createChromeTabsBridge();
 
@@ -44,8 +50,10 @@ const queueEngine = new QueueEngine({
       imagesRepo: createImagesRepository(),
       bridge: automationBridge,
       renamer: createDownloadRenamer(createChromeDownloadsBridge()),
+      logger,
     }),
     simulated: createSimulatedAutomationExecutor(),
+    logger,
   }),
   broadcast: (event) => {
     router.broadcast(event);
@@ -57,5 +65,5 @@ registerQueueHandlers(router, queueEngine);
 void queueEngine.initialize();
 
 chrome.runtime.onInstalled.addListener((details) => {
-  console.info("[MyFlow Studio] installed", details.reason);
+  logger.info(`Extension installed/updated (reason: ${details.reason}).`);
 });

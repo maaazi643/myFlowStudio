@@ -146,6 +146,18 @@ describe("logsRepository.getRecent", () => {
   });
 });
 
+describe("logsRepository.clear", () => {
+  it("removes every stored entry", async () => {
+    const repo = createLogsRepository();
+    await repo.put({ id: crypto.randomUUID(), level: "info", message: "one", createdAt: 1 });
+    await repo.put({ id: crypto.randomUUID(), level: "error", message: "two", createdAt: 2 });
+
+    await repo.clear();
+
+    await expect(repo.getAll()).resolves.toEqual([]);
+  });
+});
+
 describe("projectsRepository", () => {
   it("supports basic CRUD", async () => {
     const repo = createProjectsRepository();
