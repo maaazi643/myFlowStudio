@@ -1,0 +1,1877 @@
+<title>Niche Dossier 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+:root{
+  --paper:#E7E9EC; --surface:#F2F4F6; --sunk:#DCDFE4;
+  --ink:#12171C; --ink-2:#4A555F; --ink-3:#6E7A84;
+  --rule:#C6CBD1; --rule-soft:#D6DADF;
+  --accent:#1B646D; --accent-soft:#D3E3E4;
+  --risk:#9E3327; --risk-soft:#F0DAD6;
+  --safe:#3B6236; --safe-soft:#DCE7D8;
+  --caution:#7C5A0E; --caution-soft:#EFE5CA;
+  --shadow:0 1px 0 rgba(18,23,28,.06), 0 12px 28px -18px rgba(18,23,28,.35);
+  --maxw:1240px; --prose:70ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1216; --surface:#161C22; --sunk:#0A0D10;
+    --ink:#E3E8EB; --ink-2:#98A5AF; --ink-3:#74828C;
+    --rule:#28323A; --rule-soft:#1E262D;
+    --accent:#5FB2BB; --accent-soft:#123336;
+    --risk:#E2806F; --risk-soft:#37201C;
+    --safe:#8DBE81; --safe-soft:#1C2A19;
+    --caution:#D6AE55; --caution-soft:#2C2413;
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 16px 32px -20px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1216; --surface:#161C22; --sunk:#0A0D10;
+  --ink:#E3E8EB; --ink-2:#98A5AF; --ink-3:#74828C;
+  --rule:#28323A; --rule-soft:#1E262D;
+  --accent:#5FB2BB; --accent-soft:#123336;
+  --risk:#E2806F; --risk-soft:#37201C;
+  --safe:#8DBE81; --safe-soft:#1C2A19;
+  --caution:#D6AE55; --caution-soft:#2C2413;
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 16px 32px -20px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,.disp{font-family:Archivo,"Helvetica Neue",Arial,sans-serif; text-wrap:balance; letter-spacing:-.015em}
+code,.mono,th,.tag,.num{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(18px,4vw,44px)}
+.layout{display:grid; grid-template-columns:1fr; gap:0}
+@media(min-width:1080px){
+  .layout{grid-template-columns:232px minmax(0,1fr); gap:56px; align-items:start}
+}
+
+/* ---------- index rail ---------- */
+.rail{display:none}
+@media(min-width:1080px){
+  .rail{display:block; position:sticky; top:0; max-height:100vh; overflow-y:auto;
+    padding:40px 0 60px; border-right:1px solid var(--rule-soft); font-family:"IBM Plex Mono",monospace; font-size:11.5px}
+  .rail::-webkit-scrollbar{width:6px}
+  .rail::-webkit-scrollbar-thumb{background:var(--rule); border-radius:3px}
+}
+.rail h4{font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin:22px 0 8px; font-weight:600}
+.rail h4:first-child{margin-top:0}
+.rail a{display:block; padding:3.5px 10px 3.5px 0; color:var(--ink-2); text-decoration:none; border-left:2px solid transparent; padding-left:11px; margin-left:-1px}
+.rail a:hover{color:var(--accent); border-left-color:var(--accent)}
+.rail a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* ---------- masthead ---------- */
+.mast{border-bottom:2px solid var(--ink); padding:44px 0 22px; margin-bottom:34px}
+.mast .kicker{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); font-weight:600}
+.mast h1{font-size:clamp(2.6rem,6.4vw,4.5rem); line-height:.96; font-weight:800; margin:.28em 0 .22em; letter-spacing:-.035em}
+.mast .sub{font-size:1.14rem; color:var(--ink-2); max-width:60ch; margin:0}
+.meta{display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); gap:1px; background:var(--rule-soft); border:1px solid var(--rule-soft); margin-top:30px}
+.meta div{background:var(--paper); padding:11px 14px}
+.meta dt{font-family:"IBM Plex Mono",monospace; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin:0 0 3px}
+.meta dd{margin:0; font-family:"IBM Plex Mono",monospace; font-size:12.5px; font-weight:500}
+
+/* ---------- sections ---------- */
+section{padding:44px 0; border-top:1px solid var(--rule-soft); scroll-margin-top:20px}
+section:first-of-type{border-top:none}
+.snum{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.16em; color:var(--accent); font-weight:600; text-transform:uppercase}
+h2{font-size:clamp(1.6rem,3.4vw,2.3rem); font-weight:700; margin:.24em 0 .5em; line-height:1.08}
+h3{font-size:1.16rem; font-weight:700; margin:2.1em 0 .5em; letter-spacing:-.01em}
+h4{font-size:.95rem; font-weight:700; margin:1.6em 0 .4em; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-2); font-family:"IBM Plex Mono",monospace}
+p{max-width:var(--prose); margin:0 0 1.05em}
+ul,ol{max-width:var(--prose); padding-left:1.15em; margin:0 0 1.1em}
+li{margin-bottom:.42em}
+a{color:var(--accent)}
+strong{font-weight:600}
+hr{border:none; border-top:1px solid var(--rule-soft); margin:2.2em 0}
+
+/* ---------- evidence tags ---------- */
+.tag{display:inline-block; font-size:9.5px; font-weight:600; letter-spacing:.11em; text-transform:uppercase;
+  padding:2px 6px; border-radius:2px; vertical-align:.13em; white-space:nowrap; border:1px solid transparent}
+.t-ver{background:var(--safe-soft); color:var(--safe); border-color:currentColor}
+.t-rep{background:var(--accent-soft); color:var(--accent); border-color:currentColor}
+.t-est{background:var(--caution-soft); color:var(--caution); border-color:currentColor}
+.t-jud{background:var(--sunk); color:var(--ink-3); border-color:var(--rule)}
+
+.legend{display:flex; flex-wrap:wrap; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--rule-soft); margin:0 0 1.4em}
+.legend div{font-size:13.5px; color:var(--ink-2); flex:1 1 210px}
+
+/* ---------- callouts ---------- */
+.call{border-left:3px solid var(--accent); background:var(--surface); padding:16px 20px; margin:1.5em 0; max-width:var(--prose)}
+.call.risk{border-left-color:var(--risk)}
+.call.hot{border-left-color:var(--caution)}
+.call p:last-child{margin-bottom:0}
+.call .lbl{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--accent); display:block; margin-bottom:6px}
+.call.risk .lbl{color:var(--risk)} .call.hot .lbl{color:var(--caution)}
+
+/* ---------- tables ---------- */
+.tscroll{overflow-x:auto; margin:1.4em 0; border:1px solid var(--rule-soft); background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:13px; min-width:640px}
+th{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; text-align:left; font-weight:600;
+  color:var(--ink-3); padding:10px 11px; border-bottom:1.5px solid var(--rule); background:var(--sunk)}
+td{padding:9px 11px; border-bottom:1px solid var(--rule-soft); vertical-align:top; font-family:"Source Serif 4",serif}
+tr:last-child td{border-bottom:none}
+td.num,th.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap}
+td.mono{font-family:"IBM Plex Mono",monospace; font-size:12px}
+tbody tr:hover{background:var(--paper)}
+.rank{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--ink-3); font-size:12px}
+.win td{background:var(--accent-soft)}
+.win:hover td{background:var(--accent-soft)}
+
+.bar{display:block; height:5px; background:var(--rule); border-radius:0; position:relative; min-width:54px}
+.bar i{display:block; height:100%; background:var(--accent)}
+
+/* ---------- grids ---------- */
+.grid{display:grid; gap:14px; margin:1.4em 0}
+.g2{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(212px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(168px,1fr))}
+.card{background:var(--surface); border:1px solid var(--rule-soft); padding:16px 18px}
+.card h5{font-family:Archivo,sans-serif; font-size:.98rem; font-weight:700; margin:0 0 6px; letter-spacing:-.01em}
+.card p{font-size:14.5px; margin:0 0 .6em; max-width:none}
+.card p:last-child{margin-bottom:0}
+.card .cap{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:8px}
+
+.stat{background:var(--surface); border:1px solid var(--rule-soft); padding:15px 17px}
+.stat .v{font-family:Archivo,sans-serif; font-size:1.75rem; font-weight:800; line-height:1; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.stat .k{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); margin-top:7px; display:block}
+
+/* ---------- prompt blocks ---------- */
+.prompt{background:var(--sunk); border:1px solid var(--rule); padding:0; margin:1.4em 0}
+.prompt .ph{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:9px 14px;
+  border-bottom:1px solid var(--rule); background:var(--surface)}
+.prompt .ph span{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.13em; text-transform:uppercase; font-weight:600; color:var(--ink-2)}
+.prompt pre{margin:0; padding:16px 18px; overflow-x:auto; font-family:"IBM Plex Mono",monospace;
+  font-size:12.2px; line-height:1.62; white-space:pre-wrap; word-break:break-word; color:var(--ink)}
+
+/* ---------- lists of ideas ---------- */
+.cols{column-width:290px; column-gap:34px; margin:1.3em 0; max-width:none}
+.cols li{break-inside:avoid; font-size:14.6px; margin-bottom:.5em}
+.cols ol,.cols ul{max-width:none}
+ol.tight{padding-left:1.5em}
+ol.tight li{margin-bottom:.34em}
+
+.pill{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:10.5px; padding:2px 7px;
+  border:1px solid var(--rule); border-radius:999px; color:var(--ink-2); margin:0 4px 5px 0; background:var(--surface)}
+
+.step{border-top:1px solid var(--rule); padding-top:18px; margin-top:30px}
+.step .sn{font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:600; color:var(--accent); letter-spacing:.12em}
+
+footer{border-top:2px solid var(--ink); padding:34px 0 70px; margin-top:40px; font-size:14px; color:var(--ink-2)}
+footer a{word-break:break-word}
+footer ol{max-width:none; column-width:340px; column-gap:34px; font-size:12.6px; font-family:"IBM Plex Mono",monospace}
+footer li{break-inside:avoid; margin-bottom:.5em}
+
+@media (prefers-reduced-motion:no-preference){
+  .rail a{transition:color .14s ease,border-color .14s ease}
+}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+</style>
+
+<div class="wrap">
+<div class="layout">
+
+<nav class="rail" aria-label="Section index">
+  <h4>Evidence</h4>
+  <a href="#method">Method &amp; limits</a>
+  <a href="#board">The 2026 board</a>
+  <h4>Selection</h4>
+  <a href="#scoring">Scoring model</a>
+  <a href="#ranking">All 16 ranked</a>
+  <a href="#top3">Top 3 deep dive</a>
+  <a href="#gaps">Competitor gaps</a>
+  <a href="#winner">The winner</a>
+  <h4>Validation</h4>
+  <a href="#idea-test">100-idea test</a>
+  <h4>Brand</h4>
+  <a href="#brand">Channel identity</a>
+  <a href="#visual">Visual system</a>
+  <h4>Pipeline</h4>
+  <a href="#s1">1 Topic research</a>
+  <a href="#s2">2 Titles</a>
+  <a href="#s3">3 Script</a>
+  <a href="#s4">4 Length</a>
+  <a href="#s5">5 Images</a>
+  <a href="#s6">6 Motion &amp; edit</a>
+  <a href="#s7">7 Voice</a>
+  <a href="#s8">8 Sound</a>
+  <a href="#s9">9 Thumbnails</a>
+  <a href="#s10">10 SEO</a>
+  <a href="#s11">11 Description</a>
+  <a href="#s12">12 Tags</a>
+  <h4>Business</h4>
+  <a href="#s13">13 Monetization</a>
+  <a href="#s14">14 Policy survival</a>
+  <h4>Execution</h4>
+  <a href="#s15">15 First 30 videos</a>
+  <a href="#s16">16 First 7 days</a>
+  <a href="#plan3090">30 &amp; 90 days</a>
+  <a href="#s17">17 Analytics</a>
+  <a href="#s18">18 Viral teardown</a>
+  <a href="#s19">19 Scaling</a>
+  <a href="#s20">20 Moat</a>
+  <a href="#s21">21 Failure modes</a>
+  <a href="#s22">22 Tool stack</a>
+  <a href="#s23">23 Master SOP</a>
+  <h4>Close</h4>
+  <a href="#waste">Do not waste time</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<main>
+
+<header class="mast">
+  <div class="kicker">Niche selection dossier &middot; compiled 23 Aug 2026</div>
+  <h1>Niche Dossier<br>2026</h1>
+  <p class="sub">Sixteen faceless, AI-illustrated YouTube niches researched, scored against a weighted model, and narrowed to one recommendation — with the full production system to build it.</p>
+  <dl class="meta">
+    <div><dt>Constraint set</dt><dd>Faceless · no filming · AI stills</dd></div>
+    <div><dt>Method</dt><dd>Script → images → edit</dd></div>
+    <div><dt>Niches assessed</dt><dd>16</dd></div>
+    <div><dt>Scoring dimensions</dt><dd>17 weighted</dd></div>
+    <div><dt>Winner</dt><dd>Digital Crime Forensics</dd></div>
+    <div><dt>Score</dt><dd>8.60 / 10</dd></div>
+  </dl>
+</header>
+
+<section id="method">
+  <div class="snum">Evidence · 01</div>
+  <h2>How to read this, and what I could not verify</h2>
+
+  <p>You asked for evidence, not enthusiasm. So every substantive claim in this dossier carries a tag telling you where it came from and how much weight it can hold.</p>
+
+  <div class="legend">
+    <div><span class="tag t-ver">Verified</span> Confirmed in a primary or near-primary source I actually read this session.</div>
+    <div><span class="tag t-rep">Reported</span> Consistently reported across multiple independent secondary sources.</div>
+    <div><span class="tag t-est">Estimate</span> A modelled range. Directionally useful, not a promise.</div>
+    <div><span class="tag t-jud">Judgement</span> My strategic reasoning. Argue with it.</div>
+  </div>
+
+  <h3>What I actually did</h3>
+  <p>I ran current web research across YouTube policy documentation, creator-economy RPM and sponsorship reporting, AI tooling comparisons, and channel-analytics aggregators, then cross-checked figures across independent sources before using them.</p>
+
+  <h3>Four honest limitations — read these before you trust a number</h3>
+  <ol>
+    <li><strong>I could not open YouTube itself, Google Trends, or Social Blade directly.</strong> Several of those domains were blocked by this environment's network proxy, including Google's own support pages and YouTube's official blog. Where I cite channel statistics, they come from search-result summaries of analytics aggregators, not from my own reading of the live dashboard. <span class="tag t-jud">Judgement</span> Treat every subscriber count here as accurate to within roughly ±15% and possibly several months stale. Re-check the three or four numbers that actually change your decision.</li>
+    <li><strong>Nobody has real RPM data except the creators who see their own dashboard.</strong> Every public "RPM by niche" table — including the ones I cite — is aggregated from self-reported creator figures and affiliate-marketing content. The ranges are directionally reliable because many independent sources converge on the same ordering. The specific dollar figures are not. I have labelled all of them <span class="tag t-est">Estimate</span> and I have not invented a single one.</li>
+    <li><strong>Much of the "best faceless niches 2026" content I found is marketing.</strong> It is published by AI-video tools, thumbnail tools, and channel-analytics SaaS with an interest in telling you the space is wide open. I have discounted their competition claims heavily and leaned on structural reasoning instead: what does the format require, who can supply it, and how fast can a competitor copy it.</li>
+    <li><strong>I cannot verify saturation without querying YouTube search directly.</strong> Section 15 gives you the exact ten-minute manual check to run before you commit. Run it. It is the single highest-value thirty minutes in this document.</li>
+  </ol>
+
+  <div class="call risk">
+    <span class="lbl">Expectation setting</span>
+    <p>No niche choice produces virality. Niche choice sets your ceiling, your floor, and your odds — it does not set your outcome. Realistically: with disciplined execution at two videos per week in the recommended niche, the probability of one video clearing 50,000 views inside 90 days is meaningful but well under even. Most channels that succeed do so because the creator survived 40 mediocre videos and read the data correctly, not because video three broke out.</p>
+  </div>
+</section>
+
+<section id="board">
+  <div class="snum">Evidence · 02</div>
+  <h2>The 2026 board: seven findings that reshape the decision</h2>
+
+  <p>Before any niche is scored, these are the facts about the platform that constrain every option. Two of them are more important than your niche choice.</p>
+
+  <h3>1. The monetization bar doubles on 1 February 2027 <span class="tag t-rep">Reported</span></h3>
+  <p>YouTube announced in August 2026 that new creators joining the Partner Program from 1 February 2027 will need <strong>8,000 qualified watch hours</strong> (up from 4,000) or <strong>20 million qualified Shorts views</strong> (up from 10 million). Channels already accepted are grandfathered, though everyone must accept updated terms.</p>
+  <div class="call hot">
+    <span class="lbl">Strategic consequence — this is the single most actionable fact in the dossier</span>
+    <p>You have roughly <strong>five months</strong> from today to hit 1,000 subscribers and 4,000 watch hours under the current rules. Miss that window and your target doubles overnight. This changes the recommended format: it pushes you toward <strong>longer videos</strong> (watch hours accumulate per minute watched, not per view) and toward a niche with <strong>high retention</strong> rather than high click volume. A niche that produces 12-minute videos watched to 55% banks watch hours roughly three times faster per view than one producing 6-minute videos watched to 40%.</p>
+    <p>Arithmetic: 4,000 watch hours = 240,000 watch-minutes. At 12 minutes average view duration you need 20,000 qualified views. At 3 minutes you need 80,000. <span class="tag t-est">Estimate</span></p>
+  </div>
+
+  <h3>2. "Inauthentic content" is the policy that will decide whether you get paid <span class="tag t-rep">Reported</span></h3>
+  <p>In July 2025 YouTube renamed its "repetitious content" monetization policy to <strong>inauthentic content</strong>, and clarified it further in July 2026. What is ineligible for monetization, per consistent reporting of the policy language:</p>
+  <ul>
+    <li>Similar or repetitive content with low educational value, commentary or narrative, with minimal variation across videos</li>
+    <li>Characters placed in the same situation repeatedly with the same outcome using highly similar storyline templates</li>
+    <li>Image slideshows, templated storylines, or scrolling text with minimal or no narrative, commentary or educational value</li>
+    <li>AI-generated content made with generic or unoriginal templates that gives the impression of mass production <em>without adding the creator's original, authentic insights or perspective</em></li>
+  </ul>
+  <p>Enforcement is reported as a three-strike escalation: warning, 90-day suspension, then removal from the Partner Program.</p>
+  <div class="call risk">
+    <span class="lbl">Read this clause twice</span>
+    <p>"Image slideshows … with minimal or no narrative, commentary, or educational value" describes the literal mechanical output of the pipeline you asked for. <strong>The pipeline you want is not disqualifying — but it sits one lazy execution away from the exact thing the policy names.</strong> The clause that saves you is "adding the creator's original, authentic insights or perspective." Everything in Section 14 exists to put your channel unambiguously on the right side of that sentence, and it is the reason the winning niche below is one where original analysis is structurally required rather than optional.</p>
+  </div>
+
+  <h3>3. AI narration alone does not require disclosure <span class="tag t-rep">Reported</span></h3>
+  <p>YouTube's altered-or-synthetic-content disclosure applies to content that could be mistaken for real: face swaps, altered footage of real events, realistic depictions of real people, and cloned voices of specific real people. Reporting is consistent that a generic AI voiceover does not itself trigger disclosure, and that AI used for scripting or ideation does not either. Stylised illustration that no viewer would mistake for footage generally does not trigger it. Disclosure is a checkbox in YouTube Studio; sensitive topics may get a more prominent on-player label.</p>
+
+  <h3>4. The RPM hierarchy is stable and steep <span class="tag t-est">Estimate</span></h3>
+  <p>Independent sources converge on the same ordering, though the specific figures vary by source. Consolidated ranges, US/UK/CA/AU-weighted audience:</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Advertiser category</th><th class="num">Reported CPM</th><th class="num">Implied creator RPM</th><th>Source convergence</th></tr></thead>
+    <tbody>
+      <tr><td>Insurance</td><td class="num">$30–60</td><td class="num">$15–32</td><td>Strong, thin sample</td></tr>
+      <tr><td>Personal finance &amp; investing</td><td class="num">$18–45</td><td class="num">$10–30</td><td>Very strong</td></tr>
+      <tr><td>Legal &amp; tax education</td><td class="num">$15–40</td><td class="num">$8–25</td><td>Strong</td></tr>
+      <tr><td>Real estate investing</td><td class="num">—</td><td class="num">$18–35</td><td>Moderate</td></tr>
+      <tr><td>B2B software / SaaS / cybersecurity</td><td class="num">$20–40</td><td class="num">$12–22</td><td>Strong</td></tr>
+      <tr><td>AI &amp; productivity</td><td class="num">$10–25</td><td class="num">$6–14</td><td>Moderate</td></tr>
+      <tr><td>True crime</td><td class="num">$6–18</td><td class="num">$4–11</td><td>Strong</td></tr>
+      <tr><td>Senior health &amp; longevity</td><td class="num">—</td><td class="num">~$6</td><td>Single source</td></tr>
+      <tr><td>Gaming / general entertainment</td><td class="num">$1–8</td><td class="num">$0.80–4</td><td>Very strong</td></tr>
+      <tr><td>Global platform average</td><td class="num">~$3.50</td><td class="num">~$1.80</td><td>Strong</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="mono" style="font-size:12px;color:var(--ink-3)">The spread between the top and bottom rows is roughly 15×. Niche choice is worth more than a 15× improvement in your editing.</p>
+
+  <h3>5. Sponsorship pays more than ads, and one category pays most <span class="tag t-rep">Reported</span></h3>
+  <p>Reported 2026 sponsorship CPMs: technology $30–60, cybersecurity and VPN $30–50. A tech creator averaging 50,000 views per video is reported to see roughly $1,000 flat fee plus $500–2,000 in affiliate revenue per integration. VPN and security sponsors commonly pay 30–100% commission on first billing cycle <em>on top of</em> the flat fee. Identity-protection affiliate payouts are reported at roughly $65 per sale for Aura and $8–110 per sale for LifeLock.</p>
+  <p><span class="tag t-jud">Judgement</span> For a channel under 100,000 subscribers, sponsorship plus affiliate in the security category can plausibly exceed AdSense by 2–4×. This is the strongest single monetization argument in the entire dossier and it points at one niche in particular.</p>
+
+  <h3>6. Tags are close to worthless. Stop planning to spend time on them. <span class="tag t-rep">Reported</span></h3>
+  <p>YouTube's own guidance describes tags as not important, existing mainly to catch common misspellings. The Creator Liaison has publicly called them a minor factor. Consensus recommendation across sources: 5–8 tags, under two minutes, then move on. Title, thumbnail, spoken content, CTR and retention carry the weight.</p>
+
+  <h3>7. CTR and retention are evaluated together, so clickbait actively loses <span class="tag t-rep">Reported</span></h3>
+  <p>Platform-wide CTR clusters at 4–5%, with half of all videos between 2% and 10%. Multiple sources state the 2026 algorithm explicitly pairs CTR with retention: a 5% CTR at 60% average view duration outperforms a 12% CTR at 15%. High CTR with weak retention is read as dissatisfaction and suppressed.</p>
+  <p>Also relevant: long-form 15–40 minute documentary formats are reported as resurgent in 2026 in tech, true crime, history and business specifically; and creators publishing both Shorts and long-form are reported to grow subscribers roughly 3× faster than single-format channels.</p>
+</section>
+
+<section id="scoring">
+  <div class="snum">Selection · 03</div>
+  <h2>The scoring model, and why the weights are not equal</h2>
+
+  <p>Equal weighting would be a lie. A niche that scores 10 on production speed and 3 on RPM is a worse business than the reverse, and no amount of averaging makes that untrue. I weighted 17 dimensions to 100 points. I added a seventeenth to your sixteen — <strong>policy survivability</strong> — because in 2026 a demonetized channel scores zero on everything else.</p>
+
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Dimension</th><th class="num">Weight</th><th>Why this weight</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Competition advantage</strong></td><td class="num">11</td><td>The one variable a beginner can actually exploit. Talent gaps close; structural supply gaps take years.</td></tr>
+      <tr><td><strong>RPM potential</strong></td><td class="num">11</td><td>A 15× spread exists between top and bottom niches. Nothing else in the model has that dynamic range.</td></tr>
+      <tr><td><strong>Retention potential</strong></td><td class="num">9</td><td>Drives the algorithm, drives watch hours, and watch hours are now on a five-month clock before the threshold doubles.</td></tr>
+      <tr><td><strong>AI production feasibility</strong></td><td class="num">9</td><td>Hard constraint you set. A niche that needs footage is not buildable by you, whatever it scores elsewhere.</td></tr>
+      <tr><td><strong>Demand</strong></td><td class="num">8</td><td>Necessary but not sufficient — high-demand niches are usually high-supply too.</td></tr>
+      <tr><td><strong>CTR potential</strong></td><td class="num">8</td><td>Gates everything downstream. Un-clickable subjects never get measured.</td></tr>
+      <tr><td><strong>Policy survivability</strong></td><td class="num">7</td><td>Added dimension. Probability the channel survives the inauthentic-content policy at scale.</td></tr>
+      <tr><td><strong>Long-term business potential</strong></td><td class="num">6</td><td>You said "serious long-term business." Weighted accordingly, but discounted because it only matters after traction.</td></tr>
+      <tr><td><strong>Viral potential</strong></td><td class="num">5</td><td>Deliberately low. Virality is unreliable and mostly uncorrelated with revenue.</td></tr>
+      <tr><td><strong>Evergreen potential</strong></td><td class="num">5</td><td>Compounds the back catalogue, but a dead evergreen niche is still dead.</td></tr>
+      <tr><td><strong>Scalability / idea depth</strong></td><td class="num">5</td><td>Matters at video 200, not video 20. Real but deferred.</td></tr>
+      <tr><td><strong>Monetization breadth</strong></td><td class="num">4</td><td>Number of independent revenue paths beyond ads.</td></tr>
+      <tr><td><strong>Sponsorship potential</strong></td><td class="num">4</td><td>Often exceeds ad revenue sub-100K, but only after ~10K subscribers.</td></tr>
+      <tr><td><strong>International appeal</strong></td><td class="num">3</td><td>Partly captured by RPM already. Avoids double-counting.</td></tr>
+      <tr><td><strong>Affiliate potential</strong></td><td class="num">2</td><td>Real but secondary, and heavily overlapping with sponsorship.</td></tr>
+      <tr><td><strong>Production speed</strong></td><td class="num">2</td><td>Near-constant across all image-sequence niches. Low discriminating power.</td></tr>
+      <tr><td><strong>Production cost</strong></td><td class="num">1</td><td>Every niche here costs $30–80/month. Effectively not a variable.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="call">
+    <span class="lbl">The model in one sentence</span>
+    <p>Score = 0.11(competition advantage) + 0.11(RPM) + 0.09(retention) + 0.09(AI feasibility) + 0.08(demand) + 0.08(CTR) + 0.07(policy) + 0.06(long-term) + 0.05 each (viral, evergreen, scalability) + 0.04 each (monetization breadth, sponsorship) + 0.03(international) + 0.02 each (affiliate, speed) + 0.01(cost). All sub-scores 1–10.</p>
+  </div>
+</section>
+
+<section id="ranking">
+  <div class="snum">Selection · 04</div>
+  <h2>All 16 niches, ranked</h2>
+  <p>Every niche below is faceless, buildable from AI stills plus editing, and requires no filming. None is "AI news," "motivation," "gaming," "celebrity gossip," "facts," "Reddit stories," or a generic documentary channel. Scores are <span class="tag t-jud">Judgement</span> applied to <span class="tag t-est">Estimate</span> and <span class="tag t-rep">Reported</span> inputs — the ordering is more defensible than any individual number.</p>
+
+  <div class="tscroll">
+  <table>
+    <thead>
+      <tr>
+        <th style="min-width:30px">#</th><th style="min-width:200px">Niche</th><th style="min-width:230px">Micro-niche framing</th>
+        <th class="num">Dem</th><th class="num">Comp</th><th class="num">RPM</th><th class="num">CTR</th><th class="num">Ret</th><th class="num">AI</th><th class="num">Pol</th>
+        <th class="num" style="min-width:104px">Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="win"><td class="rank">01</td><td><strong>Digital Crime Forensics</strong></td><td>Illustrated step-by-step reconstruction of one real scam, breach or fraud per video — and the exact point it could have been stopped</td><td class="num">9</td><td class="num">8</td><td class="num">8</td><td class="num">9</td><td class="num">9</td><td class="num">9</td><td class="num">8</td><td class="num"><strong>8.60</strong><span class="bar"><i style="width:86%"></i></span></td></tr>
+      <tr><td class="rank">02</td><td><strong>Later-Life Money Defence</strong></td><td>Retirement money mechanics and fraud protection for the 55+ audience, illustrated</td><td class="num">8</td><td class="num">9</td><td class="num">10</td><td class="num">7</td><td class="num">8</td><td class="num">8</td><td class="num">6</td><td class="num"><strong>8.09</strong><span class="bar"><i style="width:81%"></i></span></td></tr>
+      <tr><td class="rank">03</td><td><strong>Corporate Collapse Forensics</strong></td><td>How a company actually died and where the money physically went</td><td class="num">9</td><td class="num">6</td><td class="num">9</td><td class="num">9</td><td class="num">9</td><td class="num">8</td><td class="num">7</td><td class="num"><strong>8.06</strong><span class="bar"><i style="width:81%"></i></span></td></tr>
+      <tr><td class="rank">04</td><td>Historical Financial Manias</td><td>Currency collapses, bubbles and panics as illustrated case studies</td><td class="num">7</td><td class="num">6</td><td class="num">9</td><td class="num">7</td><td class="num">8</td><td class="num">9</td><td class="num">7</td><td class="num"><strong>7.45</strong><span class="bar"><i style="width:75%"></i></span></td></tr>
+      <tr><td class="rank">05</td><td>Insurance &amp; Liability Forensics</td><td>"Who actually pays when X goes wrong" — the highest CPM subject on the platform</td><td class="num">5</td><td class="num">10</td><td class="num">10</td><td class="num">6</td><td class="num">7</td><td class="num">8</td><td class="num">7</td><td class="num"><strong>7.44</strong><span class="bar"><i style="width:74%"></i></span></td></tr>
+      <tr><td class="rank">06</td><td>Medical Emergency Physiology</td><td>"What happens inside a body during X" — minute-by-minute, cinematically illustrated</td><td class="num">9</td><td class="num">5</td><td class="num">7</td><td class="num">9</td><td class="num">8</td><td class="num">9</td><td class="num">4</td><td class="num"><strong>7.24</strong><span class="bar"><i style="width:72%"></i></span></td></tr>
+      <tr><td class="rank">07</td><td>Workplace Rights Forensics</td><td>"Can your employer legally do this" — jurisdiction-tagged case reconstructions</td><td class="num">8</td><td class="num">8</td><td class="num">9</td><td class="num">8</td><td class="num">7</td><td class="num">7</td><td class="num">5</td><td class="num"><strong>7.23</strong><span class="bar"><i style="width:72%"></i></span></td></tr>
+      <tr><td class="rank">08</td><td>Property &amp; Land Forensics</td><td>Why a specific development, town or building project failed financially</td><td class="num">7</td><td class="num">7</td><td class="num">9</td><td class="num">7</td><td class="num">7</td><td class="num">8</td><td class="num">7</td><td class="num"><strong>7.22</strong><span class="bar"><i style="width:72%"></i></span></td></tr>
+      <tr><td class="rank">09</td><td>Hidden Systems of the Economy</td><td>Logistics, grid, water, materials — the invisible machinery behind ordinary objects</td><td class="num">8</td><td class="num">5</td><td class="num">7</td><td class="num">7</td><td class="num">8</td><td class="num">7</td><td class="num">7</td><td class="num"><strong>7.07</strong><span class="bar"><i style="width:71%"></i></span></td></tr>
+      <tr><td class="rank">10</td><td>Industrial Failure Forensics</td><td>Engineering and infrastructure disasters, illustrated</td><td class="num">9</td><td class="num">4</td><td class="num">5</td><td class="num">9</td><td class="num">9</td><td class="num">8</td><td class="num">6</td><td class="num"><strong>7.02</strong><span class="bar"><i style="width:70%"></i></span></td></tr>
+      <tr><td class="rank">11</td><td>Cold-Case Forensic Science</td><td>Method-first: how the technique cracked the case, not the victim's story</td><td class="num">9</td><td class="num">5</td><td class="num">6</td><td class="num">9</td><td class="num">8</td><td class="num">8</td><td class="num">4</td><td class="num"><strong>6.88</strong><span class="bar"><i style="width:69%"></i></span></td></tr>
+      <tr><td class="rank">12</td><td>Energy Transition Economics</td><td>Battery, grid and EV economics as illustrated case studies</td><td class="num">7</td><td class="num">7</td><td class="num">8</td><td class="num">6</td><td class="num">7</td><td class="num">7</td><td class="num">7</td><td class="num"><strong>6.86</strong><span class="bar"><i style="width:69%"></i></span></td></tr>
+      <tr><td class="rank">13</td><td>AI for Small Business Ops</td><td>No-code automation for local businesses — reported as the top emerging high-RPM niche</td><td class="num">9</td><td class="num">6</td><td class="num">9</td><td class="num">6</td><td class="num">6</td><td class="num">5</td><td class="num">6</td><td class="num"><strong>6.82</strong><span class="bar"><i style="width:68%"></i></span></td></tr>
+      <tr><td class="rank">14</td><td>Aviation &amp; Maritime Incidents</td><td>Incident reconstruction from official reports</td><td class="num">9</td><td class="num">3</td><td class="num">6</td><td class="num">9</td><td class="num">9</td><td class="num">7</td><td class="num">5</td><td class="num"><strong>6.77</strong><span class="bar"><i style="width:68%"></i></span></td></tr>
+      <tr><td class="rank">15</td><td>Extreme Biology, Cinematic</td><td>Strange organisms and biological phenomena as illustrated sequences</td><td class="num">8</td><td class="num">4</td><td class="num">4</td><td class="num">9</td><td class="num">7</td><td class="num">10</td><td class="num">5</td><td class="num"><strong>6.63</strong><span class="bar"><i style="width:66%"></i></span></td></tr>
+      <tr><td class="rank">16</td><td>Long-Form Sleep History</td><td>Two-hour illustrated narratives designed for sleep and background listening</td><td class="num">7</td><td class="num">6</td><td class="num">3</td><td class="num">5</td><td class="num">10</td><td class="num">9</td><td class="num">3</td><td class="num"><strong>6.03</strong><span class="bar"><i style="width:60%"></i></span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Where each rejected niche actually breaks</h3>
+  <div class="grid g2">
+    <div class="card"><span class="cap">#05 Insurance &amp; Liability</span><p><strong>Highest RPM on the board, almost no competition, and I still cannot recommend it.</strong> Demand scored 5 because almost nobody searches insurance mechanics for entertainment. You would be building the most profitable-per-view channel nobody watches. Viable as a <em>second</em> channel once you can afford low volume.</p></div>
+    <div class="card"><span class="cap">#06 Medical Physiology</span><p>Beautiful AI-image fit and superb CTR. Policy score 4 kills it: health is a YMYL category with heightened scrutiny, graphic medical imagery suppresses advertiser demand, and a faceless AI channel giving body-related information is exactly the "synthetic persona presented as a doctor" pattern reporting says YouTube is targeting.</p></div>
+    <div class="card"><span class="cap">#10 Industrial Failure</span><p>The most fun niche here, and genuinely great on retention and CTR. It fails on two axes at once: competition advantage 4 (mature incumbents with over a million subscribers each, plus a flood of AI clones), and RPM 5. High effort, mid pay, crowded room.</p></div>
+    <div class="card"><span class="cap">#11 Cold-Case Forensics</span><p>Enormous demand, but true crime is the single most AI-cloned niche on the platform. Policy score 4 reflects real demonetization risk from mass-production pattern matching, plus advertiser skittishness. If you enter, the method-first angle is the only defensible one.</p></div>
+    <div class="card"><span class="cap">#13 AI for Small Business</span><p>Reported as the most underserved high-RPM niche of 2026 and I believe the RPM. It scored 6.82 because it violates <em>your</em> constraint: it needs screen recordings and live tool demos, not illustrations. AI feasibility 5. Evergreen 3 — tutorials rot in months.</p></div>
+    <div class="card"><span class="cap">#16 Sleep Long-Form</span><p>Tempting because retention 10 banks watch hours fast against the February deadline. Policy score 3 makes it a trap: two-hour illustrated narration is the most literal possible match for "image slideshows with minimal narrative," and RPM 3 means even success pays poorly.</p></div>
+  </div>
+</section>
+
+<section id="top3">
+  <div class="snum">Selection · 05</div>
+  <h2>Top three, on all 26 dimensions</h2>
+  <p>Second and third place are separated by 0.03 points. Treat them as tied and choose on temperament, not on the decimal.</p>
+
+  <div class="tscroll">
+  <table>
+    <thead><tr><th style="min-width:170px">Dimension</th><th style="min-width:270px">🥇 Digital Crime Forensics</th><th style="min-width:250px">🥈 Later-Life Money Defence</th><th style="min-width:250px">🥉 Corporate Collapse Forensics</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1 Niche</strong></td><td>Cybercrime &amp; fraud</td><td>Personal finance</td><td>Business &amp; finance</td></tr>
+      <tr><td><strong>2 Micro-niche</strong></td><td>Illustrated forensic reconstruction of one real digital crime per video, ending at the interception point</td><td>Money mechanics and scam defence for people within 15 years of retirement</td><td>Post-mortems of failed companies traced through the actual cash flows</td></tr>
+      <tr><td><strong>3 Audience</strong></td><td>25–54, tech-literate but not expert; office workers, IT-adjacent, parents worried about family exposure</td><td>52–72, retired or nearly, asset-holding, high trust in long explanatory video</td><td>22–45, entrepreneurial, finance-curious, business students and operators</td></tr>
+      <tr><td><strong>4 Countries</strong></td><td>US, UK, CA, AU, IE, NZ, SG — strong tier-1 concentration</td><td>US and UK dominant; CA/AU secondary. Least international of the three</td><td>US, UK, CA, AU plus significant IN/PH tail that dilutes RPM</td></tr>
+      <tr><td><strong>5 Audience size</strong> <span class="tag t-est">Est</span></td><td>Very large. Scam/fraud search interest reported as spiking in 2026; deepfake and AI-fraud coverage is mainstream news</td><td>Large and demographically expanding, but concentrated in two countries</td><td>Large and proven, but already well-served</td></tr>
+      <tr><td><strong>6 Search demand</strong></td><td>High and structurally rising — every new breach creates a fresh demand spike with an evergreen tail</td><td>High, stable, strongly commercial-intent</td><td>Moderate search, high browse/suggested</td></tr>
+      <tr><td><strong>7 Competition</strong></td><td><strong>Low in this exact format.</strong> The space is split between talking-head tutorials and investigative journalism. Almost nobody does illustrated forensic reconstruction</td><td>Low. Mostly talking-head advisers on camera. Almost no illustrated production</td><td><strong>High.</strong> Multiple mature incumbents plus heavy AI cloning</td></tr>
+      <tr><td><strong>8 Established channels</strong></td><td>Several very large, but in adjacent formats — investigative (Coffeezilla ~4.5M, Jim Browning ~4.4M) and educational (NetworkChuck, John Hammond, Cybercrime Magazine ~1.2M)</td><td>Many mid-size adviser channels; few large; almost none faceless</td><td>MagnatesMedia ~1.86M, Company Man, Modern MBA, plus Fern and Johnny Harris adjacent</td></tr>
+      <tr><td><strong>9 Emerging channels</strong></td><td>Modest. Documentary treatments of scam compounds are coming from news orgs, not creators</td><td>Growing slowly; senior-focused content reported as fast-growing and underserved</td><td>Heavy. This is a top-3 target for AI faceless clones</td></tr>
+      <tr><td><strong>10 Viral potential</strong></td><td>Good. News pegs give bursts; the evergreen tail carries</td><td>Limited. Steady rather than spiky</td><td>Good. Recognisable brand names travel</td></tr>
+      <tr><td><strong>11 Evergreen</strong></td><td>Strong. The 2013 Target breach still explains 2026 attacks</td><td>Very strong. Retirement mechanics barely change</td><td>Very strong. Enron will always be Enron</td></tr>
+      <tr><td><strong>12 RPM</strong> <span class="tag t-est">Est</span></td><td>$8–18 at maturity, tier-1 weighted (tech/SaaS/security advertisers)</td><td>$12–28. The highest of the three</td><td>$9–20, diluted by non-tier-1 tail</td></tr>
+      <tr><td><strong>13 Advertiser demand</strong></td><td>Very high. Security software has enormous customer-acquisition budgets</td><td>Very high. Insurance, annuities, estate planning, medicare-adjacent</td><td>High. Brokerages, business software, education</td></tr>
+      <tr><td><strong>14 Sponsorship</strong></td><td><strong>Best on the board.</strong> Reported $30–50 CPM for cybersecurity/VPN, with the densest sponsor pool of any creator category</td><td>Strong but slower — financial sponsors have compliance review cycles</td><td>Moderate. Brokerage and B2B SaaS</td></tr>
+      <tr><td><strong>15 Affiliate</strong></td><td>Excellent and immediate. Password managers, VPNs, identity monitoring, data-removal services — reported $65/sale Aura, $8–110/sale LifeLock</td><td>Excellent. Same security stack plus financial tools</td><td>Weak. Little to recommend honestly</td></tr>
+      <tr><td><strong>16 Digital product</strong></td><td>Strong. Household security audit kit, small-business incident playbook, "before you send money" checklist</td><td>Very strong. Retirement scam-proofing workbook, adult-child guide</td><td>Moderate. Case-study library for students</td></tr>
+      <tr><td><strong>17 AI production difficulty</strong></td><td><strong>Low.</strong> Diagrammatic and scene-based; no real faces required; abstraction is a feature</td><td>Low–medium. Needs charts and numbers, which AI image models still render unreliably</td><td>Medium. Viewers expect recognisable people and logos — the highest AI-image failure mode</td></tr>
+      <tr><td><strong>18 Cost</strong> <span class="tag t-est">Est</span></td><td>$40–70/month all-in</td><td>$40–70/month</td><td>$50–90/month (more images per video)</td></tr>
+      <tr><td><strong>19 Production time</strong></td><td>6–9 h/video solo initially; 4–5 h once templated</td><td>5–8 h</td><td>10–16 h — research-heavy</td></tr>
+      <tr><td><strong>20 Copyright risk</strong></td><td><strong>Low.</strong> Original illustration, public incident reports, no footage</td><td>Low</td><td>Medium. Temptation to use news footage and brand assets is high</td></tr>
+      <tr><td><strong>21 Monetization risk</strong></td><td>Low–medium. Manageable with original analysis per video</td><td>Medium. YMYL financial scrutiny; must never give personalised advice</td><td>Medium. Sits in the most-cloned category, so pattern-match risk is elevated</td></tr>
+      <tr><td><strong>22 AI-content risk</strong></td><td>Low. Format requires genuine synthesis of technical sources</td><td>Medium. Easy to slide into generic templated advice</td><td>High. Hundreds of channels already run this exact template</td></tr>
+      <tr><td><strong>23 Scalability</strong></td><td>Very high. New incidents arrive weekly, forever</td><td>High but finite — the core topic set is maybe 400 deep</td><td>High</td></tr>
+      <tr><td><strong>24 100+ videos</strong></td><td>Yes, comfortably</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td><strong>25 500+ videos</strong></td><td>Yes — the supply of incidents grows faster than you can cover them</td><td>Marginal. Repetition sets in around 300</td><td>Yes</td></tr>
+      <tr><td><strong>26 Brandability</strong></td><td>Very high. A recognisable forensic visual language becomes the brand</td><td>High. Trust is the brand</td><td>High but crowded — hard to differentiate</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="gaps">
+  <div class="snum">Selection · 06</div>
+  <h2>Competitor gap analysis</h2>
+  <div class="call risk">
+    <span class="lbl">Verification caveat</span>
+    <p>Channel figures below come from analytics aggregators via search results, not from my own reading of live YouTube. Subscriber counts are approximate and may be months out of date. The <em>format observations</em> — what these channels make and do not make — are the durable part, and are what the gap argument rests on.</p>
+  </div>
+
+  <h3>Niche 1 · Digital Crime Forensics</h3>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Channel</th><th class="num">Subs</th><th>Format</th><th>Does well</th><th>Does poorly / does not do</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Coffeezilla</strong></td><td class="num">~4.5M</td><td>Original investigative journalism, on camera, 15–40 min</td><td>Sleek production; each episode structured as a step-by-step journey through a fraud case</td><td>Requires original investigation you cannot replicate. Only covers live, ongoing, personality-driven scandals. Almost no evergreen "how this class of attack works"</td></tr>
+      <tr><td><strong>Jim Browning</strong></td><td class="num">~4.4M</td><td>Screen-recorded scam-baiting and call-centre infiltration</td><td>Unmatched access; over 3,000 call centres infiltrated; real-time victim saves</td><td>Method is unreproducible. Visuals are raw screen capture. No structural explanation of the criminal economy</td></tr>
+      <tr><td><strong>NetworkChuck / John Hammond / IppSec</strong></td><td class="num">100K–4M</td><td>Talking head + terminal, tutorial and CTF walkthroughs</td><td>Deep technical credibility; loyal practitioner audience</td><td>Made for people who already work in security. Impenetrable to the general viewer. Almost no narrative</td></tr>
+      <tr><td><strong>Cybercrime Magazine</strong></td><td class="num">~1.2M</td><td>B2B interviews and news</td><td>Industry access, top B2B channel by subscribers</td><td>Corporate, interview-led, low production. No storytelling</td></tr>
+      <tr><td><strong>News documentaries (BBC, Al Jazeera 101 East, TRT)</strong></td><td class="num">—</td><td>Filmed investigative documentary on scam compounds</td><td>Real footage, real access, genuine authority</td><td>Episodic, event-driven, no consistent series identity, no recurring visual grammar, and they cover <em>where</em> the crime happens, not <em>how the mechanism works</em></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="call">
+    <span class="lbl">The gap, stated plainly</span>
+    <p><strong>Most channels in this niche either investigate a live scandal (unreproducible), teach practitioners (unwatchable for normal people), or report the news (perishable). Very few reconstruct a single completed incident as an illustrated, minute-by-minute mechanism — showing the attacker's decision tree, the victim's point of view, and the exact moment it could have been stopped. That is where you position.</strong></p>
+    <p>Three specific unserved questions their audiences keep asking in comments and forums: <em>"But how did they actually get in?"</em> — <em>"What would I have done differently?"</em> — <em>"Could this happen to me, specifically?"</em> Nobody is answering all three inside one repeatable format.</p>
+  </div>
+
+  <h3>Niche 2 · Later-Life Money Defence</h3>
+  <p>The field is dominated by on-camera certified advisers filming in offices, plus generic faceless "retirement tips" channels reading listicles. <strong>Almost nothing is illustrated.</strong> The gap: an explanatory-visual channel that shows a pension, an annuity, or a scam <em>as a diagram in motion</em>, for an audience that has repeatedly said in forums that talking-head advisers talk too fast and assume too much. What nobody makes: reconstructions of specific real scams that targeted retirees, told from the victim's side, with the defence built into the narrative rather than bolted on. Their audience's unanswered question is almost always <em>"is this normal, or is this a scam?"</em></p>
+
+  <h3>Niche 3 · Corporate Collapse Forensics</h3>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Channel</th><th class="num">Subs</th><th>Notes</th><th>Weakness you could exploit</th></tr></thead>
+    <tbody>
+      <tr><td><strong>MagnatesMedia</strong></td><td class="num">~1.86M</td><td>~255 videos, ~193M total views, ~17.5K average likes. Cinematic "mini-movie" business documentaries. Reported to have gone roughly nine months without a new upload as of mid-2026</td><td>Dormancy has left demand unmet. Extremely slow cadence — quality bar is high but the shelf is empty</td></tr>
+      <tr><td><strong>Company Man</strong></td><td class="num">Large</td><td>Consistent, simple-graphics business declines</td><td>Visually plain; rarely follows the money at transaction level</td></tr>
+      <tr><td><strong>Modern MBA</strong></td><td class="num">Mid</td><td>Sharp analytical business essays</td><td>Dry, low cadence, narrow appeal</td></tr>
+      <tr><td><strong>Fern</strong></td><td class="num">Large</td><td>Described as an animated investigative thriller about a closed system, told through one concrete human or object-level case</td><td>This is the format bar. Very high production cost per video. Not the money niche specifically</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>The gap:</strong> most collapse channels narrate the <em>story</em> of a failure. Very few show the <em>balance sheet</em> — where cash physically moved, which covenant broke, which quarter was unsurvivable. An illustrated money-trail format sits in that gap. It is a real gap, but it is a crowded room and MagnatesMedia may return at any time.</p>
+</section>
+
+<section id="winner">
+  <div class="snum">Selection · 07</div>
+  <h2>The winner, and the brutally honest case against it</h2>
+
+  <div class="grid g4">
+    <div class="stat"><span class="v">8.60</span><span class="k">Weighted score</span></div>
+    <div class="stat"><span class="v">$8–18</span><span class="k">Est. mature RPM</span></div>
+    <div class="stat"><span class="v">$30–50</span><span class="k">Reported sponsor CPM</span></div>
+    <div class="stat"><span class="v">500+</span><span class="k">Sustainable video ideas</span></div>
+  </div>
+
+  <h3>Why Digital Crime Forensics wins</h3>
+  <p>It wins because it is the only niche on the board that is simultaneously top-quartile on the four heaviest weights, and it wins for a structural reason rather than a fashionable one.</p>
+  <ol>
+    <li><strong>The competition is misshapen, not absent.</strong> This matters more than low competition. Four large clusters of channels exist, and every one of them is disqualified from the format you would occupy: investigators cannot scale, practitioners cannot be understood by normal people, news cannot be evergreen, and B2B media cannot tell a story. A gap created by structural incompatibility lasts years. A gap created by nobody having noticed yet lasts weeks.</li>
+    <li><strong>The subject is natively diagrammatic.</strong> This is the quiet reason it beats Corporate Collapse. Your production method is AI stills. AI image models still fail at two things: consistent recognisable real people, and accurate text and numbers in charts. A collapse channel needs both. A digital-crime channel needs neither — it needs anonymous figures, devices, network topologies, server rooms, phishing emails rendered as objects, and money as flowing shapes. <em>Your production constraint is a stylistic asset in this niche and a liability in the runner-up.</em></li>
+    <li><strong>The monetization stack is unusually deep and unusually early.</strong> Security is the densest sponsor category on YouTube, reported at $30–50 CPM, and the affiliate products convert without dishonesty because they are literally the defence the video just described. You can be paid three ways from the same 40 seconds of content.</li>
+    <li><strong>Retention is structural, not stylistic.</strong> "How did they get in" is an unresolved question the viewer holds for the whole video. That is the strongest retention device that exists, and it comes free with the subject matter. Against a February 2027 watch-hour deadline, that matters enormously.</li>
+    <li><strong>Supply of topics grows faster than you can consume it.</strong> Major breaches were reported throughout 2026 — supply-chain compromises, OAuth abuse, banks hit via shared vendors, AI-tooling supply-chain attacks. Reported AI-fraud growth figures are extreme. You will never run out.</li>
+  </ol>
+
+  <h3>Now the honest case against it</h3>
+  <div class="call risk">
+    <span class="lbl">Five things that could make this the wrong call</span>
+    <ol style="margin-bottom:0">
+      <li><strong>It is the most research-intensive winner on the board.</strong> You cannot fake it. Every video needs you to read an incident report, a court filing, or a vendor post-mortem and genuinely understand the mechanism. If you will not do 90 minutes of real reading per video, pick Later-Life Money Defence instead — it is more forgiving and pays better per view.</li>
+      <li><strong>It is not the highest RPM.</strong> Insurance and later-life finance both beat it. I traded roughly $4–10 of RPM for a much better competition position and a far better sponsorship ceiling. If your only goal were revenue-per-view, the correct answer would be #05 Insurance &amp; Liability Forensics — and you would be bored inside two months with a channel nobody watches.</li>
+      <li><strong>It has a credibility ceiling you will hit.</strong> Faceless works fine until a practitioner audience arrives and starts asking who you are. Around 50K subscribers you will need either a named human identity or a visible research methodology. Plan for that now; Section 20 covers it.</li>
+      <li><strong>Getting a technical detail wrong is more costly here than in almost any other niche.</strong> This audience contains actual security engineers. One confidently wrong explanation of how TLS or OAuth works will be the top comment forever.</li>
+      <li><strong>Anything scam-adjacent draws heavier moderation scrutiny.</strong> You will be describing criminal methods. Frame everything defensively — mechanism plus prevention, never a usable recipe — or you will collect strikes.</li>
+    </ol>
+  </div>
+
+  <h3>Why second and third lost</h3>
+  <p><strong>Later-Life Money Defence</strong> has the best RPM and the weakest competition on the entire board, and it lost on ceiling and policy. Its CTR potential is capped — retirement thumbnails cannot be made thrilling without being dishonest — and financial content for vulnerable people is a YMYL category where a faceless AI channel is exactly the pattern reporting says is under scrutiny. It is the highest-floor, lowest-ceiling option. <span class="tag t-jud">Judgement</span> If your priority is reliable income over scale, it is the correct choice and I would not argue.</p>
+  <p><strong>Corporate Collapse Forensics</strong> lost on competition and on production fit. Competition advantage 6 is generous given MagnatesMedia, Company Man, Modern MBA, Fern and a flood of AI imitators. More decisively, it demands the exact images your pipeline is worst at generating: consistent recognisable executives, real logos, and readable financial charts. You would spend your production budget fighting your tools.</p>
+</section>
+
+<section id="idea-test">
+  <div class="snum">Validation · 08</div>
+  <h2>The 100-idea test</h2>
+  <p>The rule you set: reject the niche if it cannot produce 100 non-repetitive ideas, preferably 300+. Below are 100 across five required question shapes. None repeats a mechanism. <span class="tag t-jud">Judgement</span> The niche passes comfortably — I stopped at 100 because you asked for 100, not because supply ran out. The underlying idea space is roughly 600 deep: every attack class × every victim type × every industry × every decade generates a distinct video.</p>
+
+  <h4>20 curiosity-driven topics</h4>
+  <ol class="cols tight">
+    <li>The single misconfigured setting behind most cloud data leaks</li>
+    <li>What a stolen password is actually worth, itemised</li>
+    <li>The scam that only works between 4pm and 5pm on a Friday</li>
+    <li>Inside the org chart of a scam compound</li>
+    <li>The three-second phone call that empties a corporate bank account</li>
+    <li>What criminals do with your data in the first 60 minutes</li>
+    <li>The airport charger myth, and the real attack it hides</li>
+    <li>Why your bank calls back but a scammer never can</li>
+    <li>The receipt that proves a breach happened months earlier</li>
+    <li>How a printer took down a hospital network</li>
+    <li>The job interview that was an intelligence operation</li>
+    <li>Why ransomware crews run customer support desks</li>
+    <li>The one file every attacker looks for first</li>
+    <li>What a data broker knows about you that your family doesn't</li>
+    <li>The QR code sticker economy</li>
+    <li>How a $6 domain name cost a company $40 million</li>
+    <li>The insider who never stole anything and still caused the breach</li>
+    <li>Why the ransom is almost never the biggest cost</li>
+    <li>The security question that gives away everything</li>
+    <li>What happens in the war room in the first hour</li>
+  </ol>
+
+  <h4>20 "Why does…" topics</h4>
+  <ol class="cols tight">
+    <li>Why does every breach get discovered months late?</li>
+    <li>Why does the same phishing email still work in 2026?</li>
+    <li>Why does your bank's fraud team call from a number you can't call back?</li>
+    <li>Why does two-factor authentication sometimes fail completely?</li>
+    <li>Why does a password manager make you safer even if it gets breached?</li>
+    <li>Why does ransomware target hospitals so often?</li>
+    <li>Why does the FBI say don't pay, while insurers often do?</li>
+    <li>Why does a leaked database keep hurting you a decade later?</li>
+    <li>Why does the biggest company always get breached through the smallest vendor?</li>
+    <li>Why does deleting your account not delete your data?</li>
+    <li>Why does a romance scam take four months to reach the money?</li>
+    <li>Why does the same fake invoice work on finance teams?</li>
+    <li>Why does public Wi-Fi matter less than it used to?</li>
+    <li>Why does an out-of-date router matter more than an out-of-date laptop?</li>
+    <li>Why does your face being on file make identity theft easier now?</li>
+    <li>Why does crypto theft almost never get reversed?</li>
+    <li>Why does a company's stock recover but its customers don't?</li>
+    <li>Why does the attacker sit quietly for 200 days?</li>
+    <li>Why does an ex-employee's account still work?</li>
+    <li>Why does the person who spots the breach usually get ignored?</li>
+  </ol>
+
+  <h4>20 "What happens if…" topics</h4>
+  <ol class="cols tight">
+    <li>What happens if you click the link, exactly, step by step</li>
+    <li>What happens if you reply "STOP" to a scam text</li>
+    <li>What happens if you answer a wrong-number message</li>
+    <li>What happens if a company pays the ransom</li>
+    <li>What happens if a company refuses to pay</li>
+    <li>What happens if your password appears in a breach dump</li>
+    <li>What happens if you lose your phone with all your 2FA codes</li>
+    <li>What happens if you send money to the wrong account by mistake</li>
+    <li>What happens if you report a scam within one hour vs one day</li>
+    <li>What happens if you plug in a USB stick you found</li>
+    <li>What happens if a scammer gets your driving licence photo</li>
+    <li>What happens if you tell the scammer you know</li>
+    <li>What happens if a breach hits a company you left five years ago</li>
+    <li>What happens if you freeze your credit today</li>
+    <li>What happens if you use the same password on 40 sites</li>
+    <li>What happens if a hacker gets into your email but nothing else</li>
+    <li>What happens if you pay a small-business ransom out of pocket</li>
+    <li>What happens if the attacker is still inside when you reset passwords</li>
+    <li>What happens if you sue after a breach</li>
+    <li>What happens if you ignore the breach notification letter</li>
+  </ol>
+
+  <h4>20 "How does…" topics</h4>
+  <ol class="cols tight">
+    <li>How does a phishing kit actually work behind the page?</li>
+    <li>How does a SIM swap happen at the shop counter?</li>
+    <li>How does stolen money leave the country?</li>
+    <li>How does a ransomware negotiation actually go?</li>
+    <li>How does a criminal group choose its next target?</li>
+    <li>How does a deepfake voice get made from 20 seconds of audio?</li>
+    <li>How does a supply-chain attack reach 10,000 companies at once?</li>
+    <li>How does a bank actually detect fraud in real time?</li>
+    <li>How does a security team find an intruder who's been quiet for months?</li>
+    <li>How does a breach get priced by an insurer?</li>
+    <li>How does law enforcement take down a botnet?</li>
+    <li>How does a scam compound recruit its workers?</li>
+    <li>How does a fake online shop pass every check you'd run?</li>
+    <li>How does an attacker escalate from one email to the whole domain?</li>
+    <li>How does a data broker assemble a profile of you?</li>
+    <li>How does a bug bounty actually work?</li>
+    <li>How does a stolen card get tested before it gets used?</li>
+    <li>How does a company decide whether to tell you?</li>
+    <li>How does a crypto mixer launder a hack?</li>
+    <li>How does an OAuth token become a master key?</li>
+  </ol>
+
+  <h4>20 "What would happen if…" topics</h4>
+  <ol class="cols tight">
+    <li>What would happen if a national payments system went down for 48 hours?</li>
+    <li>What would happen if every password in the world leaked tomorrow?</li>
+    <li>What would happen if ransomware payments became illegal?</li>
+    <li>What would happen if a hospital chain lost every record?</li>
+    <li>What would happen if a major cloud region were held to ransom?</li>
+    <li>What would happen if deepfake ID verification became undetectable?</li>
+    <li>What would happen if a country's electricity billing system were hacked?</li>
+    <li>What would happen if your identity were used to open 30 accounts?</li>
+    <li>What would happen if a scam compound were raided tomorrow?</li>
+    <li>What would happen if banks were made fully liable for scam losses?</li>
+    <li>What would happen if 2FA were mandatory everywhere by law?</li>
+    <li>What would happen if a breach hit a genetics database?</li>
+    <li>What would happen if a shipping company lost control of its fleet systems?</li>
+    <li>What would happen if AI agents could be phished?</li>
+    <li>What would happen if a school district refused to pay?</li>
+    <li>What would happen if the data broker industry were banned?</li>
+    <li>What would happen if a stock exchange were breached mid-session?</li>
+    <li>What would happen if your smart home were used against you?</li>
+    <li>What would happen if a car fleet were remotely disabled?</li>
+    <li>What would happen if insurance stopped covering cyber entirely?</li>
+  </ol>
+</section>
+
+<section id="brand">
+  <div class="snum">Brand · 09</div>
+  <h2>The channel</h2>
+
+  <h3>Positioning, in one sentence</h3>
+  <div class="call">
+    <p style="font-size:1.12rem;margin:0"><strong>Every video reconstructs one real digital crime as an illustrated, step-by-step forensic walkthrough — showing exactly how it worked, exactly what it cost, and exactly where it could have been stopped.</strong></p>
+  </div>
+
+  <h3>20 channel names</h3>
+  <p>Grouped by the flavour they signal. <span class="tag t-jud">Judgement</span> My top three are marked.</p>
+  <div class="grid g3">
+    <div class="card"><span class="cap">Forensic / procedural</span>
+      <p>1. <strong>Cold Trace</strong> ★<br>2. Breach Report<br>3. The Intrusion Files<br>4. Point of Entry ★<br>5. Chain of Custody<br>6. Incident Zero<br>7. The Post-Mortem Desk</p></div>
+    <div class="card"><span class="cap">Mechanism / explanatory</span>
+      <p>8. How They Got In ★<br>9. The Quiet Part<br>10. Attack Surface<br>11. Anatomy of a Con<br>12. The Weak Link<br>13. Signal &amp; Loss<br>14. Ninety Seconds Earlier</p></div>
+    <div class="card"><span class="cap">Narrative / cinematic</span>
+      <p>15. The Long Con Files<br>16. Paper Trail<br>17. Dark Ledger<br>18. Room 404<br>19. The Compound<br>20. Everything Was Normal</p></div>
+  </div>
+  <p><strong>Recommendation: <em>Cold Trace</em>.</strong> Two syllables, spells cleanly, works as a verb-adjacent brand ("we cold-trace the breach"), reads as forensic rather than sensational, survives translation, and does not lock you to cybercrime specifically — it stretches to any money-crime reconstruction if you later broaden toward niche #3. <em>Point of Entry</em> is the strongest alternative and is more literally descriptive; <em>How They Got In</em> is the most search-friendly but hardest to extend into a business name.</p>
+
+  <h4>Handle candidates</h4>
+  <p><span class="pill">@coldtrace</span><span class="pill">@coldtracehq</span><span class="pill">@coldtracefiles</span><span class="pill">@coldtracestudio</span><span class="pill">@thecoldtrace</span><span class="pill">@coldtracelab</span><span class="pill">@pointofentryhq</span><span class="pill">@howtheygotin</span><span class="pill">@breachreporthq</span><span class="pill">@theintrusionfiles</span></p>
+  <p class="mono" style="font-size:12px;color:var(--ink-3)">Availability changes constantly and I could not check YouTube directly. Verify all of these before designing anything, and secure the matching .com plus X, TikTok, Instagram and Reddit handles in the same sitting.</p>
+
+  <h3>Target audience</h3>
+  <div class="grid g2">
+    <div class="card"><span class="cap">Primary — 62% of audience</span><h5>The exposed professional</h5><p>28–45, works with a computer but not in security. Finance, HR, ops, admin, small-business owner. Recently sat through a mandatory phishing training that explained nothing. Genuinely worried about being the person who clicks. Watches on desktop at lunch and on TV in the evening.</p></div>
+    <div class="card"><span class="cap">Secondary — 23%</span><h5>The family protector</h5><p>35–60, manages digital life for a partner or ageing parent. Arrives via scam-specific searches after a near-miss. Highest sponsor conversion of any segment. Shares videos more than any other group.</p></div>
+    <div class="card"><span class="cap">Tertiary — 15%</span><h5>The aspiring practitioner</h5><p>18–30, studying for a security certification or trying to break into the field. Lowest RPM, highest comment volume, keeps you honest. Do not write for them — but never let them catch you being wrong.</p></div>
+    <div class="card"><span class="cap">Why they subscribe</span><h5>The promise</h5><p>Not "learn cybersecurity." It is: <em>"I now understand something that felt like magic, and I know what I would do."</em> That transformation — from vague dread to specific competence — is the subscription driver. Every video must deliver it once.</p></div>
+  </div>
+
+  <h3>Unique selling proposition</h3>
+  <p><strong>The interception point.</strong> Every video ends the same way: a rewind to the single moment the attack could have failed, shown as a visual fork in the road. Investigators do not do this because their story ends at the exposé. Practitioner channels do not do this because they teach tools rather than moments. News does not do this because it reports events. It is a small, ownable, repeatable device that gives the audience the payoff they actually came for — and it makes every video useful rather than merely alarming.</p>
+
+  <h3>Content pillars</h3>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Pillar</th><th>Share</th><th>What it is</th><th>Job it does</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1. The Reconstruction</strong></td><td class="mono">40%</td><td>One real completed incident, told minute by minute from both sides. Flagship format</td><td>Retention, brand identity, suggested-feed engine</td></tr>
+      <tr><td><strong>2. The Mechanism</strong></td><td class="mono">25%</td><td>One attack class explained generically — SIM swap, OAuth abuse, invoice fraud. Fully evergreen</td><td>Search traffic, the back catalogue that pays rent</td></tr>
+      <tr><td><strong>3. The Economy</strong></td><td class="mono">15%</td><td>The business of crime: who pays whom, what data costs, how compounds are structured</td><td>Novelty, shareability, breakout potential</td></tr>
+      <tr><td><strong>4. The Defence</strong></td><td class="mono">15%</td><td>Practical, specific hardening delivered as narrative, never as a listicle</td><td>Affiliate and sponsorship revenue, high satisfaction</td></tr>
+      <tr><td><strong>5. The Post-Mortem</strong></td><td class="mono">5%</td><td>Rapid response to a major breach within 72 hours of the report landing</td><td>News spikes, algorithmic freshness, authority</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="visual">
+  <div class="snum">Brand · 10</div>
+  <h2>Visual identity</h2>
+  <p>The visual system exists to solve one problem: AI illustration looks generic by default, and generic is now a monetization risk as well as a growth problem. The answer is a constraint set narrow enough that your images could not have come from anyone else's prompt.</p>
+
+  <div class="grid g2">
+    <div class="card"><span class="cap">Art style</span><h5>Forensic gouache</h5><p>Muted, matte, painterly illustration with visible brush texture and hard-edged geometric overlays — the look of a technical incident report illustrated by hand. Never photoreal, never 3D render, never neon cyberpunk, never the glowing-blue-circuit-board cliché that every security stock image uses. The texture is what makes it un-cloneable in a single prompt.</p></div>
+    <div class="card"><span class="cap">Colour</span><h5>Four colours, no more</h5><p>Ground: cold slate <span class="mono">#2A3138</span>. Paper: bone <span class="mono">#D9D5CB</span>. Attacker: oxide red <span class="mono">#9E3327</span> — used <em>only</em> for the adversary and their path. Defence: signal teal <span class="mono">#1B646D</span>. Everything else is greyscale. The strict red/teal role assignment means viewers read the diagram before they read the words.</p></div>
+    <div class="card"><span class="cap">Typography on screen</span><h5>Mono for evidence, sans for voice</h5><p>IBM Plex Mono for anything that represents data — timestamps, addresses, amounts, filenames. Archivo semibold for on-screen emphasis. Never a script face, never a serif, never more than seven words on screen at once.</p></div>
+    <div class="card"><span class="cap">Characters</span><h5>Anonymous by design</h5><p>Human figures are shown from behind, in silhouette, cropped at the shoulders, or with faces turned away or obscured by monitor glow. This is both a style signature and the fix for AI's face-consistency problem — you never need the same face twice. The attacker is always a hooded silhouette rendered <em>only</em> in oxide red; the victim is always shown from over the shoulder so the viewer occupies their position.</p></div>
+    <div class="card"><span class="cap">Recurring motifs</span><h5>The visual vocabulary</h5><p>Isometric floor-plan network diagrams. Envelopes as physical objects. Money as flowing coloured ribbon. Time as a horizontal ruled tape at the base of frame. Doors and locks as the literal metaphor for access. Redaction bars used as a design element, not a censor.</p></div>
+    <div class="card"><span class="cap">Motion</span><h5>Slow, deliberate, mechanical</h5><p>Ken Burns at 3–6% drift, never faster. Overlays draw on in straight lines. Cuts are hard, never dissolves. The timeline tape advances between scenes. Motion should feel like an investigator laying evidence on a table, not like a trailer.</p></div>
+  </div>
+
+  <div class="call">
+    <span class="lbl">The one non-negotiable</span>
+    <p>The <strong>timeline tape</strong> — a thin ruled bar across the bottom of every frame showing elapsed time from initial compromise, advancing as the story does. It appears in every video, in every thumbnail, and nowhere else on YouTube. It costs almost nothing to produce, communicates the format instantly, and is the single element that makes a stranger recognise your video in a feed of twelve competitors.</p>
+  </div>
+</section>
+
+<section id="s1">
+  <div class="snum">Pipeline · Step 1</div>
+  <h2>Topic research</h2>
+
+  <h3>Where topics actually come from in this niche</h3>
+  <p>Your advantage over generic faceless channels is that your source material is <em>primary and free</em>. Work these seven wells in this order:</p>
+  <ol>
+    <li><strong>Public incident reports.</strong> Regulator filings, national cyber-agency advisories, court documents, and vendor post-mortems. These contain timelines, dollar figures, and root causes — the three things a reconstruction needs. One report is one video. This is your moat: almost no faceless creator reads them.</li>
+    <li><strong>Breach roundups.</strong> Monthly "major attacks and breaches" summaries published by security consultancies give you a dated, sourced backlog going back years. Mine them backwards, not forwards — a 2023 incident with a completed investigation makes a better video than a 2026 incident still under NDA.</li>
+    <li><strong>YouTube autocomplete mining.</strong> Type each of these into YouTube search and record every suggestion: <span class="mono">how did … get hacked</span>, <span class="mono">what happens if you click</span>, <span class="mono">is it a scam if</span>, <span class="mono">why did … pay the ransom</span>, <span class="mono">how do scammers</span>. Autocomplete is literal demand data. Then repeat in Google, where the "People also ask" box gives you your chapter structure for free.</li>
+    <li><strong>Competitor comment sections.</strong> Sort comments by newest on the biggest videos from Coffeezilla, Jim Browning and the news documentaries. Every "but how did they actually…" comment is a video you can make and they will not.</li>
+    <li><strong>Forums.</strong> The scam-victim and IT-professional communities on Reddit are where the real questions live. Filter to top posts of the past year and read the question, not the answer. Recurring, unanswered, emotionally charged = your best topics.</li>
+    <li><strong>Google Trends.</strong> Compare candidate topic terms over 5 years, filtered to US/UK/CA/AU. You are looking for the shape, not the level: flat-and-high beats spiky-and-huge for a channel built on a back catalogue. Check "Related queries → Rising" for the phrasing real people use.</li>
+    <li><strong>AI-assisted expansion.</strong> Feed a completed incident report into a model and ask for the ten sub-questions a non-technical viewer would still have. Those are your next ten Mechanism videos. Never let the model generate the <em>facts</em> — only the <em>questions</em>.</li>
+  </ol>
+
+  <h3>The validation gate — run this before you produce anything</h3>
+  <p>A topic must clear all five in under ten minutes or it is dead. This gate is the highest-leverage habit in the entire system.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Gate</th><th>Test</th><th>Pass condition</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1 Demand exists</strong></td><td>Search the core phrase on YouTube. Look at the top 10 results</td><td>At least two videos over 100K views, published in the last 3 years, from channels under 2M subs</td></tr>
+      <tr><td><strong>2 Supply is weak</strong></td><td>Same results page</td><td>Fewer than three videos that answer the <em>mechanism</em> question well. Lots of news clips = green light, not red</td></tr>
+      <tr><td><strong>3 The outlier check</strong></td><td>Find a channel under 100K subs with a video on this topic over 5× its own average views</td><td>One such video is strong evidence of unmet demand. This is the single best signal available to you</td></tr>
+      <tr><td><strong>4 Sources exist</strong></td><td>Can you find two independent primary sources with a timeline and a number?</td><td>Two sources, or no video. This rule alone prevents most of your policy risk</td></tr>
+      <tr><td><strong>5 The interception point</strong></td><td>Can you name the one moment it could have been stopped?</td><td>If you cannot, you do not understand the incident yet. Keep reading or drop it</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="call hot">
+    <span class="lbl">The trap to avoid</span>
+    <p>Do not chase topics with <em>zero</em> competition. In this niche, zero competition usually means zero demand — everyone else already tested it. You want <strong>high demand served badly</strong>, which looks like: several videos, high view counts, mediocre thumbnails, and comment sections full of unanswered questions.</p>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="snum">Pipeline · Step 2</div>
+  <h2>Titles</h2>
+  <p>Two principles before the formulas. First, the title's job is to create a <em>specific</em> unresolved question, not general intrigue — "The Bank That Lost $81 Million To One Email" beats "The Craziest Hack Ever." Second, because CTR and retention are scored together, the title must be a promise the video actually keeps. Overpromising is now algorithmically punished, not rewarded.</p>
+
+  <h3>50 title formulas, adapted to this niche</h3>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th style="min-width:120px">Family</th><th>Formulas</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Mechanism gap</strong><br><span class="mono" style="font-size:11px">1–8</span></td><td>1. How [ORG] Was Hacked Through [MUNDANE THING] · 2. The [SMALL OBJECT] That Cost [ORG] $[N] · 3. How Does [ATTACK] Actually Work? · 4. The Real Reason [ORG] Couldn't Stop It · 5. What [ATTACK] Actually Looks Like From The Inside · 6. [ORG]'s Breach Started With One [THING] · 7. The Step Everyone Skips In [ATTACK] · 8. Nobody Explains How [ATTACK] Actually Begins</td></tr>
+      <tr><td><strong>Timeline</strong><br><span class="mono" style="font-size:11px">9–15</span></td><td>9. [N] Minutes: How [ORG] Lost Everything · 10. The [N] Days Nobody Noticed · 11. Hour By Hour: The [EVENT] Breach · 12. [N] Seconds Before It Was Too Late · 13. The Longest [N] Hours In [INDUSTRY] · 14. What Happened Between [TIME] and [TIME] · 15. Day [N]: When They Finally Noticed</td></tr>
+      <tr><td><strong>Interception</strong><br><span class="mono" style="font-size:11px">16–22</span></td><td>16. This Breach Was Stoppable. Here's Where · 17. One Click Would Have Ended It · 18. The Warning Everyone Ignored At [ORG] · 19. Someone Reported This [N] Months Earlier · 20. The Fix Cost $[SMALL]. The Breach Cost $[LARGE] · 21. Where [ATTACK] Could Have Failed · 22. The Employee Who Almost Stopped It</td></tr>
+      <tr><td><strong>Cost / consequence</strong><br><span class="mono" style="font-size:11px">23–29</span></td><td>23. What [BREACH] Actually Cost — Every Line Item · 24. Why The Ransom Was The Cheapest Part · 25. [ORG] Paid. It Didn't Help · 26. The Bill Nobody Talks About After A Breach · 27. Who Actually Pays When [EVENT] Happens · 28. [N] Years Later, [BREACH] Is Still Costing People · 29. The Real Price Of [ATTACK], Calculated</td></tr>
+      <tr><td><strong>Viewer-implicating</strong><br><span class="mono" style="font-size:11px">30–36</span></td><td>30. What Happens If You Click The Link · 31. You Would Have Fallen For This · 32. This Scam Is Designed For People Who Are Careful · 33. The Message That Fools Security Professionals · 34. What They Already Know About You · 35. Could This Happen To You? Let's Check · 36. Why "I'd Never Fall For That" Is The Point</td></tr>
+      <tr><td><strong>Criminal economy</strong><br><span class="mono" style="font-size:11px">37–43</span></td><td>37. Inside The Business Of [CRIME] · 38. What Your [DATA] Sells For · 39. The Org Chart Of A [CRIME] Operation · 40. How [CRIME] Groups Actually Get Paid · 41. The Supply Chain Behind [SCAM] · 42. Who Really Profits From [CRIME] · 43. [CRIME] Has A Customer Support Desk</td></tr>
+      <tr><td><strong>Contrarian</strong><br><span class="mono" style="font-size:11px">44–50</span></td><td>44. [COMMON ADVICE] Is Wrong. Here's Why · 45. [ATTACK] Is Not What You Think · 46. Stop Worrying About [THING]. Worry About This · 47. The Security Advice That Made Things Worse · 48. Why [OBVIOUS FIX] Doesn't Work · 49. The Myth That Keeps [CRIME] Profitable · 50. Everyone Blamed [X]. It Was [Y]</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>50 example titles for Cold Trace</h3>
+  <ol class="cols tight">
+    <li>The $81 Million Bank Heist That Started With A Printer</li>
+    <li>How One Fake Job Interview Breached A Crypto Exchange</li>
+    <li>What Happens If You Click The Link — Second By Second</li>
+    <li>The Hospital That Ran On Paper For 33 Days</li>
+    <li>They Were Inside For 229 Days. Nobody Noticed</li>
+    <li>The $6 Domain That Cost A Company $40 Million</li>
+    <li>How Does A SIM Swap Actually Happen?</li>
+    <li>This Breach Was Stoppable. Here's The Exact Moment</li>
+    <li>What Your Stolen Password Is Actually Worth</li>
+    <li>The Invoice That Fooled An Entire Finance Department</li>
+    <li>Inside The Org Chart Of A Scam Compound</li>
+    <li>Why The Ransom Was The Cheapest Part Of The Breach</li>
+    <li>The Warning Email Sent 11 Months Before The Hack</li>
+    <li>How Attackers Turn One Password Into Everything</li>
+    <li>The Romance Scam That Takes Four Months To Reach The Money</li>
+    <li>Why Your Bank Calls From A Number You Can't Call Back</li>
+    <li>The Vendor Nobody Audited</li>
+    <li>What They Already Know About You Before They Call</li>
+    <li>How A Supply Chain Attack Reaches 10,000 Companies At Once</li>
+    <li>The Employee Who Reported It And Was Ignored</li>
+    <li>72 Hours Inside A Ransomware Negotiation</li>
+    <li>Why Deleting Your Account Doesn't Delete Your Data</li>
+    <li>The Scam Built Specifically For Careful People</li>
+    <li>How Stolen Money Actually Leaves The Country</li>
+    <li>The Breach That Was Found By An Accountant</li>
+    <li>What A Data Broker Knows That Your Family Doesn't</li>
+    <li>Two-Factor Authentication Failed Here. Here's How</li>
+    <li>The 20 Seconds Of Audio That Emptied An Account</li>
+    <li>Everyone Blamed The Intern. It Wasn't The Intern</li>
+    <li>How A Printer Took Down A Hospital Network</li>
+    <li>The Fake Shop That Passed Every Check You'd Run</li>
+    <li>What Happens To Your Data In The First 60 Minutes</li>
+    <li>Why Attackers Wait Six Months Before Doing Anything</li>
+    <li>The Password Reset That Gave Away The Company</li>
+    <li>How A Bug Bounty Report Became A Lawsuit</li>
+    <li>The Wrong-Number Text Is Not A Wrong Number</li>
+    <li>They Paid The Ransom. Then It Happened Again</li>
+    <li>The Security Question That Gives Away Everything</li>
+    <li>What Happens In The War Room In The First Hour</li>
+    <li>How An OAuth Token Became A Master Key</li>
+    <li>The Breach You're Still Paying For From 2013</li>
+    <li>Why Hospitals Get Targeted More Than Banks</li>
+    <li>The QR Code Sticker Economy</li>
+    <li>How Law Enforcement Took Down A Botnet</li>
+    <li>The Contractor's Laptop That Opened Everything</li>
+    <li>What Happens If You Tell The Scammer You Know</li>
+    <li>The Ex-Employee Account That Still Worked</li>
+    <li>How Criminals Choose Their Next Target</li>
+    <li>The Fix Cost $400. The Breach Cost $18 Million</li>
+    <li>Public Wi-Fi Isn't The Threat Anymore. This Is</li>
+  </ol>
+
+  <h4>Title discipline rules</h4>
+  <ul>
+    <li>Under 60 characters where possible so nothing truncates on mobile</li>
+    <li>A number or a proper noun in roughly two-thirds of titles — specificity is the click driver in this niche</li>
+    <li>Never all-caps beyond one word; never more than one punctuation mark</li>
+    <li>Write eight titles per video, pick two, and A/B test with YouTube's built-in thumbnail test where eligible</li>
+    <li>If the title contains a question, the video must answer it before 70% of runtime, or retention collapses at the reveal</li>
+  </ul>
+</section>
+
+<section id="s3">
+  <div class="snum">Pipeline · Step 3</div>
+  <h2>Script architecture</h2>
+
+  <h3>The structure</h3>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Beat</th><th>Time</th><th>Job</th><th>Rule</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cold open</strong></td><td class="mono">0:00–0:12</td><td>Drop the viewer inside the worst moment, in present tense, with a concrete sensory detail and a number</td><td>No channel name, no "in this video," no greeting, no context. Start mid-event</td></tr>
+      <tr><td><strong>The stakes turn</strong></td><td class="mono">0:12–0:35</td><td>Reveal the scale, then immediately pose the question the video answers</td><td>Ends on an explicit open loop: "The strange part is how they got in. It took eleven seconds."</td></tr>
+      <tr><td><strong>The setup</strong></td><td class="mono">0:35–1:30</td><td>Who, where, what normal looked like the day before</td><td>Maximum 55 seconds. Every sentence must carry a fact the payoff needs</td></tr>
+      <tr><td><strong>Act 1 — The way in</strong></td><td class="mono">1:30–4:30</td><td>The initial compromise, step by step, from the attacker's side</td><td>Close one loop, open the next at the act break</td></tr>
+      <tr><td><strong>Act 2 — The quiet period</strong></td><td class="mono">4:30–7:30</td><td>What they did while nobody knew. The most under-told and most fascinating act</td><td>Insert a pattern interrupt at the midpoint: shift to the victim's point of view</td></tr>
+      <tr><td><strong>Act 3 — Discovery</strong></td><td class="mono">7:30–10:00</td><td>How it was found and what the first hour looked like</td><td>Highest emotional intensity. Shortest sentences in the script</td></tr>
+      <tr><td><strong>The cost</strong></td><td class="mono">10:00–11:15</td><td>Itemised consequences, including the ones nobody expects</td><td>Numbers on screen as mono type. Never rush this — it is the credibility beat</td></tr>
+      <tr><td><strong>The interception point</strong></td><td class="mono">11:15–12:30</td><td>Signature payoff. Rewind to the single moment it could have failed</td><td>Visual fork in the road. This is why they watched. Never cut it short</td></tr>
+      <tr><td><strong>Close</strong></td><td class="mono">12:30–13:00</td><td>One transferable principle, then a specific next video by name</td><td>No sign-off ritual, no "smash that". End on the principle and cut</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Preventing the six failure modes you named</h3>
+  <div class="grid g2">
+    <div class="card"><span class="cap">Slow introductions</span><p>Hard rule: the first spoken word is a noun or a verb from inside the incident. Delete every sentence before the first concrete detail. If your first line would work on any video in the niche, it is wrong.</p></div>
+    <div class="card"><span class="cap">Unnecessary explanation</span><p>Explain a term only at the exact second it blocks comprehension, in six words or fewer, then move. Never pre-teach. If a concept needs 30 seconds, it is a separate Mechanism video — link it.</p></div>
+    <div class="card"><span class="cap">Repetition</span><p>Search the draft for every fact and delete every second occurrence. The only permitted repetition is the timeline tape and one deliberate callback in the interception beat.</p></div>
+    <div class="card"><span class="cap">Information dumping</span><p>One new idea per 15 seconds, maximum. If a paragraph contains three facts, it becomes three scenes with three images. Density is fine; simultaneity is not.</p></div>
+    <div class="card"><span class="cap">Weak transitions</span><p>Every act break is a question, not a connective. Banned: "meanwhile," "additionally," "furthermore," "but first." Required shape: statement of consequence, then the new unknown.</p></div>
+    <div class="card"><span class="cap">Boring conclusions</span><p>The interception point <em>is</em> the conclusion. Nothing after it except one principle and one named next video. Anything else is a retention cliff you built yourself.</p></div>
+  </div>
+
+  <div class="prompt">
+    <div class="ph"><span>Master script prompt — copy and use</span><span class="mono" style="font-size:10px">v1</span></div>
+<pre>You are the head writer for COLD TRACE, a YouTube channel that reconstructs real
+digital crimes as forensic, minute-by-minute narratives for intelligent
+non-specialists. Write a complete voiceover script.
+
+INCIDENT: [paste incident name + the 2-4 primary sources you gathered]
+TARGET LENGTH: 12 minutes (approx. 1,850-1,950 words)
+INTERCEPTION POINT: [the one moment it could have been stopped — you must
+build the whole script to land on this]
+
+AUDIENCE
+28-45, works with computers but not in security. Smart, impatient, slightly
+anxious about their own exposure. They do NOT want a lecture. They want to
+understand a mechanism and know what they would do.
+
+VOICE
+Calm, precise, quietly unsettling. A forensic investigator narrating evidence,
+not a thriller trailer. Short declarative sentences. Present tense for the
+incident, past tense for the aftermath. Never sensationalise; the facts are
+already dramatic. No jokes. No filler. No "imagine if". No rhetorical questions
+that you do not immediately answer.
+
+STRUCTURE — follow exactly, with these timings
+0:00-0:12  COLD OPEN. Start inside the worst moment. Present tense. One
+           concrete sensory detail plus one number. No greeting, no channel
+           name, no "in this video".
+0:12-0:35  STAKES TURN. Reveal scale. Then pose the video's question and
+           state an explicit open loop.
+0:35-1:30  SETUP. Who, where, what normal looked like. Max 55 seconds.
+           Every sentence must carry a fact the ending needs.
+1:30-4:30  ACT 1 — THE WAY IN. The initial compromise, attacker's POV,
+           step by step. End on a new unknown.
+4:30-7:30  ACT 2 — THE QUIET PERIOD. What they did while undetected.
+           At the midpoint, hard-switch to the victim's POV as a pattern
+           interrupt.
+7:30-10:00 ACT 3 — DISCOVERY. How it surfaced. Shortest sentences here.
+10:00-11:15 THE COST. Itemised. Include at least two consequences a viewer
+           would not predict.
+11:15-12:30 THE INTERCEPTION POINT. Rewind to the single moment. Show the
+           fork: what happened vs what would have happened. This is the payoff.
+12:30-13:00 CLOSE. One transferable principle in two sentences. Then name
+           one specific related video. Stop. No sign-off.
+
+RETENTION REQUIREMENTS
+- Open a new loop before closing the previous one, at every act break.
+- Insert a pattern interrupt every 90-120 seconds: a POV switch, a direct
+  address to the viewer, a single-sentence paragraph, or a hard number.
+- Every 45 seconds there must be either a new fact or a new tension.
+- Use second person ("you") at least four times to implicate the viewer.
+- Never state a conclusion before the evidence for it.
+
+HARD CONSTRAINTS
+- Do NOT invent facts, names, figures, dates or quotes. If a detail is not in
+  the sources I gave you, write [VERIFY: description] and continue.
+- Do NOT provide any step that functions as a usable attack recipe. Explain
+  mechanism and consequence; omit operational specifics.
+- Do NOT give personalised financial or legal advice.
+- Flag every claim that needs a citation with [SRC].
+
+OUTPUT FORMAT
+Plain voiceover text only, broken into numbered SCENES of 12-20 seconds each.
+For each scene give: scene number, timecode range, the exact narration, and a
+one-line VISUAL NOTE describing what the viewer should see.
+After the script, list: (a) every [VERIFY] item, (b) every [SRC] claim,
+(c) three alternative cold opens, (d) the six-word summary of the video.</pre>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="snum">Pipeline · Step 4</div>
+  <h2>Video length</h2>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Length</th><th class="num">Words</th><th class="num">Images</th><th>Verdict for this niche</th></tr></thead>
+    <tbody>
+      <tr><td><strong>4–6 min</strong></td><td class="num">620–950</td><td class="num">40–65</td><td>Too short. Cannot fit three acts plus the interception payoff. Banks watch hours slowly. Use only for Pillar 4 Defence videos</td></tr>
+      <tr><td><strong>8–10 min</strong></td><td class="num">1,250–1,550</td><td class="num">80–110</td><td>Workable, and the right length for your <em>first five videos</em> while you build speed. Clears the mid-roll ad threshold comfortably</td></tr>
+      <tr class="win"><td><strong>12–15 min</strong></td><td class="num">1,850–2,350</td><td class="num">120–165</td><td><strong>Recommended.</strong> The narrative needs three acts; the ad load supports 3–4 mid-rolls; watch hours accumulate ~3× faster per view than at 5 minutes; long-form documentary is reported as resurgent specifically in tech and true crime</td></tr>
+      <tr><td><strong>20 min+</strong></td><td class="num">3,100+</td><td class="num">210+</td><td>Where you go at 25K subscribers, not before. Production time roughly doubles while a new channel's audience will not yet sustain it</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Recommendation: 12–14 minutes, ~1,900 words, narrated at 150–160 words per minute.</strong> <span class="tag t-jud">Judgement</span> The deciding factor is the February 2027 watch-hour deadline. At 13 minutes and a realistic 48% average view duration you bank about 6.2 watch-minutes per view, so roughly 39,000 views gets you to 4,000 hours. At 6 minutes and 45% you would need about 89,000. Same effort, less than half the progress. <span class="tag t-est">Estimate</span></p>
+</section>
+
+<section id="s5">
+  <div class="snum">Pipeline · Step 5</div>
+  <h2>Image generation</h2>
+
+  <h3>How long each image stays on screen — and why</h3>
+  <p>This is not a matter of taste; it is set by the cognitive load of the shot. A viewer needs roughly 1.5 seconds to parse a simple scene and up to 8 to read a diagram. Holding past comprehension is dead air; cutting before it is confusing. Your mix:</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Shot type</th><th class="num">Hold</th><th class="num">Share</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Cold-open impact frame</td><td class="num">2–3s</td><td class="num">4%</td><td>Fast cuts build urgency before the viewer settles</td></tr>
+      <tr><td>Narrative scene (person, room, object)</td><td class="num">4–6s</td><td class="num">55%</td><td>The workhorse. Long enough to read, short enough to keep the eye moving</td></tr>
+      <tr><td>Diagram / network / money-flow</td><td class="num">7–10s</td><td class="num">22%</td><td>Requires reading. Animate the overlay so the shot earns the hold</td></tr>
+      <tr><td>Evidence document or screen</td><td class="num">5–7s</td><td class="num">12%</td><td>Viewer wants to read it. Zoom to the relevant line</td></tr>
+      <tr><td>Interception-point fork</td><td class="num">8–12s</td><td class="num">5%</td><td>The payoff frame. Let it breathe. Do not cut away</td></tr>
+      <tr><td>Establishing / atmosphere</td><td class="num">3–4s</td><td class="num">2%</td><td>Transitional only</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Blended average: 5.4 seconds per image.</strong> Image counts you should budget:</p>
+  <div class="grid g4">
+    <div class="stat"><span class="v">~56</span><span class="k">5-minute video</span></div>
+    <div class="stat"><span class="v">~89</span><span class="k">8-minute video</span></div>
+    <div class="stat"><span class="v">~111</span><span class="k">10-minute video</span></div>
+    <div class="stat"><span class="v">~167</span><span class="k">15-minute video</span></div>
+  </div>
+  <p class="mono" style="font-size:12px;color:var(--ink-3)">Generate roughly 1.4× the target count. Expect to discard 25–30% for style drift or anatomy failures. A 13-minute video means generating around 200 images to keep 145.</p>
+
+  <h3>Which tool, in 2026</h3>
+  <p><span class="tag t-rep">Reported</span> The current field, assessed against <em>your</em> specific requirement — a consistent painterly style across 150 images per video, produced fast and cheap.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Tool</th><th>Reported strength</th><th class="num">Cost signal</th><th>Fit for Cold Trace</th></tr></thead>
+    <tbody>
+      <tr class="win"><td><strong>Nano Banana Pro</strong> (Google)</td><td>Reported best overall quality; 4K in under 10 seconds; strong text rendering; physics-aware. Google is reported to be retiring Imagen on 17 Aug 2026 in its favour</td><td class="num">~$0.04–0.14<br>per image</td><td><strong>Primary.</strong> Speed matters more than anything at 150 images per video, and reliable in-image text is uniquely valuable when you need readable filenames, amounts and email subject lines</td></tr>
+      <tr><td><strong>FLUX.2 / FLUX Kontext</strong></td><td>Reported to have the clearest edge on single-reference character consistency without fine-tuning; strong prompt adherence; open weights available</td><td class="num">~$0.015–0.05<br>per image</td><td><strong>Secondary, and your consistency insurance.</strong> Use Kontext whenever a specific figure, room or device must recur across scenes. Cheapest at volume</td></tr>
+      <tr><td><strong>Midjourney v7</strong></td><td>Reported strongest aesthetic sense and compositional confidence; style references</td><td class="num">$10–120<br>/month</td><td><strong>Style-bible tool only.</strong> Use it once to generate the 12 reference frames that define your look, then reference those elsewhere. No official API makes it poor for volume</td></tr>
+      <tr><td><strong>GPT Image 1.5</strong></td><td>Reported best for iterative edit-based consistency and text</td><td class="num">Per-image</td><td>Useful for fixing one bad image conversationally. Not a volume generator</td></tr>
+      <tr><td><strong>Ideogram 3.0</strong></td><td>Reported top-tier for typography and character consistency</td><td class="num">Freemium</td><td>Thumbnail text and title cards. Not the main pipeline</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Recommended stack: Midjourney once for the style bible → Nano Banana Pro for volume → FLUX Kontext for anything that must recur.</strong> <span class="tag t-jud">Judgement</span> Verify current pricing yourself; this space changes monthly and the figures above are reported ranges, not quotes.</p>
+
+  <h3>The consistency system</h3>
+  <p>Style drift is the single biggest quality problem in AI-illustrated video. Six mechanisms, in order of leverage:</p>
+  <ol>
+    <li><strong>The style bible.</strong> Before video one, generate 12 reference frames — a server room, an office at night, a hooded figure at a desk, an over-the-shoulder laptop, a money-flow diagram, a street exterior, a phone in a hand, an envelope, a boardroom, a data centre corridor, a timeline card, a document close-up. Iterate until all twelve look like one artist made them. Save them. Every future prompt references this set. This is a one-time three-hour investment that pays for the life of the channel.</li>
+    <li><strong>The locked style block.</strong> A fixed, unchanging paragraph appended to every single prompt. Never edit it mid-project. It is in the master template below.</li>
+    <li><strong>Design around the weakness, not into it.</strong> Your characters are silhouetted, back-turned, cropped, or obscured by screen glow — <em>by design</em>. This eliminates face-consistency failure entirely rather than fighting it. Clothing is reduced to two or three silhouette archetypes: hooded figure, shirt-sleeved office worker, uniformed staff. Simple silhouettes stay consistent; detailed outfits do not.</li>
+    <li><strong>Environment kits.</strong> Write a reusable 25-word description for each recurring location and paste it verbatim. Never re-describe a room from memory.</li>
+    <li><strong>Colour enforcement in the edit, not the prompt.</strong> Do not rely on the model for palette. Apply a single LUT or colour-grade preset to every image on the timeline. This alone recovers most apparent consistency and takes one click.</li>
+    <li><strong>Fixed camera grammar.</strong> Three framings only: wide isometric for systems, mid over-the-shoulder for the victim, tight macro for evidence. Rotating through a fixed set reads as directed; varying freely reads as random.</li>
+  </ol>
+
+  <div class="prompt">
+    <div class="ph"><span>Master image-prompt template — copy and use</span><span class="mono" style="font-size:10px">v1</span></div>
+<pre>[SCENE ID: S-014 | SCRIPT TIMECODE: 4:32-4:41 | PILLAR: Reconstruction]
+
+SUBJECT
+A single figure seen from behind, shoulders cropped at frame edge, seated at a
+desk in a darkened open-plan office. Three monitors glow. On the centre screen,
+an email client with one message open.
+
+ACTION / MOMENT
+The exact second before the cursor reaches the attachment. Stillness, not motion.
+
+EMOTION
+Ordinary, unsuspecting, mildly tired. This is a routine Tuesday. The dread is
+the viewer's, not the character's.
+
+CAMERA
+Mid-shot over-the-shoulder, camera at seated eye height, 35mm equivalent,
+slight downward tilt. Subject occupies left third; monitor glow fills right
+two-thirds. Deep depth of field.
+
+LIGHTING
+Single cold key from the monitors at 6500K. Warm sodium spill from a window at
+far background. Everything else in shadow. High contrast, crushed blacks,
+no fill light on the face.
+
+ENVIRONMENT KIT [OFFICE-NIGHT]
+Open-plan floor, low grey partitions, ceiling grid dark, one distant emergency
+exit sign, empty chairs, a paper cup on the desk, cable clutter.
+
+COLOUR ROLES
+Ground cold slate #2A3138. Paper tones #D9D5CB. NOTHING in oxide red #9E3327
+in this frame — the attacker is not present yet. Signal teal #1B646D only on
+the monitor UI edge.
+
+--- LOCKED STYLE BLOCK — NEVER EDIT ---
+Matte painterly gouache illustration with visible dry-brush texture and subtle
+paper grain. Hard-edged geometric overlays in thin 1px lines. Restrained,
+desaturated four-colour palette: cold slate, bone, oxide red, signal teal.
+Editorial-technical illustration in the manner of a printed incident report.
+Faces never fully visible. No lens flare, no glow bloom, no neon, no circuit-
+board motifs, no 3D render, no photorealism, no cyberpunk. Flat even
+composition, generous negative space, 16:9.
+--- END LOCKED STYLE BLOCK ---
+
+NEGATIVE
+photorealistic, 3D render, neon, glowing blue circuitry, hoodie hacker cliché,
+binary rain, lens flare, visible detailed face, text artefacts, watermark,
+extra fingers, cluttered composition, oversaturated
+
+REFERENCE: style-bible/03-office-night.png (weight 0.6)</pre>
+  </div>
+  <p><strong>How to produce these at scale:</strong> paste your finished scene list into a model with the template above and ask it to fill SUBJECT, ACTION, EMOTION, CAMERA, LIGHTING and COLOUR ROLES for every scene while copying the locked style block verbatim. Then batch-generate. Roughly 40 minutes for a full 13-minute video's worth of prompts.</p>
+</section>
+
+<section id="s6">
+  <div class="snum">Pipeline · Step 6</div>
+  <h2>Turning stills into video</h2>
+  <p>Your position is right: image-sequence editing beats AI video generation here on cost, consistency, control and — importantly — policy, because the visible craft of the edit is part of what distinguishes your channel from a slideshow.</p>
+
+  <h3>Tool choice</h3>
+  <div class="grid g2">
+    <div class="card"><span class="cap">Recommended</span><h5>DaVinci Resolve (free)</h5><p>The free tier includes Fusion for real parallax and motion graphics, proper colour grading for the LUT that enforces your palette, and Fairlight for audio. No subscription, no watermark, no export limit. The learning curve is two weekends and it is the last editor you will need.</p></div>
+    <div class="card"><span class="cap">Fastest to first video</span><h5>CapCut Desktop</h5><p>Keyframed zoom and pan, auto-captions, easy text. Genuinely fine for videos 1–10 while you learn. Migrate once repetitive motion becomes the bottleneck. Check current licence terms for commercial use before monetizing.</p></div>
+    <div class="card"><span class="cap">If you already pay Adobe</span><h5>Premiere + After Effects</h5><p>Best-in-class for the parallax and overlay-draw-on work. Only worth it if the subscription already exists.</p></div>
+    <div class="card"><span class="cap">Do not</span><h5>Browser "AI video makers"</h5><p>They produce exactly the templated slideshow the inauthentic-content policy describes. Every video from these tools looks like every other video from these tools. This is the single fastest route to demonetization.</p></div>
+  </div>
+
+  <h3>The motion system</h3>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Technique</th><th>Setting</th><th>Where to use it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ken Burns drift</strong></td><td class="mono">3–6% scale over the shot, linear, alternating direction between cuts</td><td>Default on every narrative image. Alternating direction stops the video feeling like a treadmill</td></tr>
+      <tr><td><strong>Push-in</strong></td><td class="mono">100% → 112%, ease-out</td><td>Only on emotional or revelatory beats. Maximum four per video or it loses meaning</td></tr>
+      <tr><td><strong>Pull-back reveal</strong></td><td class="mono">130% → 100%, ease-in-out, 4s</td><td>Act openings and the interception fork. The single most effective shot in the format</td></tr>
+      <tr><td><strong>Parallax</strong></td><td class="mono">Cut the image into 3 depth layers, offset movement 8 / 4 / 1%</td><td>Reserve for 4–6 hero shots per video. Costs ~10 min each. Overuse looks cheap</td></tr>
+      <tr><td><strong>Overlay draw-on</strong></td><td class="mono">1px teal or red lines animating along a path, 0.6s, ease-out</td><td>All diagrams. This is your signature motion and the thing that most separates you from a slideshow</td></tr>
+      <tr><td><strong>Timeline tape</strong></td><td class="mono">Bottom bar, mono type, advances between scenes</td><td>Every frame of every Reconstruction video. Non-negotiable</td></tr>
+      <tr><td><strong>Transitions</strong></td><td class="mono">Hard cut 90%. 4-frame dip-to-black at act breaks only</td><td>No wipes, no slides, no zoom transitions, no glitch effects</td></tr>
+      <tr><td><strong>Text</strong></td><td class="mono">Mono, ≤7 words, fade 0.25s, hold 2.5s</td><td>Numbers, dates, quoted phrases. Never subtitle the narration</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>The repeatable editing template — build this once</h4>
+  <ol>
+    <li>Create a Resolve project template containing: your LUT on an adjustment layer, the timeline-tape graphic, three lower-third text presets, two Fusion parallax macros, and an audio bus with the voice compressor and music duck already routed.</li>
+    <li>Drop the voiceover on A1 first. Always cut to voice, never to image.</li>
+    <li>Place images on V1 against the narration, using the scene list as your edit decision list. Do not fine-tune yet.</li>
+    <li>Select all clips, apply the alternating Ken Burns preset in one pass.</li>
+    <li>Second pass: replace 4–6 shots with parallax versions, add push-ins on the emotional beats.</li>
+    <li>Third pass: overlay draw-ons and text on the diagram shots.</li>
+    <li>Fourth pass: sound. Fifth pass: colour. Export.</li>
+  </ol>
+  <p><span class="tag t-est">Estimate</span> Once templated: about 2.5–3.5 hours of editing for a 13-minute video.</p>
+</section>
+
+<section id="s7">
+  <div class="snum">Pipeline · Step 7</div>
+  <h2>Voiceover</h2>
+  <p><span class="tag t-rep">Reported</span> ElevenLabs still leads on raw quality in 2026, with Fish Audio and Cartesia reported as closing the gap at lower cost, Inworld reported as strong on cost and latency, and Chatterbox reported as the best open-source option — cloning from about five seconds of audio, MIT-licensed, and winning some blind tests. Murf and LOVO target the enterprise and e-learning end with directable delivery.</p>
+  <p><strong>Recommendation: ElevenLabs for the main narration.</strong> <span class="tag t-jud">Judgement</span> Voice is the one place where a quality gap is instantly audible to a viewer, and it is the cheapest line in your budget. Do not economise here. Consider Chatterbox self-hosted only if volume makes cost genuinely painful later.</p>
+
+  <div class="grid g2">
+    <div class="card"><span class="cap">Casting</span><h5>The voice for this niche</h5><p>Male or female both work; pick one and never change it — the voice <em>is</em> the channel. Age impression 35–45. Neutral British or neutral North American; both index well with US/UK/CA/AU audiences, and a slight British accent carries documentary authority in this specific genre. Avoid strong regional accents and anything youthful or bright.</p></div>
+    <div class="card"><span class="cap">Delivery</span><h5>Calm, low, unhurried</h5><p>Controlled and quiet, not energetic. The subject supplies the tension; the narrator supplies the steadiness. Think incident briefing, not trailer. Energy comes from what is said, never from how loudly.</p></div>
+    <div class="card"><span class="cap">Pace</span><h5>150–160 wpm</h5><p>Slower than most faceless channels, deliberately. Comprehension of technical mechanism is the whole product. Slow to 135 wpm for the interception point.</p></div>
+    <div class="card"><span class="cap">Settings</span><h5>Stability high, style low</h5><p>Push stability up and style exaggeration down. You want repeatable and flat over expressive and variable — expressive settings are exactly what produces the sing-song cadence people recognise as AI.</p></div>
+  </div>
+
+  <h4>Seven fixes that stop it sounding synthetic</h4>
+  <ol>
+    <li><strong>Write for the mouth.</strong> Most AI-voice detection by ear is actually detecting AI <em>writing</em>: uniform sentence length, no contractions, no fragments. Vary sentence length aggressively. Use fragments. Use contractions.</li>
+    <li><strong>Render in paragraph chunks, not whole scripts.</strong> Long generations drift. Generate 60–90 seconds at a time and reset.</li>
+    <li><strong>Punctuate for breath.</strong> Ellipses, em-dashes and full stops mid-clause are your prosody controls. A comma will not give you a pause; a full stop will.</li>
+    <li><strong>Insert real silence in the edit.</strong> 400–700ms after every significant number and before every act break. Silence is the strongest signal of human editorial judgement in the whole audio track.</li>
+    <li><strong>Regenerate the first and last sentence of every scene.</strong> These carry the most emphasis and are where flatness is most audible. Two takes each, pick by ear.</li>
+    <li><strong>Deliberately vary emphasis across takes.</strong> If two consecutive paragraphs land identically, regenerate one.</li>
+    <li><strong>Process it.</strong> Light compression (3:1), a high-pass at 80Hz, de-essing, and a very short room reverb at 4–6% wet. Perfectly dry audio sounds synthetic because nothing in the real world is dry.</li>
+  </ol>
+  <div class="call risk">
+    <span class="lbl">Policy note</span>
+    <p>Never clone a real person's voice. Reported YouTube guidance is that generic AI narration does not trigger the synthetic-content disclosure, but a cloned voice of an identifiable real person does — and in a niche about crime, impersonating a named executive or victim would be both a policy problem and an ethical one.</p>
+  </div>
+</section>
+
+<section id="s8">
+  <div class="snum">Pipeline · Step 8</div>
+  <h2>Sound design</h2>
+  <p>This niche needs sound more than most, because your visuals are static. Sound is what converts a sequence of images into a scene. It is also the cheapest retention improvement available to you.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Layer</th><th>Use</th><th>Level</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Music bed</strong></td><td>Continuous, one track per act</td><td class="mono">−26 to −22 LUFS</td><td>Sparse, tonal, minimal percussion. Sustained low strings or synth pads. Never melodic, never "epic". Must survive 13 minutes without annoying</td></tr>
+      <tr><td><strong>Ambience</strong></td><td>Room tone per environment</td><td class="mono">−34 dB</td><td>Server hum, office HVAC, street exterior, phone line noise. The highest-value layer — it makes still images feel like places</td></tr>
+      <tr><td><strong>Spot effects</strong></td><td>4–8 per minute maximum</td><td class="mono">−18 dB</td><td>Keyboard, notification, door, paper, phone buzz, hard-drive click. Restraint reads as documentary; density reads as cartoon</td></tr>
+      <tr><td><strong>Act-break sting</strong></td><td>One low sub-hit per act break</td><td class="mono">−14 dB</td><td>Same sound every time. It becomes part of the brand</td></tr>
+      <tr><td><strong>Silence</strong></td><td>Before the interception point</td><td class="mono">—</td><td>Cut all music for 2 seconds. The most powerful tool on this list. Use exactly once per video</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Music sourcing.</strong> <span class="tag t-rep">Reported</span> Epidemic Sound (~$15–30/mo) and Artlist (~$200/yr) provide platform-cleared human-composed libraries; Suno's paid plan is reported to grant commercial rights to generated tracks, with the free tier non-commercial, and Suno is reported to have settled with Warner Music in early 2026 and now operate under a licensed model with stricter download rules. <span class="tag t-jud">Judgement</span> Take a subscription library for a channel you intend to monetize — a lapsed subscription can expose already-published content, so budget for continuity, but the licensing chain is far cleaner than AI-generated music while that area is still settling.</p>
+  <p><strong>Voice ducking:</strong> sidechain the music bus to the voice bus, −8dB with 200ms attack and 400ms release. Set this once in your project template.</p>
+</section>
+
+<section id="s9">
+  <div class="snum">Pipeline · Step 9</div>
+  <h2>Thumbnails</h2>
+  <p>What the successful channels adjacent to this niche do: large human faces in shock, red arrows and circles, three or four words in heavy sans, high saturation. It works, and it is now so universal that it is invisible. <span class="tag t-jud">Judgement</span> Your opportunity is to be the one <em>legible</em> thumbnail in a row of screaming ones — the same move that made the illustrated-documentary channels recognisable.</p>
+
+  <h3>The Cold Trace thumbnail formula</h3>
+  <div class="grid g2">
+    <div class="card"><span class="cap">Composition</span><p><strong>Two-zone split.</strong> Left 60%: one illustrated object or scene at the moment before failure. Right 40%: 2–4 words of mono text on flat slate, plus the timeline-tape fragment along the bottom. The split is fixed forever — it is the recognition device.</p></div>
+    <div class="card"><span class="cap">Colour</span><p>Slate ground, bone type, exactly one oxide-red element and nothing else red. The red element must be the thing the video is about. Because everything else in the feed is saturated, low-saturation with one hot accent actually out-contrasts them.</p></div>
+    <div class="card"><span class="cap">Text rules</span><p>Maximum four words. Mono, semibold, sentence case, generous letter-spacing. Never repeat the title — the thumbnail says the <em>noun</em>, the title asks the <em>question</em>. Must be legible at 168×94 px; test at that size before every upload.</p></div>
+    <div class="card"><span class="cap">Character placement</span><p>If a figure appears, they are back-turned or silhouetted, occupying the left third, small in frame. The absence of a face is the differentiator. Emotion is carried by posture and by the object, not by expression.</p></div>
+    <div class="card"><span class="cap">Curiosity mechanism</span><p>One of exactly three: <strong>the mundane object</strong> (a printer, an invoice, a lanyard) implied to have caused a catastrophe; <strong>the frozen moment</strong> (a cursor a pixel from a link); or <strong>the impossible number</strong> ($81M beside something trivial).</p></div>
+    <div class="card"><span class="cap">Contrast discipline</span><p>Convert to greyscale before exporting. If the subject does not separate from the ground in greyscale, the composition is wrong — fix the values, not the colours.</p></div>
+  </div>
+
+  <div class="prompt">
+    <div class="ph"><span>Master thumbnail-generation prompt</span><span class="mono" style="font-size:10px">v1</span></div>
+<pre>COLD TRACE THUMBNAIL — 16:9, 1280x720
+
+LAYOUT (fixed, never varies)
+Left 60%: the illustrated subject. Right 40%: flat cold-slate panel #2A3138
+reserved for text, which I will add in the editor — leave it EMPTY.
+Bottom edge: a thin horizontal ruled measuring-tape motif spanning full width.
+
+SUBJECT (left zone)
+[ONE object or figure, described in max 15 words, at the moment before failure]
+Examples: an office printer lit by a single emergency light | a cursor frozen
+one pixel from a blue hyperlink | a paper invoice on an empty desk
+
+FRAMING
+Subject occupies the lower-left two-thirds of the left zone. Large negative
+space above it. Slight low angle. Subject small in frame, never filling it.
+
+LIGHTING
+Single hard directional source, deep shadow elsewhere. High value contrast.
+The subject must separate from the ground in pure greyscale.
+
+COLOUR
+Ground cold slate #2A3138. Subject in bone #D9D5CB and greys. EXACTLY ONE
+element in oxide red #9E3327 — [name it]. No other saturated colour anywhere.
+
+STYLE
+Matte painterly gouache, visible dry-brush texture, subtle paper grain,
+hard-edged 1px geometric overlay lines. Editorial-technical illustration from
+a printed incident report. Flat, calm, uncluttered.
+
+NEGATIVE
+human face, shocked expression, photorealism, 3D render, neon, glow, blue
+circuit board, binary, arrows, circles, text, letters, numbers, watermark,
+clutter, high saturation, lens flare</pre>
+  </div>
+  <p class="mono" style="font-size:12px;color:var(--ink-3)">Always add the text in your editor, never in the image model — you get pixel-perfect kerning, instant A/B variants, and no text artefacts.</p>
+
+  <h3>20 thumbnail concepts, matched to the first 20 videos</h3>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th class="num">#</th><th>Visual subject (left zone)</th><th>Red element</th><th>Thumbnail text</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td>Office printer under a single emergency light</td><td>Status LED</td><td class="mono">$81 MILLION</td></tr>
+      <tr><td class="num">2</td><td>Cursor frozen one pixel from a hyperlink</td><td>The link</td><td class="mono">One click</td></tr>
+      <tr><td class="num">3</td><td>Paper invoice alone on an empty desk</td><td>Bank detail line</td><td class="mono">Fake invoice</td></tr>
+      <tr><td class="num">4</td><td>Hospital corridor lit only by exit signs</td><td>Exit sign</td><td class="mono">33 days</td></tr>
+      <tr><td class="num">5</td><td>Wall calendar with a long unmarked span</td><td>Single circled day</td><td class="mono">229 days inside</td></tr>
+      <tr><td class="num">6</td><td>Domain registration form, close macro</td><td>One character</td><td class="mono">$6 domain</td></tr>
+      <tr><td class="num">7</td><td>Phone on a shop counter, hand withdrawing</td><td>SIM tray</td><td class="mono">SIM swap</td></tr>
+      <tr><td class="num">8</td><td>Fork in a corridor, two doors</td><td>Left door frame</td><td class="mono">Stoppable</td></tr>
+      <tr><td class="num">9</td><td>Price tag on a plain card</td><td>The figure</td><td class="mono">Your password</td></tr>
+      <tr><td class="num">10</td><td>Video-call grid, one tile back-turned</td><td>That tile's border</td><td class="mono">Fake interview</td></tr>
+      <tr><td class="num">11</td><td>Isometric floor plan of a compound</td><td>One room</td><td class="mono">Inside</td></tr>
+      <tr><td class="num">12</td><td>Two stacked invoices, wildly different heights</td><td>Taller stack</td><td class="mono">Not the ransom</td></tr>
+      <tr><td class="num">13</td><td>Unopened email in a full inbox list</td><td>Unread dot</td><td class="mono">11 months early</td></tr>
+      <tr><td class="num">14</td><td>Single key spawning a fan of keys</td><td>Original key</td><td class="mono">One password</td></tr>
+      <tr><td class="num">15</td><td>Phone screen, four months of chat compressed</td><td>Final message</td><td class="mono">Four months</td></tr>
+      <tr><td class="num">16</td><td>Two phones, one call, one line severed</td><td>The cut</td><td class="mono">Can't call back</td></tr>
+      <tr><td class="num">17</td><td>Org chart, one small box at the edge</td><td>The small box</td><td class="mono">The vendor</td></tr>
+      <tr><td class="num">18</td><td>Manila file thicker than expected</td><td>Tab label</td><td class="mono">They know</td></tr>
+      <tr><td class="num">19</td><td>One package branching to a thousand doors</td><td>Source package</td><td class="mono">10,000 at once</td></tr>
+      <tr><td class="num">20</td><td>Sticky note on a dark monitor</td><td>Note edge</td><td class="mono">Ignored</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="s10">
+  <div class="snum">Pipeline · Step 10</div>
+  <h2>SEO — what actually matters now</h2>
+  <p>The honest hierarchy, from reported 2026 guidance: <strong>thumbnail and title carry the overwhelming majority of the weight</strong>, followed by spoken content (YouTube transcribes everything and indexes it), then CTR and retention as satisfaction signals, then the description, then chapters, then — distantly — hashtags and tags.</p>
+  <p><strong>The single most under-used lever in your niche: say your keyword out loud.</strong> Because YouTube indexes the transcript, naming the incident, the attack class and the organisation clearly in the first 30 seconds does more for search than any metadata field. Write it into the script.</p>
+
+  <div class="prompt">
+    <div class="ph"><span>SEO master prompt</span><span class="mono" style="font-size:10px">v1</span></div>
+<pre>You are the SEO lead for COLD TRACE, a YouTube channel reconstructing real
+digital crimes as illustrated forensic documentaries. Audience: US/UK/CA/AU,
+non-specialist, 28-45.
+
+VIDEO: [title]
+SCRIPT: [paste full script]
+LENGTH: [mm:ss]
+
+Produce, in this order:
+
+1. PRIMARY KEYWORD — the single phrase a real person would type. Natural
+   language, not a keyword-tool string. Say why you chose it in one line.
+2. SEARCH INTENT — one of: understand a mechanism / check if something is a
+   scam / find out what happened / learn how to protect against. State which
+   and what that implies for the first 30 seconds of the video.
+3. SECONDARY KEYWORDS — exactly 6. Include at least 2 question-form phrases
+   and 1 phrase using the wording a non-technical person would use rather
+   than the correct technical term.
+4. TRANSCRIPT CHECK — confirm the primary keyword is spoken naturally within
+   the first 30 seconds. If it is not, write the exact replacement sentence.
+5. TITLES — 5 options under 60 characters. For each, note the curiosity
+   mechanism used and the promise the video must keep.
+6. DESCRIPTION — using the Cold Trace template. First 2 lines must work as a
+   standalone hook above the fold and contain the primary keyword naturally.
+7. CHAPTERS — timestamps from the script's act structure. First chapter is
+   00:00. Chapter titles are intriguing, not administrative: "The printer" not
+   "Background".
+8. TAGS — exactly 6. Primary keyword, 2 close variants, 1 common misspelling,
+   the channel name, the incident name. No more.
+9. HASHTAGS — exactly 3 for the description.
+10. FILENAME — coldtrace-[incident-slug]-[primary-keyword-slug].mp4
+11. THUMBNAIL TEXT — max 4 words. Must NOT repeat the title.
+
+RULES
+- Never keyword-stuff. If a phrase would not survive being read aloud to a
+  person, cut it.
+- Descriptions are written for humans first. Assume a viewer reads them.
+- Do not pad. Six tags, not sixty.</pre>
+  </div>
+</section>
+
+<section id="s11">
+  <div class="snum">Pipeline · Step 11</div>
+  <h2>Description template</h2>
+  <div class="prompt">
+    <div class="ph"><span>Reusable description — copy and use</span><span class="mono" style="font-size:10px">v1</span></div>
+<pre>[HOOK — 2 lines, ~200 characters, contains the primary keyword naturally.
+This is all most people see. Make it a sentence that stands alone.]
+
+In [MONTH YEAR], [ORGANISATION] lost [FIGURE] to [ATTACK CLASS]. This is the
+full reconstruction: how the attackers got in, what they did during the
+[N] days nobody noticed, what it actually cost, and the single moment the
+whole thing could have been stopped.
+
+CHAPTERS
+00:00 [Intriguing chapter title]
+00:35 [...]
+01:30 [...]
+04:30 [...]
+07:30 [...]
+10:00 The cost
+11:15 Where it could have been stopped
+
+SOURCES
+Every Cold Trace video is built from primary documents. For this one:
+- [Source 1 — report / filing / advisory, with date]
+- [Source 2]
+- [Source 3]
+
+WATCH NEXT
+[Exact title of the most closely related video] — [one-line reason to click]
+
+PROTECT YOURSELF
+[1-2 specific actions drawn from this video's interception point.]
+[Affiliate links here, clearly marked. Maximum 2.]
+Some links are affiliate links; if you use them the channel earns a
+commission at no extra cost to you. I only list tools I would recommend
+without payment.
+
+ABOUT
+Cold Trace reconstructs real digital crimes as illustrated forensic
+documentaries — how they worked, what they cost, and where they could have
+been stopped. New reconstruction every [DAY].
+
+This video is for educational and defensive purposes. It explains how an
+attack worked so it can be recognised and prevented. It contains no
+operational instructions and is not security, legal or financial advice.
+
+Illustrations in this video are AI-generated and stylised; they are
+interpretations, not depictions of real people or real events.
+
+#[hashtag1] #[hashtag2] #[hashtag3]</pre>
+  </div>
+  <p><strong>Why the SOURCES block matters more than everything else here.</strong> <span class="tag t-jud">Judgement</span> It is your single strongest defence against the inauthentic-content policy — visible, verifiable evidence of original research — it converts the practitioner segment into defenders in your comment section, and it is a differentiator no template-driven competitor will bother to copy.</p>
+</section>
+
+<section id="s12">
+  <div class="snum">Pipeline · Step 12</div>
+  <h2>Tags</h2>
+  <div class="call">
+    <span class="lbl">The whole strategy</span>
+    <p><strong>Six tags. Two minutes. Never think about them again.</strong> Primary keyword · two close variants · one common misspelling · your channel name · the incident name. YouTube's own guidance describes tags as not important and mainly useful for misspellings; the Creator Liaison has publicly called them minor. Any advice telling you to fill all 500 characters is selling you a tag generator. Reallocate that time to the thumbnail, where reported impact is 10–20× higher.</p>
+  </div>
+  <p>Hashtags are slightly different — the first three in your description surface above the title and do assist categorisation. Use exactly three, keep them consistent across the channel (one broad, one niche, one series), and do not exceed three or YouTube ignores all of them.</p>
+</section>
+
+<section id="s13">
+  <div class="snum">Business · Step 13</div>
+  <h2>Monetization</h2>
+
+  <h3>Revenue paths, ranked by when they arrive</h3>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Path</th><th>Unlocks at</th><th>Realistic contribution</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Affiliate</strong></td><td class="mono">Video 1</td><td>Meaningful from ~5K views/mo</td><td><strong>Start here.</strong> Requires no threshold. Password managers, VPNs, identity monitoring, data-removal. Reported ~$65/sale Aura, $8–110/sale LifeLock</td></tr>
+      <tr><td><strong>AdSense</strong></td><td class="mono">1K subs + 4K hrs</td><td>Baseline, predictable</td><td>Est. $8–18 RPM tier-1 weighted. <strong>Beat 1 Feb 2027 or the bar doubles</strong></td></tr>
+      <tr><td><strong>Sponsorship</strong></td><td class="mono">~8–15K subs</td><td>Often the largest single line sub-100K</td><td>Reported $30–50 CPM cybersecurity/VPN; nano tier $100–500/video, micro $200–5,000</td></tr>
+      <tr><td><strong>Newsletter</strong></td><td class="mono">Video 1</td><td>Indirect, compounding</td><td>Start immediately. A weekly breach breakdown. Your only channel-independent asset</td></tr>
+      <tr><td><strong>Digital product</strong></td><td class="mono">~20K subs</td><td>High margin</td><td>Household security audit kit; small-business incident playbook; "before you send money" checklist</td></tr>
+      <tr><td><strong>Memberships</strong></td><td class="mono">~30K subs</td><td>Modest but stable</td><td>Sources archive, early access, monthly live teardown. Fits this audience well</td></tr>
+      <tr><td><strong>Course</strong></td><td class="mono">~75K subs</td><td>Largest ceiling</td><td>"Security awareness training that people actually watch," sold to SMBs. This is the real business</td></tr>
+      <tr><td><strong>B2B licensing</strong></td><td class="mono">~50K subs</td><td>Underrated</td><td>Companies pay to license training video. Your library is corporate training content that happens to be entertaining</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Who would sponsor this channel</h3>
+  <p>Password managers · VPN providers · identity-theft monitoring · data-broker removal services · endpoint and antivirus vendors · email-security vendors · backup and recovery services · security-awareness training platforms · cyber-insurance brokers · phishing-simulation tools · privacy-focused browsers · hardware security keys.</p>
+  <p><span class="tag t-jud">Judgement</span> This is the densest sponsor list you could assemble for any niche in this dossier, and every one of them is a <em>natural</em> integration — the product is literally the defence the video just described. That authenticity is worth more than the CPM.</p>
+
+  <h3>Revenue scenarios</h3>
+  <p><span class="tag t-est">Estimate</span> Monthly, at maturity, tier-1 audience mix. Ranges are wide because they are honest. Ad revenue assumes $8–18 RPM. Sponsorship assumes availability at scale and is zero below roughly 8,000 subscribers.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th class="num">Monthly views</th><th class="num">Ads</th><th class="num">Sponsorship</th><th class="num">Affiliate</th><th class="num">Products</th><th class="num">Total range</th></tr></thead>
+    <tbody>
+      <tr><td class="num">10,000</td><td class="num">$80–180</td><td class="num">$0</td><td class="num">$20–120</td><td class="num">$0</td><td class="num"><strong>$100–300</strong></td></tr>
+      <tr><td class="num">50,000</td><td class="num">$400–900</td><td class="num">$0–600</td><td class="num">$100–500</td><td class="num">$0</td><td class="num"><strong>$500–2,000</strong></td></tr>
+      <tr><td class="num">100,000</td><td class="num">$800–1,800</td><td class="num">$600–2,000</td><td class="num">$200–1,000</td><td class="num">$0–300</td><td class="num"><strong>$1,600–5,100</strong></td></tr>
+      <tr><td class="num">500,000</td><td class="num">$4,000–9,000</td><td class="num">$3,000–10,000</td><td class="num">$1,000–4,000</td><td class="num">$500–3,000</td><td class="num"><strong>$8,500–26,000</strong></td></tr>
+      <tr><td class="num">1,000,000</td><td class="num">$8,000–18,000</td><td class="num">$6,000–20,000</td><td class="num">$2,000–8,000</td><td class="num">$1,500–8,000</td><td class="num"><strong>$17,500–54,000</strong></td></tr>
+      <tr><td class="num">5,000,000</td><td class="num">$40,000–90,000</td><td class="num">$25,000–80,000</td><td class="num">$8,000–30,000</td><td class="num">$10,000–50,000</td><td class="num"><strong>$83,000–250,000</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="call risk">
+    <span class="lbl">Read the top row, not the bottom row</span>
+    <p>The overwhelming majority of channels never pass the 50,000 monthly-view line. Plan your life around the $100–300 row and treat everything below it as upside. The bottom row exists to show the shape of the ceiling, not to set your expectations. Also note: at 500K+ monthly views, non-ad revenue exceeds ad revenue in every scenario — which is why the newsletter and the sponsor relationships matter more than optimising your RPM by a dollar.</p>
+  </div>
+</section>
+
+<section id="s14">
+  <div class="snum">Business · Step 14</div>
+  <h2>Policy survival</h2>
+  <p>You asked me not to assume AI-generated means monetizable. It does not. Here is exactly how this channel stays on the right side of the line.</p>
+
+  <h3>What would get you rejected</h3>
+  <ul>
+    <li>A recognisable template applied with substitutions — same structure, same phrasing, different incident. This is the primary trigger, and it is the natural failure mode of a good SOP. <strong>Your SOP is a risk factor as well as an asset.</strong></li>
+    <li>Images on screen with narration that adds nothing a caption could not — the literal "slideshow with minimal narrative or educational value" clause.</li>
+    <li>Content assembled from other people's reporting without independent synthesis.</li>
+    <li>A synthetic persona presented as an expert. Never imply the narrator is a security professional, and never let the channel art suggest a credentialed human who does not exist.</li>
+    <li>Volume without variation — daily uploads of near-identical structure is the pattern detection is built for.</li>
+  </ul>
+
+  <h3>The nine rules that keep you compliant</h3>
+  <ol>
+    <li><strong>Every video contains original analysis that exists nowhere else.</strong> The interception point is precisely this: your judgement about where the attack could have failed. It cannot be scraped, it is defensible in a review, and it is the reason this niche was chosen over easier ones.</li>
+    <li><strong>Publish your sources in every description.</strong> Visible, checkable, dated. This is what a reviewer sees first.</li>
+    <li><strong>Vary the structure deliberately.</strong> Rotate the five pillars. Every fifth video should break format — a different act structure, a different length, a different opening device. Never let 10 consecutive videos share a skeleton.</li>
+    <li><strong>Cap output at 2–3 videos per week.</strong> Higher volume raises pattern-match risk faster than it raises revenue.</li>
+    <li><strong>Never read a source verbatim.</strong> Reported policy language explicitly names scripts read verbatim from external sources.</li>
+    <li><strong>Disclose when appropriate.</strong> Your stylised illustration is unlikely to be mistaken for real footage, but if you ever depict a real identifiable person or recreate real events realistically, tick the altered-content box. Add the standing line in the description regardless — it costs nothing and demonstrates good faith.</li>
+    <li><strong>Never clone a real voice.</strong></li>
+    <li><strong>Never publish a usable attack recipe.</strong> Mechanism and consequence, yes. Operational specifics, no. This protects you from both moderation and liability.</li>
+    <li><strong>Keep a research folder per video.</strong> Sources, notes, your own analysis, timestamped. If you are ever reviewed, this is the evidence that you are a creator using AI tools rather than a template operator.</li>
+  </ol>
+  <div class="call">
+    <span class="lbl">The test to apply before every upload</span>
+    <p>Ask: <em>"Could someone produce this video by putting the topic into a tool, without reading anything?"</em> If yes, do not publish it. If no — because it required you to read a report, form a judgement, and identify a moment nobody else identified — you are on the right side of the policy, and you have also made a better video.</p>
+  </div>
+</section>
+
+<section id="s15">
+  <div class="snum">Execution · Step 15</div>
+  <h2>The first 30 videos</h2>
+  <p>These are not 30 random topics. They are a sequenced experiment. <strong>Videos 1–6 test format at low risk. 7–14 test which pillar the audience wants. 15–22 double down on what worked and test length. 23–30 build the series structures that create a returning audience.</strong> Difficulty is 1–5. Production time assumes solo work and falls roughly 35% after video 8 as templates mature.</p>
+
+  <h4>Phase 1 · Videos 1–6 — establish the format, learn the tools</h4>
+  <p class="mono" style="font-size:12px;color:var(--ink-3)">Deliberately 8–10 minutes. Deliberately well-known incidents with abundant public documentation. You are learning the pipeline, not chasing a breakout. Expect these to underperform and do not read anything into it.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th class="num">#</th><th style="min-width:210px">Title</th><th style="min-width:190px">Hook (first line)</th><th>Angle</th><th class="num">Len</th><th>Primary keyword</th><th>Why it could perform</th><th class="num">Diff</th><th class="num">Hrs</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td>The $81 Million Bank Heist That Started With A Printer</td><td>"At 8:36pm the printer stopped working. Nobody thought that was strange."</td><td>Reconstruction. The mundane-object opening that defines the channel</td><td class="num">10</td><td>bangladesh bank heist explained</td><td>Famous, exhaustively documented, and the printer detail is a perfect cold open</td><td class="num">3</td><td class="num">11</td></tr>
+      <tr><td class="num">2</td><td>What Happens If You Click The Link — Second By Second</td><td>"You already know not to click. So let's click."</td><td>Mechanism. Pure evergreen search magnet</td><td class="num">9</td><td>what happens if you click a phishing link</td><td>High steady search volume, universally relatable, no incident research needed</td><td class="num">2</td><td class="num">8</td></tr>
+      <tr><td class="num">3</td><td>The Hospital That Ran On Paper For 33 Days</td><td>"The first sign was a nurse asking for a pen."</td><td>Reconstruction. Human stakes, no gore</td><td class="num">10</td><td>hospital ransomware attack</td><td>Emotional stakes without exploitation; strong retention subject</td><td class="num">3</td><td class="num">11</td></tr>
+      <tr><td class="num">4</td><td>What Your Stolen Password Is Actually Worth</td><td>"Eighty pence. That's the wholesale price."</td><td>Economy. Tests whether the criminal-economy pillar lands</td><td class="num">8</td><td>how much is stolen data worth</td><td>Counter-intuitive number in the first three seconds; highly shareable</td><td class="num">2</td><td class="num">7</td></tr>
+      <tr><td class="num">5</td><td>How Does A SIM Swap Actually Happen?</td><td>"It takes about four minutes, and you are not present for any of it."</td><td>Mechanism. Highest-intent search term in the set</td><td class="num">9</td><td>how does a sim swap work</td><td>Strong evergreen demand; existing videos are talking-head and hard to follow</td><td class="num">2</td><td class="num">8</td></tr>
+      <tr><td class="num">6</td><td>The Invoice That Fooled An Entire Finance Department</td><td>"The invoice was correct. That was the problem."</td><td>Reconstruction. Business-email compromise; highest-RPM audience</td><td class="num">10</td><td>invoice fraud how it works</td><td>Attracts the professional segment advertisers pay most for</td><td class="num">3</td><td class="num">10</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Phase 2 · Videos 7–14 — find the pillar</h4>
+  <p class="mono" style="font-size:12px;color:var(--ink-3)">Move to 12 minutes. Two videos per pillar. At the end of this phase, one pillar will clearly outperform. That decides your channel.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th class="num">#</th><th style="min-width:210px">Title</th><th style="min-width:190px">Hook</th><th>Pillar / test</th><th class="num">Len</th><th>Primary keyword</th><th class="num">Diff</th><th class="num">Hrs</th></tr></thead>
+    <tbody>
+      <tr><td class="num">7</td><td>They Were Inside For 229 Days. Nobody Noticed</td><td>"By the time anyone looked, they'd been there since spring."</td><td>Reconstruction · dwell-time angle</td><td class="num">13</td><td>how long hackers stay undetected</td><td class="num">3</td><td class="num">10</td></tr>
+      <tr><td class="num">8</td><td>Inside The Org Chart Of A Scam Compound</td><td>"There's an HR department. That's the part people can't get past."</td><td>Economy · highest breakout potential in the set</td><td class="num">13</td><td>how scam compounds work</td><td class="num">4</td><td class="num">12</td></tr>
+      <tr><td class="num">9</td><td>The Romance Scam That Takes Four Months To Reach The Money</td><td>"For sixteen weeks, nobody asks you for anything."</td><td>Mechanism · pig-butchering; huge current search demand</td><td class="num">14</td><td>pig butchering scam explained</td><td class="num">3</td><td class="num">11</td></tr>
+      <tr><td class="num">10</td><td>Why The Ransom Was The Cheapest Part</td><td>"They paid four million. The four million wasn't the problem."</td><td>Economy · itemised cost breakdown</td><td class="num">12</td><td>real cost of a ransomware attack</td><td class="num">3</td><td class="num">10</td></tr>
+      <tr><td class="num">11</td><td>The $6 Domain That Cost A Company $40 Million</td><td>"Someone registered a domain one letter different. That was the entire attack."</td><td>Reconstruction · typosquatting</td><td class="num">12</td><td>domain spoofing attack</td><td class="num">3</td><td class="num">10</td></tr>
+      <tr><td class="num">12</td><td>Six Things I'd Do Tonight If My Data Leaked</td><td>"Your email is in a breach. It almost certainly is. Here's the order of operations."</td><td>Defence · first affiliate test</td><td class="num">10</td><td>what to do if your data is breached</td><td class="num">2</td><td class="num">7</td></tr>
+      <tr><td class="num">13</td><td>How One Fake Job Interview Breached A Crypto Exchange</td><td>"The candidate was real. The recruiter wasn't."</td><td>Reconstruction · social engineering</td><td class="num">13</td><td>fake job interview hack</td><td class="num">4</td><td class="num">12</td></tr>
+      <tr><td class="num">14</td><td>The Warning Email Sent 11 Months Before The Hack</td><td>"Someone wrote it down. Someone filed it."</td><td>Reconstruction · pure interception-point episode</td><td class="num">12</td><td>ignored security warning breach</td><td class="num">3</td><td class="num">10</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Phase 3 · Videos 15–22 — double down and test length</h4>
+  <p class="mono" style="font-size:12px;color:var(--ink-3)">Weight toward whichever pillar won Phase 2. Include one 18–20 minute video and one 7-minute video to find your length ceiling and floor. Begin the first named series.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th class="num">#</th><th style="min-width:210px">Title</th><th>Angle / test</th><th class="num">Len</th><th>Primary keyword</th><th class="num">Diff</th><th class="num">Hrs</th></tr></thead>
+    <tbody>
+      <tr><td class="num">15</td><td>How A Supply Chain Attack Reaches 10,000 Companies At Once</td><td>Mechanism · flagship explainer, strongest suggested-feed candidate</td><td class="num">14</td><td>supply chain attack explained</td><td class="num">4</td><td class="num">12</td></tr>
+      <tr><td class="num">16</td><td>72 Hours Inside A Ransomware Negotiation</td><td>Reconstruction · <strong>long-form test, 19 min</strong></td><td class="num">19</td><td>ransomware negotiation</td><td class="num">5</td><td class="num">16</td></tr>
+      <tr><td class="num">17</td><td>Why Your Bank Calls From A Number You Can't Call Back</td><td>Defence · <strong>short-form test, 7 min</strong></td><td class="num">7</td><td>bank impersonation scam</td><td class="num">2</td><td class="num">6</td></tr>
+      <tr><td class="num">18</td><td>The Vendor Nobody Audited</td><td>Reconstruction · third-party risk. Series launch: <em>The Weak Link</em></td><td class="num">13</td><td>third party data breach</td><td class="num">3</td><td class="num">10</td></tr>
+      <tr><td class="num">19</td><td>The 20 Seconds Of Audio That Emptied An Account</td><td>Mechanism · voice cloning; ties to reported 2026 deepfake-fraud surge</td><td class="num">12</td><td>voice cloning scam</td><td class="num">3</td><td class="num">10</td></tr>
+      <tr><td class="num">20</td><td>What They Already Know About You Before They Call</td><td>Economy · data brokers. Strongest affiliate fit on the channel</td><td class="num">13</td><td>what data brokers know about you</td><td class="num">3</td><td class="num">10</td></tr>
+      <tr><td class="num">21</td><td>Two-Factor Authentication Failed Here. Here's How</td><td>Mechanism · contrarian angle against common advice</td><td class="num">12</td><td>can 2fa be bypassed</td><td class="num">4</td><td class="num">11</td></tr>
+      <tr><td class="num">22</td><td>Everyone Blamed The Intern. It Wasn't The Intern</td><td>Reconstruction · blame and organisational failure. High emotional pull</td><td class="num">13</td><td>who is to blame for data breach</td><td class="num">3</td><td class="num">10</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Phase 4 · Videos 23–30 — build the returning audience</h4>
+  <p class="mono" style="font-size:12px;color:var(--ink-3)">Series-driven. Returning-viewer percentage is the metric this phase optimises, not views. Two named series running in parallel gives people a reason to subscribe rather than just watch.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th class="num">#</th><th style="min-width:210px">Title</th><th>Series / angle</th><th class="num">Len</th><th>Primary keyword</th><th class="num">Diff</th><th class="num">Hrs</th></tr></thead>
+    <tbody>
+      <tr><td class="num">23</td><td>The Contractor's Laptop That Opened Everything</td><td><em>The Weak Link</em> #2</td><td class="num">13</td><td>contractor security breach</td><td class="num">3</td><td class="num">10</td></tr>
+      <tr><td class="num">24</td><td>Where It Could Have Been Stopped: The Printer Heist, Revisited</td><td><em>Interception</em> #1 — revisits video 1 with new depth. Drives back-catalogue views</td><td class="num">11</td><td>bangladesh bank heist prevention</td><td class="num">2</td><td class="num">8</td></tr>
+      <tr><td class="num">25</td><td>How Stolen Money Actually Leaves The Country</td><td>Economy · laundering mechanics. Broad appeal beyond security</td><td class="num">14</td><td>how do hackers launder money</td><td class="num">4</td><td class="num">12</td></tr>
+      <tr><td class="num">26</td><td>The Scam Built Specifically For Careful People</td><td>Mechanism · directly implicates the confident viewer</td><td class="num">12</td><td>scams that fool smart people</td><td class="num">3</td><td class="num">9</td></tr>
+      <tr><td class="num">27</td><td>The Ex-Employee Account That Still Worked</td><td><em>The Weak Link</em> #3 · offboarding failure</td><td class="num">12</td><td>former employee access breach</td><td class="num">3</td><td class="num">9</td></tr>
+      <tr><td class="num">28</td><td>[Most significant breach of the preceding 60 days]</td><td>Post-mortem · rapid response. Slot reserved, topic chosen on the day</td><td class="num">12</td><td>[incident name] explained</td><td class="num">4</td><td class="num">9</td></tr>
+      <tr><td class="num">29</td><td>The Fix Cost $400. The Breach Cost $18 Million</td><td><em>Interception</em> #2 · the cost-asymmetry format</td><td class="num">13</td><td>cost of preventing a data breach</td><td class="num">3</td><td class="num">10</td></tr>
+      <tr><td class="num">30</td><td>Everything We Learned From 29 Breaches</td><td>Synthesis · the five patterns behind every video so far. <strong>Only possible for you</strong> — pure original analysis, strongest possible policy evidence, and a natural channel trailer</td><td class="num">16</td><td>common causes of data breaches</td><td class="num">4</td><td class="num">13</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="call">
+    <span class="lbl">Why video 30 is the most important one on the list</span>
+    <p>It is the video no competitor can copy, because it requires having made the other 29. It demonstrates original synthesis to any policy reviewer, it converts casual viewers into subscribers better than anything else you will publish, and it doubles as your channel trailer. Build toward it from video 1 by keeping a running note of every pattern you notice.</p>
+  </div>
+</section>
+
+<section id="s16">
+  <div class="snum">Execution · Step 16</div>
+  <h2>The first 7 days</h2>
+  <p><span class="tag t-jud">Judgement</span> Publishing on day 3 would be a mistake. The highest-probability path to early traction is not speed to first upload — it is <strong>launching with three videos already live and a fourth ready</strong>, so that anyone the algorithm sends you has somewhere to go next. A channel with one video converts almost nobody. Session time is what you are optimising.</p>
+
+  <div class="tscroll">
+  <table>
+    <thead><tr><th style="min-width:78px">Day</th><th>Focus</th><th>Exact actions</th><th class="num">Hrs</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Day 1</strong></td><td>Validate and commit</td><td>Run the Section 15 saturation check on your first six topics — search each on YouTube, log view counts, subscriber counts and publish dates in a sheet. <strong>Kill any topic that fails the validation gate.</strong> Confirm the channel name and handle are actually available. Register handle, domain, and social handles. Set up a newsletter signup page. Open accounts: image model, ElevenLabs, music library.</td><td class="num">6</td></tr>
+      <tr><td><strong>Day 2</strong></td><td>Build the style bible</td><td>Generate the 12 reference frames. Iterate until they are unmistakably one artist. This is the highest-leverage day of the entire launch — do not rush it. Then build the Resolve project template: LUT, timeline tape, text presets, audio busses. Design channel banner and avatar from the bible.</td><td class="num">7</td></tr>
+      <tr><td><strong>Day 3</strong></td><td>Research and script ×2</td><td>Read primary sources for videos 1 and 2. Write both scripts with the master prompt, then <strong>edit them by hand</strong> — resolve every [VERIFY], cut 15% of the words, rewrite every cold open yourself. Fact-check against sources. Lock scene lists.</td><td class="num">8</td></tr>
+      <tr><td><strong>Day 4</strong></td><td>Assets ×2</td><td>Generate voiceovers. Generate ~250 images across both videos. Cull to ~180. Generate thumbnails, add text in editor, produce two variants each.</td><td class="num">7</td></tr>
+      <tr><td><strong>Day 5</strong></td><td>Edit ×2</td><td>Assemble both videos through the five-pass template. Expect video 1 to take twice as long as video 2 — that gap is the template working.</td><td class="num">8</td></tr>
+      <tr><td><strong>Day 6</strong></td><td>Video 3 and publish 1</td><td>Produce video 3 (use the shortest, simplest topic). <strong>Publish video 1</strong>. Full metadata, chapters, sources, end screen pointing at video 2, pinned comment asking one specific question. Do not publish videos 2 and 3 yet.</td><td class="num">8</td></tr>
+      <tr><td><strong>Day 7</strong></td><td>Publish 2 and 3, then measure</td><td>Publish videos 2 and 3, spaced six hours apart. Cut three Shorts from the strongest moments — each must <em>open a loop the long-form closes</em>, never resolve it. Read the day-1 retention curve on video 1 and write down the exact second of the first big drop. Schedule video 4. Then stop refreshing analytics.</td><td class="num">6</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="grid g2">
+    <div class="card"><span class="cap">How many videos</span><p>Three at launch, then two per week. Not daily — output volume raises inauthentic-content pattern risk faster than it raises revenue, and quality is your only real advantage.</p></div>
+    <div class="card"><span class="cap">Shorts: yes, but as a feeder only</span><p>Reported data suggests hybrid channels grow subscribers roughly 3× faster. One to three per week, each cut from a long-form video, each ending on an unresolved question with the long-form linked. A Short that fully satisfies the viewer is wasted.</p></div>
+    <div class="card"><span class="cap">Testing thumbnails</span><p>Make two variants for every video and use YouTube's built-in A/B test where eligible. Where it is not, swap the thumbnail at 72 hours if CTR is under 3% and watch the change in impressions over the following 48.</p></div>
+    <div class="card"><span class="cap">What success looks like in week 1</span><p><span class="tag t-est">Estimate</span> 200–2,000 views per video, CTR 2–5%, 30–45% average view duration, 5–40 subscribers. Anything above that is genuinely good. Below it is completely normal and means nothing yet — you do not have enough data to conclude anything until video 8.</p></div>
+  </div>
+</section>
+
+<section id="plan3090">
+  <div class="snum">Execution · 17</div>
+  <h2>30-day and 90-day plans</h2>
+  <div class="grid g2">
+    <div class="card">
+      <span class="cap">Days 8–30 · Find the signal</span>
+      <h5>Milestones</h5>
+      <p>10 videos published. Production time down to ≤6 h/video. Newsletter live with a signup link in every description. First affiliate placements running. Sources folder maintained for all 10 videos.</p>
+      <h5>Weekly rhythm</h5>
+      <p><strong>Mon</strong> research and script · <strong>Tue</strong> images and voice · <strong>Wed</strong> edit and publish · <strong>Thu</strong> second video research and script · <strong>Fri</strong> produce · <strong>Sat</strong> publish, cut Shorts, reply to every comment · <strong>Sun</strong> review analytics, plan next week.</p>
+      <h5>The day-30 decision</h5>
+      <p>Rank all 10 videos by average view duration, then by CTR. The top two define your format. Ruthlessly make more of those and stop making the bottom two shapes. <strong>Do not change niche.</strong> Ten videos is not enough data to judge a niche, but it is enough to judge a format.</p>
+    </div>
+    <div class="card">
+      <span class="cap">Days 31–90 · Compound</span>
+      <h5>Milestones</h5>
+      <p>30 videos published. Realistic target: 1,000 subscribers and 4,000 watch hours — <strong>which must be reached before 1 February 2027.</strong> Two named series running. 300+ newsletter subscribers. First sponsor conversation opened at around 8K subs.</p>
+      <h5>What changes</h5>
+      <p>Outsource in this order once revenue allows: thumbnails first (highest impact per dollar), then image generation, then editing. Never outsource research or the interception point — they are the moat and the policy defence.</p>
+      <h5>The day-90 review</h5>
+      <p>If your best video has under 5,000 views after 30 attempts, the problem is packaging, not niche — rewrite 10 old titles and redo 10 old thumbnails before making anything new. Reworking the back catalogue outperforms new uploads at this stage more often than people expect.</p>
+      <h5>Watch-hour tracking</h5>
+      <p>Check cumulative watch hours weekly against a straight line to 4,000 by 31 January 2027. If you are behind at day 60, increase length before increasing frequency.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s17">
+  <div class="snum">Execution · Step 17</div>
+  <h2>Analytics</h2>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Metric</th><th class="num">Bad</th><th class="num">Average</th><th class="num">Good</th><th class="num">Excellent</th><th>Action when weak</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Impressions CTR</strong></td><td class="num">&lt;2%</td><td class="num">2–4%</td><td class="num">4–7%</td><td class="num">&gt;7%</td><td>Thumbnail first, title second. Never both at once — you learn nothing</td></tr>
+      <tr><td><strong>Avg view duration</strong></td><td class="num">&lt;3 min</td><td class="num">3–5 min</td><td class="num">5–7 min</td><td class="num">&gt;7 min</td><td>Rewrite acts 1–2; cut the setup; move the first payoff earlier</td></tr>
+      <tr><td><strong>Avg % viewed</strong></td><td class="num">&lt;30%</td><td class="num">30–40%</td><td class="num">40–55%</td><td class="num">&gt;55%</td><td>Video is too long for its content. Cut 20% of the words, not the scenes</td></tr>
+      <tr><td><strong>30-second retention</strong></td><td class="num">&lt;60%</td><td class="num">60–70%</td><td class="num">70–80%</td><td class="num">&gt;80%</td><td>The single most diagnostic number. Rewrite the cold open; delete everything before the first concrete fact</td></tr>
+      <tr><td><strong>Returning viewers</strong></td><td class="num">&lt;10%</td><td class="num">10–20%</td><td class="num">20–35%</td><td class="num">&gt;35%</td><td>No reason to come back. Launch a named series; make the end screen a promise</td></tr>
+      <tr><td><strong>Subs per 1,000 views</strong></td><td class="num">&lt;2</td><td class="num">2–5</td><td class="num">5–12</td><td class="num">&gt;12</td><td>Channel identity unclear. Fix the banner, trailer, and the last 20 seconds</td></tr>
+      <tr><td><strong>Browse + suggested share</strong></td><td class="num">&lt;20%</td><td class="num">20–40%</td><td class="num">40–65%</td><td class="num">&gt;65%</td><td>Algorithm isn't recommending you. Usually a retention problem, not an SEO problem</td></tr>
+      <tr><td><strong>Search share</strong></td><td class="num">&lt;5%</td><td class="num">5–15%</td><td class="num">15–30%</td><td class="num">&gt;30%</td><td>Say the keyword aloud in the first 30 seconds. Fix titles to match real queries</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Diagnostic pairs — read two numbers together, never one</h3>
+  <div class="grid g2">
+    <div class="card"><span class="cap">High impressions · low CTR</span><p>YouTube is offering you and people are declining. Packaging problem. Change the thumbnail, wait 48 hours, compare. Reported CTR/retention pairing means this is fixable without touching the video.</p></div>
+    <div class="card"><span class="cap">High CTR · low retention</span><p>The packaging overpromised. Worst combination available — it teaches the algorithm your videos disappoint. Fix the video's first 60 seconds to deliver on the thumbnail's implicit promise, or soften the promise.</p></div>
+    <div class="card"><span class="cap">Good CTR · good retention · low impressions</span><p>The video works; nobody has seen it. Usually a small-channel cold start. Make a Short from it, link it as an end screen from your best video, and be patient — this is the profile that eventually breaks out.</p></div>
+    <div class="card"><span class="cap">Strong retention · weak subscribers</span><p>They enjoyed it but do not know what they would get next. The problem is channel identity, not the video. Fix the last 20 seconds and the channel trailer.</p></div>
+    <div class="card"><span class="cap">A cliff at a specific second</span><p>Find the exact timecode and watch what happens there. Almost always: a slow explanation, a fact repeated, or a transition using "meanwhile." Fix that pattern everywhere, not just in that video.</p></div>
+    <div class="card"><span class="cap">Steady gentle decline, no cliffs</span><p>This is healthy. Do not try to fix it. A flat retention curve is not achievable in narrative long-form; a curve without cliffs is the actual goal.</p></div>
+  </div>
+</section>
+
+<section id="s18">
+  <div class="snum">Execution · Step 18</div>
+  <h2>Viral video teardown framework</h2>
+  <p>When you find a video outperforming its channel by 5× or more, run this. Twenty minutes each, one per week, logged in a sheet. The goal is to extract the <em>mechanism</em>, never the content.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Layer</th><th>What to record</th><th>The question that extracts the transferable part</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Topic</strong></td><td>Subject, and how specific vs broad it is</td><td>What tension does this topic contain that most topics in the niche do not?</td></tr>
+      <tr><td><strong>Title</strong></td><td>Exact wording, character count, which formula family</td><td>What question does the title leave open, and how quickly is it answered?</td></tr>
+      <tr><td><strong>Thumbnail</strong></td><td>Composition, colour, text, face or no face</td><td>What is the one thing the eye lands on first, and why does it not make sense on its own?</td></tr>
+      <tr><td><strong>Hook</strong></td><td>Transcribe the first 15 seconds verbatim</td><td>What is withheld, and what is given for free?</td></tr>
+      <tr><td><strong>Curiosity gap</strong></td><td>Where opened, where closed, how many run at once</td><td>How long is the viewer asked to wait, and what keeps them waiting?</td></tr>
+      <tr><td><strong>Structure</strong></td><td>Map act breaks by timecode</td><td>Is the payoff at the end or distributed? What proportion is setup?</td></tr>
+      <tr><td><strong>Pacing</strong></td><td>Cuts per minute; longest single shot</td><td>Where does it slow down deliberately, and what is happening there?</td></tr>
+      <tr><td><strong>Retention devices</strong></td><td>Every POV switch, direct address, number reveal</td><td>What is the interval between them?</td></tr>
+      <tr><td><strong>Emotional triggers</strong></td><td>Which of: dread, injustice, vindication, recognition, awe</td><td>Which one is primary, and when does it first land?</td></tr>
+      <tr><td><strong>Payoff</strong></td><td>What the viewer walks away with</td><td>Is it information, a feeling, or a capability?</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>Turning a teardown into an original video — the three-step abstraction</h3>
+  <ol>
+    <li><strong>Abstract to the mechanism.</strong> Strip the specifics until only the structural device remains. "A famous fraudster's downfall told through court transcripts" becomes "a collapse told entirely through one document type."</li>
+    <li><strong>Re-apply to your own primary sources.</strong> Take that device and point it at an incident <em>you</em> researched. "A breach told entirely through the internal Slack messages in the disclosure filing."</li>
+    <li><strong>Add the thing only you do.</strong> Attach the interception point. This is what turns an adapted structure into an original video, and it is what a policy reviewer would see as your contribution.</li>
+  </ol>
+  <div class="call risk">
+    <span class="lbl">The line</span>
+    <p>Copying a structural device is normal creative practice and every genre works this way. Copying the topic, the title, the thumbnail and the running order is a reused-content problem and a reputational one. The test: <em>if the original creator watched your video, would they see a peer or a clone?</em></p>
+  </div>
+</section>
+
+<section id="s19">
+  <div class="snum">Execution · Step 19</div>
+  <h2>Scaling</h2>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Level</th><th>Structure</th><th class="num">Output</th><th class="num">Monthly cost</th><th>You still do</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Solo</strong><br><span class="mono" style="font-size:11px">0–5K subs</span></td><td>You do everything. Templates carry the load</td><td class="num">2/week<br>~12 h each</td><td class="num">$40–80</td><td>Everything</td></tr>
+      <tr><td><strong>AI-assisted</strong><br><span class="mono" style="font-size:11px">5–25K subs</span></td><td>Same, but batch: research 4 videos, script 4, generate 4 sets of images, edit 4. Context-switching is the real cost</td><td class="num">2–3/week<br>~6 h each</td><td class="num">$80–150</td><td>Everything, faster</td></tr>
+      <tr><td><strong>First hires</strong><br><span class="mono" style="font-size:11px">25–75K subs</span></td><td>Thumbnail designer (per-piece), image generator, then an editor</td><td class="num">3/week</td><td class="num">$1,200–3,000</td><td>Research · script · interception point · final cut approval</td></tr>
+      <tr><td><strong>Small team</strong><br><span class="mono" style="font-size:11px">75K+ subs</span></td><td>Researcher, scriptwriter, editor, designer. You are showrunner</td><td class="num">4–5/week</td><td class="num">$5,000–14,000</td><td>Editorial direction · the interception point on every video · sponsor relationships</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>Outsource in this order — and never past this line</h3>
+  <ol>
+    <li><strong>Thumbnails.</strong> Highest measurable impact per dollar, easiest to brief with a fixed formula, and the skill least correlated with everything else you do.</li>
+    <li><strong>Image generation.</strong> Fully specifiable via your master template and style bible. Pure volume work.</li>
+    <li><strong>Editing.</strong> Only once your template is genuinely fixed; otherwise you will spend more time briefing than editing.</li>
+    <li><strong>Voiceover rendering and audio.</strong> Mechanical once the settings are locked.</li>
+    <li><strong>SEO and publishing.</strong> Fully proceduralised by the SEO master prompt.</li>
+    <li><strong>Research assistance</strong> — source gathering only, never interpretation.</li>
+  </ol>
+  <p><strong>Never outsource:</strong> the interception point, the cold open, and final fact-checking. These three are simultaneously your creative differentiator, your policy defence, and your credibility. The moment a contractor writes them, the channel becomes exactly the templated operation the policy targets.</p>
+</section>
+
+<section id="s20">
+  <div class="snum">Execution · Step 20</div>
+  <h2>The moat</h2>
+  <p>You are right to worry. Ranked by how long each defence actually holds:</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Mechanism</th><th class="num">Time to copy</th><th>Why it holds, or doesn't</th></tr></thead>
+    <tbody>
+      <tr><td>Thumbnail style</td><td class="num">1 week</td><td>Copyable instantly. Not a moat — just table stakes</td></tr>
+      <tr><td>Visual style</td><td class="num">3–5 weeks</td><td>The locked style block is copyable, but the 12-frame style bible plus a colour-role system is tedious enough that most will not bother</td></tr>
+      <tr><td>Voice and tone</td><td class="num">2 months</td><td>Requires taste, not tooling</td></tr>
+      <tr><td>Recurring series</td><td class="num">3 months</td><td><em>The Weak Link</em> and <em>Interception</em> accumulate value with every entry. A copier starts at episode 1 against your episode 20</td></tr>
+      <tr><td>Primary-source research habit</td><td class="num">6+ months</td><td>The real barrier. Reading incident reports is genuinely unpleasant work that faceless operators are structurally unwilling to do</td></tr>
+      <tr><td><strong>Proprietary dataset</strong></td><td class="num">Years</td><td><strong>Your strongest asset.</strong> Build a structured database from video 1: every incident, entry vector, dwell time, cost, interception point. By video 50 you can publish findings nobody else has, and journalists will cite you</td></tr>
+      <tr><td>Email list</td><td class="num">Never</td><td>Cannot be copied or taken away by a platform. Start on day 1</td></tr>
+      <tr><td>Named human identity</td><td class="num">Never</td><td>Around 50K subs, put a name and a research methodology behind the channel. Faceless does not have to mean anonymous, and this is what converts a channel into a business</td></tr>
+      <tr><td>Community</td><td class="num">Never</td><td>Reply to every comment for the first 100 videos. Practitioners who feel recognised become your unpaid fact-checkers and your best defenders</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="call">
+    <span class="lbl">The moat in one line</span>
+    <p>Anyone can copy your look in a month. Nobody can copy the fact that you have read 200 incident reports and built a dataset from them. <strong>Start the database with video 1</strong> — it costs ten minutes per video and it is the only thing here that compounds.</p>
+  </div>
+</section>
+
+<section id="s21">
+  <div class="snum">Execution · Step 21</div>
+  <h2>Failure analysis</h2>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Failure</th><th class="num">Risk</th><th>What it looks like</th><th>Prevention</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Weak hooks</strong></td><td class="num">High</td><td>30-second retention under 60% on every video</td><td>Rewrite every cold open by hand. Never ship a model's first line. Start inside the event, present tense, with a number</td></tr>
+      <tr><td><strong>Poor thumbnails</strong></td><td class="num">High</td><td>Good retention, CTR under 2%</td><td>Two variants always. Greyscale test. Legibility at 168px. A/B where eligible</td></tr>
+      <tr><td><strong>AI-looking visuals</strong></td><td class="num">High</td><td>Comments say "AI slop" regardless of quality</td><td>The locked style block, the 12-frame bible, one LUT over everything, faces never fully shown. Painterly texture is the single strongest signal of intent</td></tr>
+      <tr><td><strong>Inconsistent uploads</strong></td><td class="num">High</td><td>Three weeks between videos; momentum resets</td><td>Batch production. Keep two videos banked before publishing the first. Two per week beats five then nothing</td></tr>
+      <tr><td><strong>Monetization rejection</strong></td><td class="num">Medium</td><td>Application rejected for reused or inauthentic content</td><td>All nine rules in Section 14. Sources in every description. Interception point in every video. Vary structure every fifth video</td></tr>
+      <tr><td><strong>Robotic voice</strong></td><td class="num">Medium</td><td>"Turned it off because of the voice"</td><td>Paragraph-level rendering, high stability, real silence in the edit, light compression and short reverb, varied sentence lengths in the writing</td></tr>
+      <tr><td><strong>Low retention</strong></td><td class="num">Medium</td><td>Under 30% average percentage viewed</td><td>Cut 20% of words before every export. One idea per 15 seconds. Pattern interrupt every 90–120s</td></tr>
+      <tr><td><strong>Topic selection mistakes</strong></td><td class="num">Medium</td><td>Videos that were never going to work</td><td>The five-gate validation. Never skip it because you like a topic</td></tr>
+      <tr><td><strong>Overproduction</strong></td><td class="num">Medium</td><td>25 hours on one video that gets 400 views</td><td>Hard cap: 12 hours at first, 8 after video 10. Ship at 85%. Volume of attempts beats polish on any single attempt</td></tr>
+      <tr><td><strong>Getting facts wrong</strong></td><td class="num">Medium</td><td>Top comment is a correction from a practitioner</td><td>Two independent primary sources per claim. Resolve every [VERIFY]. When unsure, say so on camera — it builds more credibility than false confidence</td></tr>
+      <tr><td><strong>Wrong niche</strong></td><td class="num">Low</td><td>Nothing lands after 30 videos</td><td>Ten videos judges format, thirty judges packaging, and only fifty judges niche. Do not switch before 30</td></tr>
+      <tr><td><strong>Too much competition</strong></td><td class="num">Low</td><td>Buried by incumbents</td><td>Structurally unlikely here — the incumbents cannot make this format. Stay in the gap; do not drift toward investigative journalism you cannot resource</td></tr>
+      <tr><td><strong>Copyright</strong></td><td class="num">Low</td><td>Claims on footage or music</td><td>Original illustration only. Licensed music with a maintained subscription. Never news footage</td></tr>
+      <tr><td><strong>Underproduction</strong></td><td class="num">Low</td><td>Fewer than 20 videos in 90 days</td><td>The plan handles this — 8 hours per video at two per week is achievable alongside other work</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>The failure that actually kills most channels</strong> is none of these individually. It is stopping at video 14 because video 13 got 300 views. <span class="tag t-jud">Judgement</span> Commit to 30 before you evaluate anything. Write the date on a wall.</p>
+</section>
+
+<section id="s22">
+  <div class="snum">Execution · Step 22</div>
+  <h2>Tool stack</h2>
+  <p>Five tools do this job. Everything else is optional. <span class="tag t-est">Estimate</span> Prices are reported ranges from 2026 sources and change constantly — verify before subscribing.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Job</th><th>Free</th><th>Low cost — recommended start</th><th>Professional</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Research</strong></td><td>Primary sources, YouTube autocomplete, Google Trends, Reddit</td><td>Same — this stays free forever</td><td>Paid breach-intelligence feeds</td></tr>
+      <tr><td><strong>Keywords</strong></td><td>YouTube + Google autocomplete, People Also Ask</td><td>vidIQ or TubeBuddy free tier</td><td>vidIQ Boost</td></tr>
+      <tr><td><strong>Scripting</strong></td><td>Any capable LLM free tier</td><td>One paid LLM subscription <span class="mono">~$20/mo</span></td><td>Same plus a human editor</td></tr>
+      <tr><td><strong>Images ★</strong></td><td>Limited free tiers</td><td><strong>Nano Banana Pro</strong> for volume + <strong>FLUX Kontext</strong> for consistency <span class="mono">~$25–50/mo at 2 videos/wk</span></td><td>Add Midjourney <span class="mono">$10–30/mo</span> for the style bible</td></tr>
+      <tr><td><strong>Voice ★</strong></td><td>Free TTS — audibly worse, do not ship it</td><td><strong>ElevenLabs</strong> <span class="mono">~$22/mo</span></td><td>ElevenLabs higher tier; Chatterbox self-hosted at very high volume</td></tr>
+      <tr><td><strong>Editing ★</strong></td><td><strong>DaVinci Resolve</strong> — genuinely free, genuinely professional</td><td>Resolve (free) or CapCut Desktop</td><td>Resolve Studio one-off, or Premiere + After Effects</td></tr>
+      <tr><td><strong>Thumbnails</strong></td><td>Your image model + Photopea or GIMP</td><td>Canva Pro <span class="mono">~$13/mo</span></td><td>Affinity Photo one-off; or a per-piece designer</td></tr>
+      <tr><td><strong>Music ★</strong></td><td>YouTube Audio Library — safe but generic</td><td><strong>Epidemic Sound</strong> <span class="mono">~$15–30/mo</span> or Artlist <span class="mono">~$200/yr</span></td><td>Same — this does not need upgrading</td></tr>
+      <tr><td><strong>Sound effects</strong></td><td>Freesound (check licences individually)</td><td>Included with Epidemic or Artlist</td><td>A commercial SFX library</td></tr>
+      <tr><td><strong>Analytics</strong></td><td>YouTube Studio — sufficient for two years</td><td>Studio only</td><td>A channel-analytics SaaS, once you have staff</td></tr>
+      <tr><td><strong>Newsletter</strong></td><td>Beehiiv or Substack free tier</td><td>Free tier until 1,000 subscribers</td><td>Paid tier with sponsorship slots</td></tr>
+      <tr><td><strong>Project management</strong></td><td>A spreadsheet</td><td><strong>A spreadsheet.</strong> Genuinely</td><td>Notion when you have three or more collaborators</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="call">
+    <span class="lbl">The minimum viable stack</span>
+    <p><strong>Nano Banana Pro + ElevenLabs + DaVinci Resolve + Epidemic Sound + one LLM subscription. Roughly $80–110 per month.</strong> That is the whole business. Adding more tools before video 20 is procrastination wearing a productivity costume.</p>
+  </div>
+</section>
+
+<section id="s23">
+  <div class="snum">Execution · Step 23</div>
+  <h2>The production SOP</h2>
+  <p>Run this for every video, in this order. Times assume post-video-10 fluency. Total: about 8 hours.</p>
+
+  <div class="step"><div class="sn">01 · FIND TOPIC — 15 min</div><p>Pull from the backlog sheet, never from a blank page. Maintain 20 validated topics at all times so you never research and produce in the same sitting.</p></div>
+  <div class="step"><div class="sn">02 · VALIDATE — 10 min</div><p>Five gates: demand exists · supply is weak · an outlier video exists on a small channel · two primary sources · you can name the interception point. Any failure kills the topic. No exceptions for topics you like.</p></div>
+  <div class="step"><div class="sn">03 · RESEARCH — 90 min</div><p>Read the primary sources properly. Build a timeline with timestamps, figures and named systems in your database. Write your own three-sentence summary of the root cause <em>before</em> opening any AI tool. This is the step that makes the channel defensible.</p></div>
+  <div class="step"><div class="sn">04 · TITLE — 10 min</div><p>Eight candidates from the 50 formulas. Choose two. Under 60 characters. The title is a contract the video must honour.</p></div>
+  <div class="step"><div class="sn">05 · THUMBNAIL CONCEPT — 10 min</div><p>Before scripting, not after. Name the object, the red element, and the four words. If you cannot, the topic is too abstract — go back to step 1.</p></div>
+  <div class="step"><div class="sn">06 · HOOK — 15 min</div><p>Write the first 12 seconds by hand. Never delegate this to a model. Three versions, read aloud, pick the one that makes you want to keep talking.</p></div>
+  <div class="step"><div class="sn">07 · SCRIPT — 45 min</div><p>Master script prompt, then edit hard: resolve every [VERIFY], cut 15% of the words, replace every generic sentence, rewrite the interception point yourself.</p></div>
+  <div class="step"><div class="sn">08 · FACT-CHECK — 20 min</div><p>Every number, name, date and mechanism against two sources. Mark uncertain claims as uncertain in the narration. Log sources for the description.</p></div>
+  <div class="step"><div class="sn">09 · SCENE BREAK — 20 min</div><p>Split into 12–20 second scenes with visual notes. Assign a shot type and hold duration to each. This becomes your edit decision list.</p></div>
+  <div class="step"><div class="sn">10 · IMAGES — 60 min</div><p>Expand scenes into prompts with the master template. Batch generate ~200. Cull to ~145. Rename by scene ID.</p></div>
+  <div class="step"><div class="sn">11 · VOICEOVER — 25 min</div><p>Render in 60–90 second chunks. Regenerate first and last sentence of each scene. Process: compress, high-pass, de-ess, light reverb.</p></div>
+  <div class="step"><div class="sn">12–14 · EDIT, MOTION, SOUND — 180 min</div><p>The five-pass template: voice first · images to voice · motion pass · overlays and text · sound and colour. Never fine-tune before the whole timeline exists.</p></div>
+  <div class="step"><div class="sn">15 · THUMBNAIL — 25 min</div><p>Generate the left zone, add text in the editor, produce two variants, greyscale-test both, check at 168px.</p></div>
+  <div class="step"><div class="sn">16–17 · DESCRIPTION &amp; METADATA — 20 min</div><p>SEO master prompt. Description template with real sources. Chapters from the act structure. Six tags. Three hashtags. Two minutes on tags, not twenty.</p></div>
+  <div class="step"><div class="sn">18 · UPLOAD — 15 min</div><p>End screen to the most-related video. Pinned comment asking one specific question — a real question you actually want answered. Add to the correct playlist and series. Tick the altered-content box if applicable. Schedule for a consistent day and time.</p></div>
+  <div class="step"><div class="sn">19 · 24-HOUR REVIEW — 10 min</div><p>Record CTR, 30-second retention, and the timecode of the first significant drop. Nothing else. Do not act yet — 24-hour data is noisy.</p></div>
+  <div class="step"><div class="sn">20 · 7-DAY REVIEW — 20 min</div><p>Full metrics against the Section 17 benchmarks. Read the retention curve for cliffs. Read every comment for unanswered questions — they are your next three videos. Swap the thumbnail if CTR is under 3%.</p></div>
+  <div class="step"><div class="sn">21 · IMPROVE — 15 min</div><p>Write one sentence in a running log: <em>"What I will do differently next time."</em> One change per video, never five. Update the database. Add the discovered follow-up questions to the topic backlog.</p></div>
+</section>
+
+<section id="waste">
+  <div class="snum">Close · 24</div>
+  <h2>Do not waste your time</h2>
+  <p>Things beginners believe are necessary, ranked by how much time they destroy.</p>
+  <div class="grid g2">
+    <div class="card"><span class="cap">Costs weeks</span><h5>Perfecting your logo, banner and channel art before video 1</h5><p>Nobody has ever subscribed because of a banner. Spend 40 minutes, ship it, revisit at 10,000 subscribers.</p></div>
+    <div class="card"><span class="cap">Costs weeks</span><h5>Learning After Effects before you have made anything</h5><p>Your first 20 videos need Ken Burns, hard cuts and text. That is it. Learn motion graphics when a specific video demands it.</p></div>
+    <div class="card"><span class="cap">Costs hours per video</span><h5>Hundreds of tags</h5><p>Reported guidance is unambiguous: tags are a minor factor. Six tags. Two minutes.</p></div>
+    <div class="card"><span class="cap">Costs hours per video</span><h5>Writing 2,000-word descriptions stuffed with keywords</h5><p>The first two lines matter. Chapters matter. Sources matter. The rest is for humans who scroll — and there are not many.</p></div>
+    <div class="card"><span class="cap">Costs money and focus</span><h5>Buying a microphone, camera, lights or a studio</h5><p>You are not filming anything. Ever. Your only audio hardware is headphones good enough to hear a bad edit.</p></div>
+    <div class="card"><span class="cap">Costs money</span><h5>Subscribing to eight AI tools</h5><p>Five tools, ~$100/month. Tool-shopping feels like progress and produces nothing.</p></div>
+    <div class="card"><span class="cap">Costs momentum</span><h5>Waiting until the pipeline is perfect</h5><p>Your tenth video will be better than your first regardless of how long you delay the first. The only way to reach video ten is to publish video one.</p></div>
+    <div class="card"><span class="cap">Costs momentum</span><h5>Refreshing analytics hourly</h5><p>24-hour data is noise. Look at 24 hours once, 7 days once. Nothing in between is information.</p></div>
+    <div class="card"><span class="cap">Costs your channel</span><h5>Changing niche at video 8</h5><p>The single most common cause of failure. Ten videos judges format, thirty judges packaging, fifty judges niche. Before 30, you do not have the data to be making that decision.</p></div>
+    <div class="card"><span class="cap">Costs your channel</span><h5>Chasing daily uploads</h5><p>In 2026 this actively raises your inauthentic-content risk while lowering quality. Two per week, forever.</p></div>
+    <div class="card"><span class="cap">Costs credibility</span><h5>Buying views, subscribers, or engagement</h5><p>Destroys your CTR and retention ratios — the two things the algorithm actually reads — and risks termination. It makes your channel measurably worse.</p></div>
+    <div class="card"><span class="cap">Costs nothing but does nothing</span><h5>Commenting on big channels to "get discovered"</h5><p>It does not work. The same 20 minutes spent on your thumbnail returns more.</p></div>
+  </div>
+
+  <div class="call">
+    <span class="lbl">If you do only five things</span>
+    <ol style="margin-bottom:0">
+      <li>Hit 1,000 subscribers and 4,000 watch hours <strong>before 1 February 2027</strong>. Everything else is secondary to that deadline.</li>
+      <li>Read a primary source for every single video. It is the moat, the policy defence, and the quality.</li>
+      <li>Put the interception point in every video, without exception.</li>
+      <li>Two videos per week for 30 videos before you judge anything.</li>
+      <li>Start the incident database and the email list on day one.</li>
+    </ol>
+  </div>
+</section>
+
+<footer id="sources">
+  <p class="disp" style="font-size:.95rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;color:var(--ink-3)">Sources consulted</p>
+  <p style="max-width:70ch">Research conducted 23 August 2026. Several primary domains — including Google Support, the official YouTube blog, and Forbes — were blocked by this environment's network proxy, so policy details are drawn from consistent secondary reporting rather than from the official pages themselves. Verify anything you intend to act on.</p>
+  <ol>
+    <li><a href="https://techcrunch.com/2026/07/20/youtube-clarifies-policies-around-ai-slop-and-upsetting-videos/">TechCrunch — YouTube clarifies policies around AI slop</a></li>
+    <li><a href="https://www.socialmediatoday.com/news/youtube-clarifies-monetization-update-inauthentic-repeated-content/752892/">Social Media Today — Inauthentic content policy clarification</a></li>
+    <li><a href="https://www.auditsocials.com/blog/youtube-inauthentic-content-policy-2026-mass-produced-ai-generated-monetization-creators-brands">AuditSocials — Inauthentic content policy 2026</a></li>
+    <li><a href="https://www.engadget.com/entertainment/youtube/never-fear-reaction-videos-are-still-allowed-under-youtubes-new-inauthentic-content-policy-222401009.html">Engadget — Reaction videos under the new policy</a></li>
+    <li><a href="https://www.digitalmusicnews.com/2026/08/10/youtube-doubles-eligibility-requirements-partner-program/">Digital Music News — YPP eligibility doubling</a></li>
+    <li><a href="https://9to5google.com/2026/08/10/youtube-premium-lite-expansion-monetization-changes/">9to5Google — YPP monetization changes</a></li>
+    <li><a href="https://nofilmschool.com/youtube-partner-program-changes">No Film School — Partner Program changes</a></li>
+    <li><a href="https://vidiq.com/blog/post/youtube-partner-program-guide/">vidIQ — YPP requirements 2026</a></li>
+    <li><a href="https://minimatters.com/youtube-altered-or-synthetic-content-disclosure/">MiniMatters — Altered/synthetic content disclosure</a></li>
+    <li><a href="https://vidiq.com/blog/post/most-profitable-youtube-niches/">vidIQ — Highest-paying niches, CPM &amp; RPM</a></li>
+    <li><a href="https://outlierkit.com/blog/most-profitable-youtube-niches">OutlierKit — Most profitable niches with RPM data</a></li>
+    <li><a href="https://virlo.ai/blog/highest-rpm-niches-on-youtube">Virlo — Highest RPM niches</a></li>
+    <li><a href="https://upgrowth.in/youtube-cpm-overview-highest-paying-niches/">Upgrowth — CPM rates by niche</a></li>
+    <li><a href="https://outlierkit.com/blog/untapped-youtube-niches">OutlierKit — Untapped niches under 10K channels</a></li>
+    <li><a href="https://outlierkit.com/blog/low-competition-youtube-channel-ideas">OutlierKit — Low-competition channel ideas</a></li>
+    <li><a href="https://sponsorradar.com/insights/youtube-sponsorship-rates-what-brands-should-pay">SponsorRadar — Sponsorship rates by niche</a></li>
+    <li><a href="https://outlierkit.com/resources/youtube-sponsorship-rates/">OutlierKit — Sponsorship rates 2026</a></li>
+    <li><a href="https://getlasso.co/niche/identity-protection/">Lasso — Identity-protection affiliate commissions</a></li>
+    <li><a href="https://alanspicer.com/do-youtube-tags-still-matter-2026/">Alan Spicer — Do YouTube tags still matter</a></li>
+    <li><a href="https://www.webtonic.io/blog/youtube-seo">Webtonic — How YouTube ranking works in 2026</a></li>
+    <li><a href="https://miraflow.ai/blog/youtube-ctr-benchmarks-2026">Miraflow — CTR benchmarks 2026</a></li>
+    <li><a href="https://www.teleprompter.com/blog/whats-a-good-click-through-rate-on-youtube">Teleprompter — Good CTR on YouTube</a></li>
+    <li><a href="https://vidiq.com/blog/post/future-youtube-trends/">vidIQ — YouTube trends 2026</a></li>
+    <li><a href="https://alanspicer.com/youtube-shorts-growth/">Alan Spicer — Shorts growth strategy</a></li>
+    <li><a href="https://www.aifreeapi.com/en/posts/nano-banana-2-vs-midjourney-vs-gpt-image-vs-flux2">AI Free API — Image model comparison &amp; pricing</a></li>
+    <li><a href="https://queststudio.io/blog/best-ai-models-for-character-consistency">Quest Studio — Models for character consistency</a></li>
+    <li><a href="https://www.gradually.ai/en/ai-image-models/">Gradually — Best AI image models 2026</a></li>
+    <li><a href="https://www.glbgpt.com/hub/how-much-is-nano-banana-pro/">GlobalGPT — Nano Banana Pro pricing</a></li>
+    <li><a href="https://slidespeak.co/guides/top-5-elevenlabs-alternatives-2026">SlideSpeak — ElevenLabs alternatives</a></li>
+    <li><a href="https://nerdynav.com/open-source-ai-voice/">NerdyNav — Open-source TTS models</a></li>
+    <li><a href="https://undetectr.com/blog/epidemic-sound-vs-ai-music">Undetectr — Epidemic Sound vs AI music licensing</a></li>
+    <li><a href="https://suno.com/hub/royalty-free-music">Suno — Royalty-free music licensing</a></li>
+    <li><a href="https://trustfull.com/articles/top-12-youtube-channels-about-fraud-scams-financial-crime">Trustfull — Fraud &amp; scam YouTube channels</a></li>
+    <li><a href="https://cybersecurityventures.com/top-5-b2b-cybersecurity-youtube-channels-in-2026/">Cybersecurity Ventures — Top B2B cybersecurity channels</a></li>
+    <li><a href="https://learnwithpath.com/blog/best-youtube-channels-for-cybersecurity-2026">LearnWithPath — Best cybersecurity channels 2026</a></li>
+    <li><a href="https://creatordb.app/creatorstats/magnatesmedia/">CreatorDB — MagnatesMedia statistics</a></li>
+    <li><a href="https://vidiq.com/youtube-stats/channel/UCE4Gn00XZbpWvGUfIslT-tA/">vidIQ — MagnatesMedia channel stats</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Jim_Browning_(YouTuber)">Wikipedia — Jim Browning</a></li>
+    <li><a href="https://creatordb.app/creatorstats/coffeezilla/">CreatorDB — Coffeezilla statistics</a></li>
+    <li><a href="https://outlierkit.com/channel/fern-tv">OutlierKit — fern channel analysis</a></li>
+    <li><a href="https://www.niemanlab.org/2026/03/with-newpress-iz-and-johnny-harris-incubate-video-journalism-for-the-creator-era/">Nieman Lab — Newpress and creator-era video journalism</a></li>
+    <li><a href="https://vidiq.com/youtube-stats/channel/UCb0MyY46T9ZYOzDHkYnIoXg/">vidIQ — Plainly Difficult stats</a></li>
+    <li><a href="https://www.cm-alliance.com/cybersecurity-blog/major-cyber-attacks-data-breaches-ransomware-attacks-in-july-2026">CM Alliance — Major attacks &amp; breaches, July 2026</a></li>
+    <li><a href="https://www.brightdefense.com/resources/recent-data-breaches/">Bright Defense — Recent data breaches 2026</a></li>
+    <li><a href="https://thepaypers.com/fraud-and-fincrime/expert-views/2026-fraud-forecast-ai-deepfakes-and-rising-cybercrime-risks">The Paypers — 2026 fraud forecast</a></li>
+    <li><a href="https://www.forbes.com/sites/technology/article/ai-generated-scams/">Forbes — AI scams rising in 2026</a></li>
+    <li><a href="https://www.helpnetsecurity.com/2026/05/11/f-secure-ai-scam-risks-report/">Help Net Security — The scam economy's AI upgrade</a></li>
+    <li><a href="https://www.abc.net.au/news/2026-07-21/myanmar-scam-compounds-exponential-growth/106603324">ABC News — Myanmar scam compounds</a></li>
+    <li><a href="https://becomeviral.com/blog/true-crime-faceless-youtube">BecomeViral — Faceless true crime CPM data</a></li>
+    <li><a href="https://www.opus.pro/blog/faceless-youtube-niches-2026">OpusClip — Faceless niches 2026</a></li>
+  </ol>
+</footer>
+
+</main>
+</div>
+</div>
